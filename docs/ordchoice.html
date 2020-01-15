@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Коан 5 Модели упорядоченного выбора | Розеттский камень</title>
-  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Коан 4 Модели упорядоченного выбора и условный логит | Розеттский камень</title>
+  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Коан 5 Модели упорядоченного выбора | Розеттский камень" />
+  <meta property="og:title" content="Коан 4 Модели упорядоченного выбора и условный логит | Розеттский камень" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Коан 5 Модели упорядоченного выбора | Розеттский камень" />
+  <meta name="twitter:title" content="Коан 4 Модели упорядоченного выбора и условный логит | Розеттский камень" />
   
   <meta name="twitter:description" content="Сборник коанов для эконометристов, жаждущих просветления." />
   
 
-<meta name="author" content="Пуассон, фея и два мексиканских негодяя">
+<meta name="author" content="Пуассон, фея и три мексиканских негодяя" />
 
 
-<meta name="date" content="2019-03-15">
+<meta name="date" content="2019-09-23" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="binchoice.html">
-<link rel="next" href="poisreg.html">
+<link rel="prev" href="binchoice.html"/>
+<link rel="next" href="disordered.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -102,22 +126,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a></li>
-<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Установка софта</a></li>
-<li class="chapter" data-level="3" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>3</b> Коан о простой линейной регрессии</a></li>
-<li class="chapter" data-level="4" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>4</b> Модели бинарного выбора</a></li>
-<li class="chapter" data-level="5" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>5</b> Модели упорядоченного выбора</a></li>
-<li class="chapter" data-level="6" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>6</b> Пуассоновская регрессия</a></li>
-<li class="chapter" data-level="7" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>7</b> Модели неупорядоченного выбора</a></li>
-<li class="chapter" data-level="8" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>8</b> Интcтрументы для простой регрессии</a></li>
-<li class="chapter" data-level="9" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>9</b> ARMA</a></li>
-<li class="chapter" data-level="10" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>10</b> Панельные данные</a></li>
-<li class="chapter" data-level="11" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>11</b> Гетероскедастичность в простой регрессии</a></li>
-<li class="chapter" data-level="12" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>12</b> PCA</a></li>
-<li class="chapter" data-level="13" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>13</b> Динамические панели</a></li>
-<li class="chapter" data-level="14" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>14</b> TOBIT, HECKIT</a></li>
-<li class="chapter" data-level="15" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>15</b> Treatment effect</a></li>
-<li class="chapter" data-level="16" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>16</b> Что-то там про совместимость и языки</a></li>
-<li class="chapter" data-level="17" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>17</b> Словарь</a></li>
+<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Коан об установке софта</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="installsoft.html"><a href="installsoft.html#simplereg"><i class="fa fa-check"></i><b>2.0.1</b> Коан о простой линейной регрессии</a></li>
+<li class="chapter" data-level="2.1" data-path="installsoft.html"><a href="installsoft.html#r"><i class="fa fa-check"></i><b>2.1</b> r</a></li>
+<li class="chapter" data-level="2.2" data-path="installsoft.html"><a href="installsoft.html#python"><i class="fa fa-check"></i><b>2.2</b> python</a></li>
+<li class="chapter" data-level="2.3" data-path="installsoft.html"><a href="installsoft.html#stata"><i class="fa fa-check"></i><b>2.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>3</b> Модель бинарного выбора</a><ul>
+<li class="chapter" data-level="3.1" data-path="binchoice.html"><a href="binchoice.html#r-1"><i class="fa fa-check"></i><b>3.1</b> r</a></li>
+<li class="chapter" data-level="3.2" data-path="binchoice.html"><a href="binchoice.html#python-1"><i class="fa fa-check"></i><b>3.2</b> python</a></li>
+<li class="chapter" data-level="3.3" data-path="binchoice.html"><a href="binchoice.html#stata-1"><i class="fa fa-check"></i><b>3.3</b> stata</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="binchoice.html"><a href="binchoice.html#multchoice"><i class="fa fa-check"></i><b>3.3.1</b> Модели множественного выбора</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="binchoice.html"><a href="binchoice.html#r-2"><i class="fa fa-check"></i><b>3.4</b> r</a></li>
+<li class="chapter" data-level="3.5" data-path="binchoice.html"><a href="binchoice.html#stata-2"><i class="fa fa-check"></i><b>3.5</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>4</b> Модели упорядоченного выбора и условный логит</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="ordchoice.html"><a href="ordchoice.html#----"><i class="fa fa-check"></i><b>4.0.1</b> То же самое в стате</a></li>
+<li class="chapter" data-level="4.0.2" data-path="ordchoice.html"><a href="ordchoice.html#poisreg"><i class="fa fa-check"></i><b>4.0.2</b> Модели счетных данных</a></li>
+<li class="chapter" data-level="4.1" data-path="ordchoice.html"><a href="ordchoice.html#r-3"><i class="fa fa-check"></i><b>4.1</b> r</a></li>
+<li class="chapter" data-level="4.2" data-path="ordchoice.html"><a href="ordchoice.html#python-2"><i class="fa fa-check"></i><b>4.2</b> python</a></li>
+<li class="chapter" data-level="4.3" data-path="ordchoice.html"><a href="ordchoice.html#stata-3"><i class="fa fa-check"></i><b>4.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>5</b> Модели неупорядоченного выбора</a></li>
+<li class="chapter" data-level="6" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>6</b> Интcтрументы для простой регрессии</a></li>
+<li class="chapter" data-level="7" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>7</b> ARMA</a><ul>
+<li class="chapter" data-level="7.1" data-path="arma.html"><a href="arma.html#r-4"><i class="fa fa-check"></i><b>7.1</b> r</a></li>
+<li class="chapter" data-level="7.2" data-path="arma.html"><a href="arma.html#python-3"><i class="fa fa-check"></i><b>7.2</b> python</a></li>
+<li class="chapter" data-level="7.3" data-path="arma.html"><a href="arma.html#stata-4"><i class="fa fa-check"></i><b>7.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>8</b> Панельные данные</a></li>
+<li class="chapter" data-level="9" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>9</b> Гетероскедастичность в простой регрессии</a><ul>
+<li class="chapter" data-level="9.1" data-path="heterosked.html"><a href="heterosked.html#r-5"><i class="fa fa-check"></i><b>9.1</b> r</a></li>
+<li class="chapter" data-level="9.2" data-path="heterosked.html"><a href="heterosked.html#python-4"><i class="fa fa-check"></i><b>9.2</b> python</a></li>
+<li class="chapter" data-level="9.3" data-path="heterosked.html"><a href="heterosked.html#stata-5"><i class="fa fa-check"></i><b>9.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> PCA</a></li>
+<li class="chapter" data-level="11" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>11</b> Динамические панели</a></li>
+<li class="chapter" data-level="12" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>12</b> TOBIT, HECKIT</a></li>
+<li class="chapter" data-level="13" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>13</b> Treatment effect</a></li>
+<li class="chapter" data-level="14" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>14</b> Что-то там про совместимость и языки</a></li>
+<li class="chapter" data-level="15" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>15</b> Словарь</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -139,8 +188,595 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="ordchoice" class="section level1">
-<h1><span class="header-section-number">Коан 5</span> Модели упорядоченного выбора</h1>
+<h1><span class="header-section-number">Коан 4</span> Модели упорядоченного выбора и условный логит</h1>
+<p>Загрузим необходимые пакеты.</p>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># для манипуляций с данными и построения графиков</span></a>
+<a class="sourceLine" id="cb437-2" data-line-number="2"><span class="kw">library</span>(skimr) <span class="co">#для красивого summary</span></a>
+<a class="sourceLine" id="cb437-3" data-line-number="3"><span class="kw">library</span>(rio) <span class="co"># для чтения .dta файлов</span></a>
+<a class="sourceLine" id="cb437-4" data-line-number="4"><span class="kw">library</span>(margins)</a></code></pre></div>
+<pre><code>Error in library(margins): there is no package called &#39;margins&#39;</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb439-1" data-line-number="1"><span class="kw">library</span>(mlogit)</a></code></pre></div>
+<pre><code>Error in library(mlogit): there is no package called &#39;mlogit&#39;</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1"><span class="kw">library</span>(nnet)</a>
+<a class="sourceLine" id="cb441-2" data-line-number="2"><span class="kw">library</span>(questionr)</a></code></pre></div>
+<pre><code>Error in library(questionr): there is no package called &#39;questionr&#39;</code></pre>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb443-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb443-4" data-line-number="4"><span class="co"># log(6)</span></a></code></pre></div>
+<p>Импортируем датасет. В нем находятся данные по клиентам пенсионных фондов. Нас интересует переменная <code>pctstck</code>, которая принимает три значения: 0, 50, 100 - в зависимоcти от ответа респондента на вопрос о предпочтительном способе инвестирования пенсионных накоплений.</p>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb444-1" data-line-number="1">df =<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;pension.dta&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" data-line-number="1"><span class="kw">skim_with</span>(<span class="dt">numeric =</span> <span class="kw">list</span>(<span class="dt">hist =</span> <span class="ot">NULL</span>, <span class="dt">p25 =</span> <span class="ot">NULL</span>, <span class="dt">p75 =</span> <span class="ot">NULL</span>)) <span class="co">#посмотрим на данные</span></a>
+<a class="sourceLine" id="cb445-2" data-line-number="2"><span class="co">#skim(df)</span></a></code></pre></div>
+<p>Создадим факторную перменную и упорядочим категории.</p>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">df =<span class="st"> </span><span class="kw">rename</span>(df,  <span class="dt">alloc =</span> pctstck) <span class="co"># переименуем </span></a>
+<a class="sourceLine" id="cb446-2" data-line-number="2">df =<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">alloc_factor =</span> <span class="kw">factor</span>(alloc)) <span class="co"># факторная переменная</span></a>
+<a class="sourceLine" id="cb446-3" data-line-number="3">df =<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">y =</span> <span class="kw">relevel</span>(df<span class="op">$</span>alloc_factor, <span class="dt">ref =</span> <span class="dv">1</span>)) <span class="co"># сменить базовую категорию</span></a>
+<a class="sourceLine" id="cb446-4" data-line-number="4"><span class="kw">levels</span>(df<span class="op">$</span>y)</a></code></pre></div>
+<pre><code>[1] &quot;0&quot;   &quot;50&quot;  &quot;100&quot;</code></pre>
+<p>Построим модель множественного выбора (лог-линейная модель).</p>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb448-1" data-line-number="1">multmodel =<span class="st"> </span><span class="kw">multinom</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr, <span class="dt">data =</span> df)</a></code></pre></div>
+<pre><code># weights:  21 (12 variable)
+initial  value 220.821070 
+iter  10 value 207.012642
+iter  20 value 204.507792
+final  value 204.507779 
+converged</code></pre>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb450-1" data-line-number="1"><span class="kw">summary</span>(multmodel)</a></code></pre></div>
+<pre><code>Call:
+multinom(formula = y ~ choice + age + educ + wealth89 + prftshr, 
+    data = df)
 
+Coefficients:
+    (Intercept)    choice         age       educ      wealth89    prftshr
+50     3.777686 0.6269410 -0.10621691 0.18518113 -0.0003716626 -0.2717872
+100    4.492971 0.6244954 -0.09482129 0.04644315 -0.0003548369  0.9809245
+
+Std. Errors:
+    (Intercept)    choice        age       educ     wealth89   prftshr
+50     1.581691 0.3701263 0.02826469 0.06725443 0.0007365833 0.4988234
+100    1.385291 0.3851273 0.02530600 0.07203058 0.0007896235 0.4396202
+
+Residual Deviance: 409.0156 
+AIC: 433.0156 </code></pre>
+<p>Сохраним прогнозы.</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1">fit_values =<span class="st"> </span><span class="kw">fitted</span>(multmodel)</a>
+<a class="sourceLine" id="cb452-2" data-line-number="2"><span class="kw">head</span>(fit_values)</a></code></pre></div>
+<pre><code>          0        50       100
+1 0.4040703 0.3308134 0.2651163
+2 0.1534943 0.2619464 0.5845593
+3 0.1651913 0.2342525 0.6005562
+4 0.4300671 0.1504960 0.4194370
+5 0.4878942 0.2797337 0.2323721
+6 0.4642700 0.1265789 0.4091510</code></pre>
+<p>И посчитать относительное изменение отношения шансов:</p>
+<p><span class="math display">\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\]</span>
+показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb454-1" data-line-number="1"><span class="kw">odds.ratio</span>(multmodel) <span class="co"># отношение шансов в stata называется relative-risk ratio</span></a></code></pre></div>
+<pre><code>Error in odds.ratio(multmodel): could not find function &quot;odds.ratio&quot;</code></pre>
+<p>Можем посчитать предельные эффекты в различных квартилях.</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">marginal_effects</span>(multmodel)) <span class="co"># mean как в стате</span></a></code></pre></div>
+<pre><code>Error in marginal_effects(multmodel): could not find function &quot;marginal_effects&quot;</code></pre>
+<p>Допустим, мы можем упорядочить наши альтернативы (например, от более рискованного способа распределения ресурсов до менее)</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb458-1" data-line-number="1">ordered_logit =<span class="st"> </span><span class="kw">polr</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr , <span class="dt">data =</span> df)</a>
+<a class="sourceLine" id="cb458-2" data-line-number="2">ordered_probit =<span class="st"> </span><span class="kw">polr</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr , <span class="dt">data =</span> df, <span class="dt">method =</span> <span class="st">&#39;probit&#39;</span>) </a>
+<a class="sourceLine" id="cb458-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb458-4" data-line-number="4">fit_prob =<span class="st"> </span><span class="kw">fitted</span>(ordered_probit)</a>
+<a class="sourceLine" id="cb458-5" data-line-number="5">fit_log =<span class="st"> </span><span class="kw">fitted</span>(ordered_logit)</a>
+<a class="sourceLine" id="cb458-6" data-line-number="6">ordered_probit</a></code></pre></div>
+<pre><code>Call:
+polr(formula = y ~ choice + age + educ + wealth89 + prftshr, 
+    data = df, method = &quot;probit&quot;)
+
+Coefficients:
+       choice           age          educ      wealth89       prftshr 
+ 0.2932276690 -0.0453064786  0.0269376562 -0.0001693805  0.4864824791 
+
+Intercepts:
+     0|50    50|100 
+-2.578050 -1.561799 
+
+Residual Deviance: 425.7763 
+AIC: 439.7763 
+(25 observations deleted due to missingness)</code></pre>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">ln</span>(<span class="dv">5</span>)</a></code></pre></div>
+<pre><code>Error in ln(5): could not find function &quot;ln&quot;</code></pre>
+<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1">cond_logit =<span class="st"> </span><span class="kw">clogit</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span><span class="kw">strata</span>(educ)<span class="op">+</span>wealth89<span class="op">+</span>prftshr , <span class="dt">data =</span> df)</a></code></pre></div>
+<pre><code>Error in coxph(formula = Surv(rep(1, 226L), y) ~ choice + age + strata(educ) + : Cox model doesn&#39;t support &quot;mright&quot; survival data</code></pre>
+<div id="----" class="section level3">
+<h3><span class="header-section-number">4.0.1</span> То же самое в стате</h3>
+<pre class="stata"><code>use pension.dta</code></pre>
+<pre><code>end of do-file</code></pre>
+<pre class="stata"><code>sum</code></pre>
+<pre><code>    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+          id |        226    2445.093    1371.271         38       5014
+      pyears |        218    11.38532    9.605498          0         45
+     prftshr |        206    .2087379    .4073967          0          1
+      choice |        226    .6150442     .487665          0          1
+      female |        226    .6017699      .49062          0          1
+-------------+---------------------------------------------------------
+     married |        226    .7345133    .4425723          0          1
+         age |        226    60.70354    4.287002         53         73
+        educ |        219    13.51598    2.554627          8         18
+      finc25 |        216    .2083333    .4070598          0          1
+      finc35 |        216    .1851852      .38935          0          1
+-------------+---------------------------------------------------------
+      finc50 |        216    .2453704    .4313061          0          1
+      finc75 |        216        .125    .3314871          0          1
+     finc100 |        216    .1203704      .32615          0          1
+     finc101 |        216    .0648148    .2467707          0          1
+    wealth89 |        226    197.9057    242.0919   -579.997   1484.997
+-------------+---------------------------------------------------------
+       black |        226     .119469    .3250596          0          1
+    stckin89 |        226    .3185841    .4669616          0          1
+     irain89 |        226          .5    .5011099          0          1
+     pctstck |        226    46.68142    39.44116          0        100</code></pre>
+<pre class="stata"><code>ren pctstck alloc</code></pre>
+<p>``````</p>
+<p>Построим модель множественного выбора (лог-линейная модель).</p>
+<pre class="stata"><code>mlogit alloc choice age educ wealth89 prftshr,  baseoutcome(0) #маленькое отличие с R</code></pre>
+<pre><code>&gt; ичие с R
+option # not allowed
+r(198);
+
+end of do-file
+r(198);</code></pre>
+<p>Можем посмотреть на прогнозы.</p>
+<pre class="stata"><code>predict p1 p2 p3, p</code></pre>
+<pre><code> option # not allowed
+r(198);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>И посчитать относительное изменение отношения шансов:</p>
+<p><span class="math display">\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\]</span> - показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу</p>
+<pre class="stata"><code>mlogit, rrr #relative-risk ratio</code></pre>
+<pre><code> option # not allowed
+r(198);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Можем посчитать предельные эффекты в разных точках.</p>
+<pre class="stata"><code>margins, predict(outcome(50)) dydx( choice age educ wealth89 prftshr) atmeans 
+
+margins, predict(outcome(50)) dydx( choice age educ wealth89 prftshr) at((p25) *)</code></pre>
+<pre><code> option # not allowed
+r(198);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<pre class="stata"><code>oprobit alloc choice age educ wealth89 prftshr
+
+ologit alloc choice age educ wealth89 prftshr</code></pre>
+<pre><code> option # not allowed
+r(198);
+
+
+
+Iteration 0:   log likelihood = -219.86356  
+Iteration 1:   log likelihood = -212.89234  
+Iteration 2:   log likelihood = -212.88817  
+Iteration 3:   log likelihood = -212.88817  
+
+Ordered probit regression                       Number of obs     =        201
+                                                LR chi2(5)        =      13.95
+                                                Prob &gt; chi2       =     0.0159
+Log likelihood = -212.88817                     Pseudo R2         =     0.0317
+
+------------------------------------------------------------------------------
+       alloc |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      choice |   .2932272    .167064     1.76   0.079    -.0342122    .6206666
+         age |  -.0453065   .0195009    -2.32   0.020    -.0835275   -.0070854
+        educ |   .0269375   .0315643     0.85   0.393    -.0349273    .0888024
+    wealth89 |  -.0001694   .0003431    -0.49   0.622    -.0008419    .0005031
+     prftshr |   .4864833   .2030406     2.40   0.017      .088531    .8844355
+-------------+----------------------------------------------------------------
+       /cut1 |  -2.578052   1.277878                     -5.082648   -.0734562
+       /cut2 |  -1.561798   1.272756                     -4.056353    .9327576
+------------------------------------------------------------------------------
+
+
+Iteration 0:   log likelihood = -219.86356  
+Iteration 1:   log likelihood = -212.75117  
+Iteration 2:   log likelihood = -212.72813  
+Iteration 3:   log likelihood = -212.72813  
+
+Ordered logistic regression                     Number of obs     =        201
+                                                LR chi2(5)        =      14.27
+                                                Prob &gt; chi2       =     0.0140
+Log likelihood = -212.72813                     Pseudo R2         =     0.0325
+
+------------------------------------------------------------------------------
+       alloc |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      choice |   .4720438   .2757545     1.71   0.087     -.068425    1.012513
+         age |  -.0776337   .0328659    -2.36   0.018    -.1420497   -.0132177
+        educ |   .0475714   .0514763     0.92   0.355    -.0533203    .1484631
+    wealth89 |   -.000277    .000561    -0.49   0.621    -.0013765    .0008224
+     prftshr |   .8312158   .3506528     2.37   0.018     .1439489    1.518483
+-------------+----------------------------------------------------------------
+       /cut1 |  -4.376271   2.144494                     -8.579402   -.1731395
+       /cut2 |  -2.714186   2.129423                     -6.887779    1.459407
+------------------------------------------------------------------------------</code></pre>
+<p>Посмотрим на conditional logit</p>
+<p>ПОКА ЗАБИЛА</p>
+<pre class="stata"><code>
+use crackers.dta
+
+
+egen resp = group(id occ)
+
+tabulate brand, generate(br)
+rename br1 Sunshine
+rename br2 Keebler
+rename br3 Nabisco
+
+clogit choice Sunshine Keebler Nabisco display feature price, group(resp)
+</code></pre>
+<pre><code> option # not allowed
+r(198);
+
+
+no; data in memory would be lost
+r(4);
+
+end of do-file
+r(4);</code></pre>
+
+</div>
+<div id="poisreg" class="section level3">
+<h3><span class="header-section-number">4.0.2</span> Модели счетных данных</h3>
+<p>Загрузим необходимые пакеты.</p>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># работа с данными и графики</span></a>
+<a class="sourceLine" id="cb481-2" data-line-number="2"><span class="kw">library</span>(skimr) <span class="co"># красивое summary</span></a>
+<a class="sourceLine" id="cb481-3" data-line-number="3"><span class="kw">library</span>(rio) <span class="co"># чтение .dta файлов</span></a>
+<a class="sourceLine" id="cb481-4" data-line-number="4"><span class="kw">library</span>(MASS) <span class="co"># отрицательное биномиальное</span></a>
+<a class="sourceLine" id="cb481-5" data-line-number="5"><span class="kw">library</span>(lmtest) <span class="co"># для проверки гипотез</span></a>
+<a class="sourceLine" id="cb481-6" data-line-number="6"><span class="kw">library</span>(pscl) <span class="co"># zero-inflation function</span></a></code></pre></div>
+<pre><code>Error in library(pscl): there is no package called &#39;pscl&#39;</code></pre>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" data-line-number="1"><span class="kw">library</span>(margins) <span class="co"># для подсчета предельных эффектов</span></a></code></pre></div>
+<pre><code>Error in library(margins): there is no package called &#39;margins&#39;</code></pre>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1"><span class="kw">library</span>(sjPlot) <span class="co"># визуализация моделей</span></a></code></pre></div>
+</div>
+<div id="r-3" class="section level2">
+<h2><span class="header-section-number">4.1</span> r</h2>
+<p>Импортируем данные.</p>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb486-1" data-line-number="1">df_fish =<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="dt">file =</span> <span class="st">&quot;data/fish.dta&quot;</span>)</a></code></pre></div>
+<pre><code>Error in rio::import(file = &quot;data/fish.dta&quot;): No such file</code></pre>
+<p>Данные содержат информацию о количестве рыбы, пойманной людьми на отдыхе.</p>
+<p>Camper - наличие/отсутсвие палатки.
+Child - количество детей, которых взяли на рыбалку.
+Persons - количество людей в группе.
+Count - количество пойманной рыбы</p>
+<p>Посмотрим нам описательные статистики.</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb488-1" data-line-number="1"><span class="kw">skim_with</span>(<span class="dt">numeric =</span> <span class="kw">list</span>(<span class="dt">hist =</span> <span class="ot">NULL</span>, <span class="dt">p25 =</span> <span class="ot">NULL</span>, <span class="dt">p75 =</span> <span class="ot">NULL</span>))</a>
+<a class="sourceLine" id="cb488-2" data-line-number="2"><span class="kw">skim</span>(df_fish)</a></code></pre></div>
+<pre><code>Error in skim(df_fish): object &#39;df_fish&#39; not found</code></pre>
+<p>Переменная <code>camper</code> принимает всего два значения, поэтому превратим ее в факторную переменную.</p>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb490-1" data-line-number="1">df_fish =<span class="st"> </span><span class="kw">mutate</span>(df_fish, <span class="dt">camper =</span> <span class="kw">factor</span>(camper))</a></code></pre></div>
+<pre><code>Error in mutate(df_fish, camper = factor(camper)): object &#39;df_fish&#39; not found</code></pre>
+<p>Наша задача - по имеющимся данным предсказать улов. Для начала посмотрим на распределение объясняемой переменной <code>count</code>.</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb492-1" data-line-number="1"><span class="kw">ggplot</span>(df_fish, <span class="kw">aes</span>(<span class="dt">x =</span> count)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb492-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb492-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;count&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;frequency&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Distribution of count variable&#39;</span>)</a></code></pre></div>
+<pre><code>Error in ggplot(df_fish, aes(x = count)): object &#39;df_fish&#39; not found</code></pre>
+<p>Предположим, что переменная имеет распределение Пуассона. Будем использовать пуассоновскую регрессию.
+<span class="math display">\[
+P(y=k)=exp(-\lambda) \lambda^k / k!
+\]</span>
+где <span class="math inline">\(\lambda=\exp(b_1 +b_2*x)\)</span></p>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" data-line-number="1">poisson_model =<span class="st"> </span><span class="kw">glm</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st">  </span>persons, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>, <span class="dt">data =</span> df_fish)</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;df_fish&#39; not found</code></pre>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1"><span class="kw">summary</span>(poisson_model)</a></code></pre></div>
+<pre><code>Error in summary(poisson_model): object &#39;poisson_model&#39; not found</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb498-1" data-line-number="1">m =<span class="st"> </span><span class="kw">margins</span>(poisson_model)</a></code></pre></div>
+<pre><code>Error in margins(poisson_model): could not find function &quot;margins&quot;</code></pre>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb500-1" data-line-number="1"><span class="kw">summary</span>(m)</a></code></pre></div>
+<pre><code>Error in summary(m): object &#39;m&#39; not found</code></pre>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb502-1" data-line-number="1"><span class="kw">cplot</span>(poisson_model, <span class="dt">x =</span> <span class="st">&#39;persons&#39;</span>, <span class="dt">what =</span> <span class="st">&#39;effect&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Предельный эффект переменной camper&#39;</span>)</a></code></pre></div>
+<pre><code>Error in cplot(poisson_model, x = &quot;persons&quot;, what = &quot;effect&quot;, title = &quot;Предельный эффект переменной camper&quot;): could not find function &quot;cplot&quot;</code></pre>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" data-line-number="1"><span class="kw">margins</span>(poisson_model, <span class="dt">at =</span> <span class="kw">list</span>(<span class="dt">child =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">1</span>)) <span class="co"># или в какой-нибудь точке</span></a></code></pre></div>
+<pre><code>Error in margins(poisson_model, at = list(child = 0:1)): could not find function &quot;margins&quot;</code></pre>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1"><span class="kw">plot_model</span>(poisson_model, <span class="dt">type =</span> <span class="st">&#39;pred&#39;</span>)</a></code></pre></div>
+<pre><code>Error in insight::model_info(model): object &#39;poisson_model&#39; not found</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1"><span class="kw">plot_model</span>(poisson_model, <span class="dt">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="dt">terms =</span> <span class="kw">c</span>(<span class="st">&quot;child [0, 0, 1]&quot;</span>, <span class="st">&quot;persons [1,3]&quot;</span>))</a></code></pre></div>
+<pre><code>Error in insight::model_info(model): object &#39;poisson_model&#39; not found</code></pre>
+<p>Однако, заметим, что дисперсия и среднее значение объясняемой переменной не равны, как это предполагает распределение Пуассона.</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" data-line-number="1">df_fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb510-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(camper) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb510-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">var =</span> <span class="kw">var</span>(count), <span class="dt">mean =</span> <span class="kw">mean</span>(count))</a></code></pre></div>
+<pre><code>Error in eval(lhs, parent, parent): object &#39;df_fish&#39; not found</code></pre>
+<p>Оценим регрессию, предполагая отрицательное биномиальное распределение остатков. В этом случае, дисперсия распределения зависит от некоторого параметра и не равна среднему.</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1">nb1 =<span class="st"> </span><span class="kw">glm.nb</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st">  </span>persons, <span class="dt">data =</span> df_fish)</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;df_fish&#39; not found</code></pre>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" data-line-number="1"><span class="kw">summary</span>(nb1)</a></code></pre></div>
+<pre><code>Error in summary(nb1): object &#39;nb1&#39; not found</code></pre>
+<p>Попробуем исключить из модели переменную <code>camper</code> и сравним качество двух моделей.</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" data-line-number="1">nb2 =<span class="st"> </span><span class="kw">update</span>(nb1, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>camper)</a></code></pre></div>
+<pre><code>Error in update(nb1, . ~ . - camper): object &#39;nb1&#39; not found</code></pre>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb518-1" data-line-number="1"><span class="kw">waldtest</span>(nb1, nb2)</a></code></pre></div>
+<pre><code>Error in waldtest(nb1, nb2): object &#39;nb1&#39; not found</code></pre>
+<p>Можем посмотреть на результаты модели с “раздутыми нулями” (zero-inflated). Они предполагают большую частоту нулевых наблюдений.</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb520-1" data-line-number="1">zero_infl =<span class="st"> </span><span class="kw">zeroinfl</span>(count <span class="op">~</span><span class="st">  </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">|</span><span class="st"> </span>persons, <span class="dt">data =</span> df_fish, <span class="dt">dist =</span> <span class="st">&#39;negbin&#39;</span>)</a></code></pre></div>
+<pre><code>Error in zeroinfl(count ~ child + camper | persons, data = df_fish, dist = &quot;negbin&quot;): could not find function &quot;zeroinfl&quot;</code></pre>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb522-1" data-line-number="1"><span class="kw">summary</span>(zero_infl)</a></code></pre></div>
+<pre><code>Error in summary(zero_infl): object &#39;zero_infl&#39; not found</code></pre>
+<div class="sourceCode" id="cb524"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb524-1" data-line-number="1"><span class="kw">plot_model</span>(zero_infl, <span class="dt">type =</span> <span class="st">&#39;pred&#39;</span>)</a></code></pre></div>
+<pre><code>Error in insight::model_info(model): object &#39;zero_infl&#39; not found</code></pre>
+</div>
+<div id="python-2" class="section level2">
+<h2><span class="header-section-number">4.2</span> python</h2>
+<p>Нужные пакетики:</p>
+<div class="sourceCode" id="cb526"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb526-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># для работы с таблицами</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;pandas&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb528"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb528-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># математика, работа с матрицами</span></a>
+<a class="sourceLine" id="cb528-2" data-line-number="2"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># графики</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;matplotlib&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb530"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb530-1" data-line-number="1"><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb532"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb532-1" data-line-number="1"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb534"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb534-1" data-line-number="1"><span class="im">import</span> statsmodels.graphics.gofplots <span class="im">as</span> gf</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb536"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb536-1" data-line-number="1"><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb538"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb538-1" data-line-number="1"><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># еще более классные графики</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;seaborn&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb540"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb540-1" data-line-number="1"><span class="im">from</span> scipy.stats <span class="im">import</span> shapiro <span class="co"># еще математика</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;scipy&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb542"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb542-1" data-line-number="1"><span class="im">import</span> statsmodels.discrete.discrete_model</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb544"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb544-1" data-line-number="1"><span class="im">from</span> statsmodels.discrete.count_model <span class="im">import</span> ZeroInflatedPoisson</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb546"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb546-1" data-line-number="1">plt.style.use(<span class="st">&#39;ggplot&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Загружаем данные и смотрим описательные статистики.</p>
+<div class="sourceCode" id="cb548"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb548-1" data-line-number="1">df_fish <span class="op">=</span> pd.read_stata(<span class="st">&#39;data/fish.dta&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb550"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb550-1" data-line-number="1">sns.distplot(df_fish[<span class="st">&#39;count&#39;</span>])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;sns&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb552"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb552-1" data-line-number="1">plt.show()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Превращаем переменную <code>camper</code> в категориальную.</p>
+<div class="sourceCode" id="cb554"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb554-1" data-line-number="1">df_fish[<span class="st">&#39;camper&#39;</span>] <span class="op">=</span> df_fish[<span class="st">&#39;camper&#39;</span>].astype(<span class="st">&#39;category&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;df_fish&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Строим Пуассоновскую регрессию.</p>
+<div class="sourceCode" id="cb556"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb556-1" data-line-number="1">pois <span class="op">=</span> statsmodels.discrete.discrete_model.Poisson(endog <span class="op">=</span> count, exog <span class="op">=</span> np.array(child, camper, persons), data<span class="op">=</span>df_fish)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;statsmodels&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb558"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb558-1" data-line-number="1">regr_pois <span class="op">=</span> smf.glm(<span class="st">&#39;count ~ child + camper +  persons&#39;</span>, data<span class="op">=</span>df_fish,</a>
+<a class="sourceLine" id="cb558-2" data-line-number="2">                    family<span class="op">=</span>sm.families.Poisson()).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;smf&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb560"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb560-1" data-line-number="1">regr_pois.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;regr_pois&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.</p>
+<div class="sourceCode" id="cb562"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb562-1" data-line-number="1">(df_fish</a>
+<a class="sourceLine" id="cb562-2" data-line-number="2"> .<span class="bu">filter</span>([<span class="st">&#39;count&#39;</span>, <span class="st">&#39;camper&#39;</span>])</a>
+<a class="sourceLine" id="cb562-3" data-line-number="3"> .groupby(<span class="st">&#39;camper&#39;</span>)</a>
+<a class="sourceLine" id="cb562-4" data-line-number="4"> .agg([<span class="st">&#39;mean&#39;</span>, <span class="st">&#39;var&#39;</span>]))</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;df_fish&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>И регрессию с остатками, имеющими отрицательное биномиальное распределение.</p>
+<div class="sourceCode" id="cb564"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb564-1" data-line-number="1">regr_bin <span class="op">=</span> smf.glm(<span class="st">&#39;count ~ child + camper +  persons&#39;</span>, data<span class="op">=</span>df_fish,</a>
+<a class="sourceLine" id="cb564-2" data-line-number="2">              family<span class="op">=</span>sm.families.NegativeBinomial()).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;smf&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb566"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb566-1" data-line-number="1">regr_bin.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;regr_bin&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Проверим гипотезу о равенстве 0 коэффициента при переменной <code>camper</code>. Проведем тест Вальда.</p>
+<div class="sourceCode" id="cb568"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb568-1" data-line-number="1">hyp <span class="op">=</span> <span class="st">&#39;(child = 0)&#39;</span></a>
+<a class="sourceLine" id="cb568-2" data-line-number="2">regr_bin.wald_test(hyp)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;regr_bin&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<div class="sourceCode" id="cb570"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb570-1" data-line-number="1">pred <span class="op">=</span> regr_pois.fittedvalues</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;regr_pois&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb572"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb572-1" data-line-number="1">mean_mef_child <span class="op">=</span> np.mean([regr_pois.params[<span class="dv">1</span>] <span class="op">*</span> p <span class="cf">for</span> p <span class="kw">in</span> pred])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pred&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb574"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb574-1" data-line-number="1">mean_mef_camper <span class="op">=</span> np.mean([regr_pois.params[<span class="dv">2</span>] <span class="op">*</span> p <span class="cf">for</span> p <span class="kw">in</span> pred])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pred&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb576"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb576-1" data-line-number="1">data_1 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;child&#39;</span>: df_fish[<span class="st">&#39;child&#39;</span>], <span class="st">&#39;camper&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;persons&#39;</span>: df_fish[<span class="st">&#39;persons&#39;</span>]})</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb578"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb578-1" data-line-number="1">data_0 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;child&#39;</span>: df_fish[<span class="st">&#39;child&#39;</span>], <span class="st">&#39;camper&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;persons&#39;</span>: df_fish[<span class="st">&#39;persons&#39;</span>]})</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb580"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb580-1" data-line-number="1">mean_mef_persons <span class="op">=</span> np.mean([(regr_pois.predict(data_1)[i]<span class="op">-</span>regr_pois.predict(data_0)[i]) </a>
+<a class="sourceLine" id="cb580-2" data-line-number="2">                            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df_fish))])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;df_fish&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 2, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb582"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb582-1" data-line-number="1">plot_model(regr_pois, <span class="bu">type</span> <span class="op">=</span> <span class="st">&#39;effect&#39;</span>, terms <span class="op">=</span> <span class="st">&#39;camper&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plot_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>И модель с раздутыми нулями. (которой нет)</p>
+</div>
+<div id="stata-3" class="section level2">
+<h2><span class="header-section-number">4.3</span> stata</h2>
+<p>Загружаем данные и смотрим описательные статистики.</p>
+<pre class="stata"><code>use data/fish.dta
+summarize</code></pre>
+<pre><code>file data/fish.dta not found
+r(601);
+
+end of do-file
+r(601);</code></pre>
+<pre class="stata"><code>hist count</code></pre>
+<p><img src="hist_pois.png" /></p>
+<p>Строим Пуассоновскую регрессию.
+В описательных статистиках:
+<span class="math inline">\(AIC = -2log(L) + 2k\)</span>
+<span class="math inline">\(AIC = -2log(L) + klog(N)\)</span></p>
+<pre class="stata"><code>glm count camper child persons, family(poisson)</code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+variable count not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Можем посчитать AIC и BIC по другой формуле, аналогично выводу R.
+<span class="math inline">\(AIC = \frac {-2log(L) + 2k}{N}\)</span></p>
+<pre class="stata"><code>estat ic</code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.</p>
+<pre class="stata"><code>tabstat count, by(camper) stat(mean, variance) nototal</code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+variable count not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Предположим, что остатки имеют отрицательное биномиальное распределение.</p>
+<pre class="stata"><code>nbreg count child camper persons</code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Проверим гипотезу о равенстве 0 коэффицинта при переменной <code>camper</code>. Проведем тест Вальда.</p>
+<pre class="stata"><code>quietly: nbreg count child i.camper persons 
+test i.camper </code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<pre class="stata"><code>margins, dydx(*)
+marginsplot</code></pre>
+<p><img src="margins_plot.png" /></p>
+<p>И модель с раздутыми нулями.</p>
+<pre class="stata"><code>zinb count child i.camper, inflate(persons)</code></pre>
+<pre><code> file data/fish.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+
+</div>
 </div>
             </section>
 
@@ -148,7 +784,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
         </div>
       </div>
 <a href="binchoice.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="poisreg.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="disordered.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -193,6 +829,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

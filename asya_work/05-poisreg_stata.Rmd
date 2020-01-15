@@ -1,0 +1,112 @@
+# Модели счетных данных stata {#poisreg}
+
+
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+## stata
+
+```{stata, include=FALSE}
+clear all
+```
+
+Загружаем данные и смотрим описательные статистики.
+```{stata, echo = 1:2}
+use data/fish.dta
+summarize
+```
+
+```{stata, results = 'hide', echo = 1}
+hist count
+graph export hist_pois.png, replace
+```
+![](hist_pois.png)
+
+
+Строим Пуассоновскую регрессию. 
+AIC, который мы видим в описательных статистиках, рассчитан по следующей формуле:
+$AIC = -2log(L) + 2k$
+$AIC = -2log(L) + klog(N)$
+
+где `L` — значение функции правдоподобия модели, `k` — количество переменных, `N` — число наблюдений.
+
+```{stata}
+glm count camper child persons, family(poisson)
+```
+
+Можем посчитать AIC и BIC по другой формуле и получить результат, аналогичный выводу в R.
+$AIC = \frac {-2log(L) + 2k}{N}$
+```{stata}                
+estat ic
+```
+
+Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.
+```{stata}
+tabstat count, by(camper) stat(mean, variance) nototal
+```
+
+Предположим, что остатки имеют отрицательное биномиальное распределение.
+```{stata}
+nbreg count child camper persons
+```
+ 
+Проверим гипотезу о равенстве 0 коэффицинта при переменной `camper`. Проведем тест Вальда.
+```{stata}
+quietly: nbreg count child i.camper persons 
+test i.camper 
+```
+
+Посчитаем средний предельный эффект для каждой переменной.
+```{stata, results = 'hide', echo = 1:2}                
+margins, dydx(*)
+marginsplot
+graph export margins_plot.png, replace
+```
+![](margins_plot.png)
+
+И модель с раздутыми нулями.
+```{stata}  
+zinb count child i.camper, inflate(persons)
+```

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Коан 6 Пуассоновская регрессия | Розеттский камень</title>
-  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Коан 3 Модели счетных данных | Розеттский камень</title>
+  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Коан 6 Пуассоновская регрессия | Розеттский камень" />
+  <meta property="og:title" content="Коан 3 Модели счетных данных | Розеттский камень" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Коан 6 Пуассоновская регрессия | Розеттский камень" />
+  <meta name="twitter:title" content="Коан 3 Модели счетных данных | Розеттский камень" />
   
   <meta name="twitter:description" content="Сборник коанов для эконометристов, жаждущих просветления." />
   
 
-<meta name="author" content="Пуассон, фея и два мексиканских негодяя">
+<meta name="author" content="Пуассон, фея и три мексиканских негодяя" />
 
 
-<meta name="date" content="2019-03-15">
+<meta name="date" content="2019-09-26" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ordchoice.html">
-<link rel="next" href="disordered.html">
+<link rel="prev" href="simplereg.html"/>
+<link rel="next" href="disordered.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -101,23 +125,56 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a></li>
-<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Установка софта</a></li>
-<li class="chapter" data-level="3" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>3</b> Коан о простой линейной регрессии</a></li>
-<li class="chapter" data-level="4" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>4</b> Модели бинарного выбора</a></li>
-<li class="chapter" data-level="5" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>5</b> Модели упорядоченного выбора</a></li>
-<li class="chapter" data-level="6" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>6</b> Пуассоновская регрессия</a></li>
-<li class="chapter" data-level="7" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>7</b> Модели неупорядоченного выбора</a></li>
-<li class="chapter" data-level="8" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>8</b> Интcтрументы для простой регрессии</a></li>
-<li class="chapter" data-level="9" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>9</b> ARMA</a></li>
-<li class="chapter" data-level="10" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>10</b> Панельные данные</a></li>
-<li class="chapter" data-level="11" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>11</b> Гетероскедастичность в простой регрессии</a></li>
-<li class="chapter" data-level="12" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>12</b> PCA</a></li>
-<li class="chapter" data-level="13" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>13</b> Динамические панели</a></li>
-<li class="chapter" data-level="14" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>14</b> TOBIT, HECKIT</a></li>
-<li class="chapter" data-level="15" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>15</b> Treatment effect</a></li>
-<li class="chapter" data-level="16" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>16</b> Что-то там про совместимость и языки</a></li>
-<li class="chapter" data-level="17" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>17</b> Словарь</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installsoft"><i class="fa fa-check"></i><b>1.1</b> # Коан об установке софта</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#--r"><i class="fa fa-check"></i><b>1.1.1</b> Язык программирования R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#---rstudio--windows-mac-os"><i class="fa fa-check"></i><b>1.1.2</b> Инструкция по установке RStudio для Windows / Mac OS:</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1.3</b> Начало работы</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#--1"><i class="fa fa-check"></i><b>1.1.4</b> Настройка программы</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#--python"><i class="fa fa-check"></i><b>1.1.5</b> Язык программирования Python</a></li>
+<li class="chapter" data-level="1.1.6" data-path="index.html"><a href="index.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> Установка</a></li>
+<li class="chapter" data-level="1.1.7" data-path="index.html"><a href="index.html#--1"><i class="fa fa-check"></i><b>1.1.7</b> Начало работы</a></li>
+<li class="chapter" data-level="1.1.8" data-path="index.html"><a href="index.html#-stata"><i class="fa fa-check"></i><b>1.1.8</b> Программа STATA</a></li>
+<li class="chapter" data-level="1.1.9" data-path="index.html"><a href="index.html#-1"><i class="fa fa-check"></i><b>1.1.9</b> Установка:</a></li>
+<li class="chapter" data-level="1.1.10" data-path="index.html"><a href="index.html#--2"><i class="fa fa-check"></i><b>1.1.10</b> Начало работы:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>2</b> Коан о простой линейной регрессии</a><ul>
+<li class="chapter" data-level="2.1" data-path="simplereg.html"><a href="simplereg.html#r"><i class="fa fa-check"></i><b>2.1</b> r</a></li>
+<li class="chapter" data-level="2.2" data-path="simplereg.html"><a href="simplereg.html#python"><i class="fa fa-check"></i><b>2.2</b> python</a></li>
+<li class="chapter" data-level="2.3" data-path="simplereg.html"><a href="simplereg.html#stata"><i class="fa fa-check"></i><b>2.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>3</b> Модели счетных данных</a><ul>
+<li class="chapter" data-level="3.1" data-path="poisreg.html"><a href="poisreg.html#r-1"><i class="fa fa-check"></i><b>3.1</b> r</a></li>
+<li class="chapter" data-level="3.2" data-path="poisreg.html"><a href="poisreg.html#python-1"><i class="fa fa-check"></i><b>3.2</b> python</a></li>
+<li class="chapter" data-level="3.3" data-path="poisreg.html"><a href="poisreg.html#stata-1"><i class="fa fa-check"></i><b>3.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>4</b> Модели неупорядоченного выбора</a><ul>
+<li class="chapter" data-level="4.1" data-path="disordered.html"><a href="disordered.html#instruments"><i class="fa fa-check"></i><b>4.1</b> # Коан об инcтрументах для простой регрессии</a></li>
+<li class="chapter" data-level="4.2" data-path="disordered.html"><a href="disordered.html#r-2"><i class="fa fa-check"></i><b>4.2</b> r</a></li>
+<li class="chapter" data-level="4.3" data-path="disordered.html"><a href="disordered.html#stata-2"><i class="fa fa-check"></i><b>4.3</b> stata</a></li>
+<li class="chapter" data-level="4.4" data-path="disordered.html"><a href="disordered.html#python-2"><i class="fa fa-check"></i><b>4.4</b> python</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>5</b> ARMA</a><ul>
+<li class="chapter" data-level="5.1" data-path="arma.html"><a href="arma.html#r-3"><i class="fa fa-check"></i><b>5.1</b> r</a></li>
+<li class="chapter" data-level="5.2" data-path="arma.html"><a href="arma.html#python-3"><i class="fa fa-check"></i><b>5.2</b> python</a></li>
+<li class="chapter" data-level="5.3" data-path="arma.html"><a href="arma.html#stata-3"><i class="fa fa-check"></i><b>5.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>6</b> Панельные данные</a></li>
+<li class="chapter" data-level="7" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>7</b> Гетероскедастичность в простой регрессии</a><ul>
+<li class="chapter" data-level="7.1" data-path="heterosked.html"><a href="heterosked.html#r-4"><i class="fa fa-check"></i><b>7.1</b> r</a></li>
+<li class="chapter" data-level="7.2" data-path="heterosked.html"><a href="heterosked.html#python-4"><i class="fa fa-check"></i><b>7.2</b> python</a></li>
+<li class="chapter" data-level="7.3" data-path="heterosked.html"><a href="heterosked.html#stata-4"><i class="fa fa-check"></i><b>7.3</b> stata</a></li>
+<li class="chapter" data-level="7.4" data-path="heterosked.html"><a href="heterosked.html#pca"><i class="fa fa-check"></i><b>7.4</b> # Коан о методе главных компонент</a></li>
+<li class="chapter" data-level="7.5" data-path="heterosked.html"><a href="heterosked.html#r-5"><i class="fa fa-check"></i><b>7.5</b> r</a></li>
+<li class="chapter" data-level="7.6" data-path="heterosked.html"><a href="heterosked.html#stata-5"><i class="fa fa-check"></i><b>7.6</b> stata</a></li>
+<li class="chapter" data-level="7.7" data-path="heterosked.html"><a href="heterosked.html#python-5"><i class="fa fa-check"></i><b>7.7</b> python</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>8</b> Динамические панели</a></li>
+<li class="chapter" data-level="9" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>9</b> TOBIT, HECKIT</a></li>
+<li class="chapter" data-level="10" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>10</b> Treatment effect</a></li>
+<li class="chapter" data-level="11" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>11</b> Что-то там про совместимость и языки</a></li>
+<li class="chapter" data-level="12" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>12</b> Словарь</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -139,15 +196,479 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="poisreg" class="section level1">
-<h1><span class="header-section-number">Коан 6</span> Пуассоновская регрессия</h1>
+<h1><span class="header-section-number">Коан 3</span> Модели счетных данных</h1>
+<p>Загрузим необходимые пакеты.</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># работа с данными и графики</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2"><span class="kw">library</span>(skimr) <span class="co"># красивое summary</span></a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="kw">library</span>(rio) <span class="co"># чтение .dta файлов</span></a>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="kw">library</span>(MASS) <span class="co"># отрицательное биномиальное</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5"><span class="kw">library</span>(lmtest) <span class="co"># для проверки гипотез</span></a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="kw">library</span>(pscl) <span class="co"># zero-inflation function</span></a></code></pre></div>
+<pre><code>Error in library(pscl): there is no package called &#39;pscl&#39;</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">library</span>(margins) <span class="co"># для подсчета предельных эффектов</span></a>
+<a class="sourceLine" id="cb68-2" data-line-number="2"><span class="kw">library</span>(sjPlot) <span class="co"># визуализация моделей</span></a></code></pre></div>
+<div id="r-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> r</h2>
+<p>Импортируем данные.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">df_fish =<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="dt">file =</span> <span class="st">&quot;data/fish.dta&quot;</span>)</a></code></pre></div>
+<p>Данные содержат информацию о количестве рыбы, пойманной людьми на отдыхе.</p>
+<p>Camper - наличие/отсутсвие палатки.
+Child - количество детей, которых взяли на рыбалку.
+Persons - количество людей в группе.
+Count - количество пойманной рыбы</p>
+<p>Посмотрим нам описательные статистики.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">skim_with</span>(<span class="dt">numeric =</span> <span class="kw">list</span>(<span class="dt">hist =</span> <span class="ot">NULL</span>, <span class="dt">p25 =</span> <span class="ot">NULL</span>, <span class="dt">p75 =</span> <span class="ot">NULL</span>))</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2"><span class="kw">skim</span>(df_fish)</a></code></pre></div>
+<pre><code>Skim summary statistics
+ n obs: 250 
+ n variables: 4 
 
+── Variable type:numeric ─────────────────────────────────────────────────────────────────────────────────────────────────────────
+ variable missing complete   n mean    sd p0 p50 p100
+   camper       0      250 250 0.59  0.49  0   1    1
+    child       0      250 250 0.68  0.85  0   0    3
+    count       0      250 250 3.3  11.64  0   0  149
+  persons       0      250 250 2.53  1.11  1   2    4</code></pre>
+<p>Переменная <code>camper</code> принимает всего два значения, поэтому превратим ее в факторную переменную.</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">df_fish =<span class="st"> </span><span class="kw">mutate</span>(df_fish, <span class="dt">camper =</span> <span class="kw">factor</span>(camper))</a></code></pre></div>
+<p>Наша задача - по имеющимся данным предсказать улов. Для начала посмотрим на распределение объясняемой переменной <code>count</code>.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">ggplot</span>(df_fish, <span class="kw">aes</span>(<span class="dt">x =</span> count)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb73-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">binwidth =</span> <span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb73-3" data-line-number="3"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&#39;count&#39;</span>, <span class="dt">y =</span> <span class="st">&#39;frequency&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Distribution of count variable&#39;</span>)</a></code></pre></div>
+<p><img src="05-poisreg_files/figure-html/hist-1.png" width="672" /></p>
+<p>Предположим, что переменная имеет распределение Пуассона. Будем использовать пуассоновскую регрессию.
+<span class="math display">\[
+P(y=k)=exp(-\lambda) \lambda^k / k!
+\]</span>
+где <span class="math inline">\(\lambda=\exp(b_1 +b_2*x)\)</span></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">poisson_model =<span class="st"> </span><span class="kw">glm</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st">  </span>persons, <span class="dt">family =</span> <span class="st">&quot;poisson&quot;</span>, <span class="dt">data =</span> df_fish)</a>
+<a class="sourceLine" id="cb74-2" data-line-number="2"><span class="kw">summary</span>(poisson_model)</a></code></pre></div>
+<pre><code>
+Call:
+glm(formula = count ~ child + camper + persons, family = &quot;poisson&quot;, 
+    data = df_fish)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-6.8096  -1.4431  -0.9060  -0.0406  16.1417  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -1.98183    0.15226  -13.02   &lt;2e-16 ***
+child       -1.68996    0.08099  -20.87   &lt;2e-16 ***
+camper1      0.93094    0.08909   10.45   &lt;2e-16 ***
+persons      1.09126    0.03926   27.80   &lt;2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 2958.4  on 249  degrees of freedom
+Residual deviance: 1337.1  on 246  degrees of freedom
+AIC: 1682.1
+
+Number of Fisher Scoring iterations: 6</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">m =<span class="st"> </span><span class="kw">margins</span>(poisson_model)</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="kw">summary</span>(m)</a></code></pre></div>
+<pre><code>  factor     AME     SE        z      p   lower   upper
+ camper1  2.5815 0.2137  12.0800 0.0000  2.1626  3.0003
+   child -5.5701 0.3300 -16.8779 0.0000 -6.2169 -4.9233
+ persons  3.5968 0.1801  19.9697 0.0000  3.2438  3.9498</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">cplot</span>(poisson_model, <span class="dt">x =</span> <span class="st">&#39;persons&#39;</span>, <span class="dt">what =</span> <span class="st">&#39;effect&#39;</span>, <span class="dt">title =</span> <span class="st">&#39;Предельный эффект переменной camper&#39;</span>)</a></code></pre></div>
+<p><img src="05-poisreg_files/figure-html/mef-1.png" width="672" /></p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">margins</span>(poisson_model, <span class="dt">at =</span> <span class="kw">list</span>(<span class="dt">child =</span> <span class="dv">0</span><span class="op">:</span><span class="dv">1</span>)) <span class="co"># или в какой-нибудь точке</span></a></code></pre></div>
+<pre><code> at(child)   child persons camper1
+         0 -12.948   8.361   6.343
+         1  -2.389   1.543   1.171</code></pre>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">plot_model</span>(poisson_model, <span class="dt">type =</span> <span class="st">&#39;pred&#39;</span>)</a></code></pre></div>
+<pre><code>$child</code></pre>
+<p><img src="05-poisreg_files/figure-html/mef-2.png" width="672" /></p>
+<pre><code>
+$camper</code></pre>
+<p><img src="05-poisreg_files/figure-html/mef-3.png" width="672" /></p>
+<pre><code>
+$persons</code></pre>
+<p><img src="05-poisreg_files/figure-html/mef-4.png" width="672" /></p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">plot_model</span>(poisson_model, <span class="dt">type =</span> <span class="st">&quot;pred&quot;</span>, <span class="dt">terms =</span> <span class="kw">c</span>(<span class="st">&quot;child [0, 0, 1]&quot;</span>, <span class="st">&quot;persons [1,3]&quot;</span>))</a></code></pre></div>
+<p><img src="05-poisreg_files/figure-html/mef-5.png" width="672" /></p>
+<p>Однако, заметим, что дисперсия и среднее значение объясняемой переменной не равны, как это предполагает распределение Пуассона.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">df_fish <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(camper) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(<span class="dt">var =</span> <span class="kw">var</span>(count), <span class="dt">mean =</span> <span class="kw">mean</span>(count))</a></code></pre></div>
+<pre><code># A tibble: 2 x 3
+  camper   var  mean
+  &lt;fct&gt;  &lt;dbl&gt; &lt;dbl&gt;
+1 0       21.1  1.52
+2 1      212.   4.54</code></pre>
+<p>Оценим регрессию, предполагая отрицательное биномиальное распределение остатков. В этом случае, дисперсия распределения зависит от некоторого параметра и не равна среднему.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">nb1 =<span class="st"> </span><span class="kw">glm.nb</span>(count <span class="op">~</span><span class="st"> </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">+</span><span class="st">  </span>persons, <span class="dt">data =</span> df_fish)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2"><span class="kw">summary</span>(nb1)</a></code></pre></div>
+<pre><code>
+Call:
+glm.nb(formula = count ~ child + camper + persons, data = df_fish, 
+    init.theta = 0.4635287626, link = log)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-1.6673  -0.9599  -0.6590  -0.0319   4.9433  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  -1.6250     0.3304  -4.918 8.74e-07 ***
+child        -1.7805     0.1850  -9.623  &lt; 2e-16 ***
+camper1       0.6211     0.2348   2.645  0.00816 ** 
+persons       1.0608     0.1144   9.273  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+(Dispersion parameter for Negative Binomial(0.4635) family taken to be 1)
+
+    Null deviance: 394.25  on 249  degrees of freedom
+Residual deviance: 210.65  on 246  degrees of freedom
+AIC: 820.44
+
+Number of Fisher Scoring iterations: 1
+
+              Theta:  0.4635 
+          Std. Err.:  0.0712 
+
+ 2 x log-likelihood:  -810.4440 </code></pre>
+<p>Попробуем исключить из модели переменную <code>camper</code> и сравним качество двух моделей.</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">nb2 =<span class="st"> </span><span class="kw">update</span>(nb1, . <span class="op">~</span><span class="st"> </span>. <span class="op">-</span><span class="st"> </span>camper)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="kw">waldtest</span>(nb1, nb2)</a></code></pre></div>
+<pre><code>Wald test
+
+Model 1: count ~ child + camper + persons
+Model 2: count ~ child + persons
+  Res.Df Df      F   Pr(&gt;F)   
+1    246                      
+2    247 -1 6.9979 0.008686 **
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p>Можем посмотреть на результаты модели с “раздутыми нулями” (zero-inflated). Они предполагают большую частоту нулевых наблюдений.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">zero_infl =<span class="st"> </span><span class="kw">zeroinfl</span>(count <span class="op">~</span><span class="st">  </span>child <span class="op">+</span><span class="st"> </span>camper <span class="op">|</span><span class="st"> </span>persons, <span class="dt">data =</span> df_fish, <span class="dt">dist =</span> <span class="st">&#39;negbin&#39;</span>)</a></code></pre></div>
+<pre><code>Error in zeroinfl(count ~ child + camper | persons, data = df_fish, dist = &quot;negbin&quot;): could not find function &quot;zeroinfl&quot;</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">summary</span>(zero_infl)</a></code></pre></div>
+<pre><code>Error in summary(zero_infl): object &#39;zero_infl&#39; not found</code></pre>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">plot_model</span>(zero_infl, <span class="dt">type =</span> <span class="st">&#39;pred&#39;</span>)</a></code></pre></div>
+<pre><code>Error in insight::model_info(model): object &#39;zero_infl&#39; not found</code></pre>
+</div>
+<div id="python-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> python</h2>
+<p>Нужные пакетики:</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># для работы с таблицами</span></a>
+<a class="sourceLine" id="cb98-2" data-line-number="2"><span class="im">import</span> numpy <span class="im">as</span> np <span class="co"># математика, работа с матрицами</span></a>
+<a class="sourceLine" id="cb98-3" data-line-number="3"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># графики</span></a>
+<a class="sourceLine" id="cb98-4" data-line-number="4"><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</a>
+<a class="sourceLine" id="cb98-5" data-line-number="5"><span class="im">import</span> statsmodels.formula.api <span class="im">as</span> smf</a>
+<a class="sourceLine" id="cb98-6" data-line-number="6"><span class="im">import</span> statsmodels.graphics.gofplots <span class="im">as</span> gf</a>
+<a class="sourceLine" id="cb98-7" data-line-number="7"><span class="im">from</span> statsmodels.stats.outliers_influence <span class="im">import</span> summary_table</a>
+<a class="sourceLine" id="cb98-8" data-line-number="8"><span class="im">import</span> seaborn <span class="im">as</span> sns <span class="co"># еще более классные графики</span></a>
+<a class="sourceLine" id="cb98-9" data-line-number="9"><span class="im">from</span> scipy.stats <span class="im">import</span> shapiro <span class="co"># еще математика</span></a>
+<a class="sourceLine" id="cb98-10" data-line-number="10"><span class="im">import</span> statsmodels.discrete.discrete_model</a>
+<a class="sourceLine" id="cb98-11" data-line-number="11"><span class="im">from</span> statsmodels.discrete.count_model <span class="im">import</span> ZeroInflatedPoisson</a>
+<a class="sourceLine" id="cb98-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb98-13" data-line-number="13">plt.style.use(<span class="st">&#39;ggplot&#39;</span>)</a></code></pre></div>
+<p>Загружаем данные и смотрим описательные статистики.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb99-1" data-line-number="1">df_fish <span class="op">=</span> pd.read_stata(<span class="st">&#39;data/fish.dta&#39;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb100-1" data-line-number="1">sns.distplot(df_fish[<span class="st">&#39;count&#39;</span>])</a>
+<a class="sourceLine" id="cb100-2" data-line-number="2">plt.show()</a></code></pre></div>
+<p><img src="05-poisreg_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>Превращаем переменную <code>camper</code> в категориальную.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb101-1" data-line-number="1">df_fish[<span class="st">&#39;camper&#39;</span>] <span class="op">=</span> df_fish[<span class="st">&#39;camper&#39;</span>].astype(<span class="st">&#39;category&#39;</span>)</a></code></pre></div>
+<p>Строим Пуассоновскую регрессию.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb102-1" data-line-number="1">pois <span class="op">=</span> statsmodels.discrete.discrete_model.Poisson(endog <span class="op">=</span> count, exog <span class="op">=</span> np.array(child, camper, persons), data<span class="op">=</span>df_fish)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;count&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb104"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb104-1" data-line-number="1">regr_pois <span class="op">=</span> smf.glm(<span class="st">&#39;count ~ child + camper +  persons&#39;</span>, data<span class="op">=</span>df_fish,</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2">                    family<span class="op">=</span>sm.families.Poisson()).fit()</a>
+<a class="sourceLine" id="cb104-3" data-line-number="3">regr_pois.summary()</a></code></pre></div>
+<pre><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
+&quot;&quot;&quot;
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                  count   No. Observations:                  250
+Model:                            GLM   Df Residuals:                      246
+Model Family:                 Poisson   Df Model:                            3
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -837.07
+Date:                 Чт, 26 сен 2019   Deviance:                       1337.1
+Time:                        17:30:25   Pearson chi2:                 2.91e+03
+No. Iterations:                     6                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      -1.9818      0.152    -13.016      0.000      -2.280      -1.683
+camper[T.1]     0.9309      0.089     10.450      0.000       0.756       1.106
+child          -1.6900      0.081    -20.866      0.000      -1.849      -1.531
+persons         1.0913      0.039     27.799      0.000       1.014       1.168
+===============================================================================
+&quot;&quot;&quot;</code></pre>
+<p>Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb106-1" data-line-number="1">(df_fish</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"> .<span class="bu">filter</span>([<span class="st">&#39;count&#39;</span>, <span class="st">&#39;camper&#39;</span>])</a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"> .groupby(<span class="st">&#39;camper&#39;</span>)</a>
+<a class="sourceLine" id="cb106-4" data-line-number="4"> .agg([<span class="st">&#39;mean&#39;</span>, <span class="st">&#39;var&#39;</span>]))</a></code></pre></div>
+<pre><code>           count            
+            mean         var
+camper                      
+0       1.524272   21.055778
+1       4.537415  212.400988</code></pre>
+<p>И регрессию с остатками, имеющими отрицательное биномиальное распределение.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb108-1" data-line-number="1">regr_bin <span class="op">=</span> smf.glm(<span class="st">&#39;count ~ child + camper +  persons&#39;</span>, data<span class="op">=</span>df_fish,</a>
+<a class="sourceLine" id="cb108-2" data-line-number="2">              family<span class="op">=</span>sm.families.NegativeBinomial()).fit()</a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4">regr_bin.summary()</a></code></pre></div>
+<pre><code>&lt;class &#39;statsmodels.iolib.summary.Summary&#39;&gt;
+&quot;&quot;&quot;
+                 Generalized Linear Model Regression Results                  
+==============================================================================
+Dep. Variable:                  count   No. Observations:                  250
+Model:                            GLM   Df Residuals:                      246
+Model Family:        NegativeBinomial   Df Model:                            3
+Link Function:                    log   Scale:                          1.0000
+Method:                          IRLS   Log-Likelihood:                -417.63
+Date:                 Чт, 26 сен 2019   Deviance:                       316.92
+Time:                        17:30:25   Pearson chi2:                     938.
+No. Iterations:                     8                                         
+Covariance Type:            nonrobust                                         
+===============================================================================
+                  coef    std err          z      P&gt;|z|      [0.025      0.975]
+-------------------------------------------------------------------------------
+Intercept      -1.6582      0.261     -6.351      0.000      -2.170      -1.147
+camper[T.1]     0.6599      0.182      3.636      0.000       0.304       1.016
+child          -1.7314      0.147    -11.787      0.000      -2.019      -1.443
+persons         1.0547      0.086     12.253      0.000       0.886       1.223
+===============================================================================
+&quot;&quot;&quot;</code></pre>
+<p>Проверим гипотезу о равенстве 0 коэффициента при переменной <code>camper</code>. Проведем тест Вальда.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb110-1" data-line-number="1">hyp <span class="op">=</span> <span class="st">&#39;(child = 0)&#39;</span></a>
+<a class="sourceLine" id="cb110-2" data-line-number="2">regr_bin.wald_test(hyp)</a></code></pre></div>
+<pre><code>&lt;class &#39;statsmodels.stats.contrast.ContrastResults&#39;&gt;
+&lt;Wald test (chi2): statistic=[[138.9233986]], p-value=4.577705644901894e-32, df_denom=1&gt;</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb112-1" data-line-number="1">pred <span class="op">=</span> regr_pois.fittedvalues</a>
+<a class="sourceLine" id="cb112-2" data-line-number="2">mean_mef_child <span class="op">=</span> np.mean([regr_pois.params[<span class="dv">1</span>] <span class="op">*</span> p <span class="cf">for</span> p <span class="kw">in</span> pred])</a>
+<a class="sourceLine" id="cb112-3" data-line-number="3">mean_mef_camper <span class="op">=</span> np.mean([regr_pois.params[<span class="dv">2</span>] <span class="op">*</span> p <span class="cf">for</span> p <span class="kw">in</span> pred])</a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb112-5" data-line-number="5">data_1 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;child&#39;</span>: df_fish[<span class="st">&#39;child&#39;</span>], <span class="st">&#39;camper&#39;</span>: <span class="dv">1</span>, <span class="st">&#39;persons&#39;</span>: df_fish[<span class="st">&#39;persons&#39;</span>]})</a>
+<a class="sourceLine" id="cb112-6" data-line-number="6">data_0 <span class="op">=</span> pd.DataFrame({<span class="st">&#39;child&#39;</span>: df_fish[<span class="st">&#39;child&#39;</span>], <span class="st">&#39;camper&#39;</span>: <span class="dv">0</span>, <span class="st">&#39;persons&#39;</span>: df_fish[<span class="st">&#39;persons&#39;</span>]})</a>
+<a class="sourceLine" id="cb112-7" data-line-number="7">mean_mef_persons <span class="op">=</span> np.mean([(regr_pois.predict(data_1)[i]<span class="op">-</span>regr_pois.predict(data_0)[i]) </a>
+<a class="sourceLine" id="cb112-8" data-line-number="8">                            <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(df_fish))])</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb113-1" data-line-number="1">plot_model(regr_pois, <span class="bu">type</span> <span class="op">=</span> <span class="st">&#39;effect&#39;</span>, terms <span class="op">=</span> <span class="st">&#39;camper&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plot_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>И модель с раздутыми нулями. (которой нет)</p>
+</div>
+<div id="stata-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> stata</h2>
+<p>Загружаем данные и смотрим описательные статистики.</p>
+<pre class="stata"><code>use data/fish.dta
+summarize</code></pre>
+<pre><code>    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+      camper |        250        .588    .4931824          0          1
+       child |        250        .684    .8503153          0          3
+       count |        250       3.296    11.63503          0        149
+     persons |        250       2.528     1.11273          1          4</code></pre>
+<pre class="stata"><code>hist count</code></pre>
+<p><img src="hist_pois.png" /></p>
+<p>Строим Пуассоновскую регрессию.
+В описательных статистиках:
+<span class="math inline">\(AIC = -2log(L) + 2k\)</span>
+<span class="math inline">\(AIC = -2log(L) + klog(N)\)</span></p>
+<pre class="stata"><code>glm count camper child persons, family(poisson)</code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+
+Iteration 0:   log likelihood = -965.92815  
+Iteration 1:   log likelihood = -837.97093  
+Iteration 2:   log likelihood = -837.07307  
+Iteration 3:   log likelihood = -837.07248  
+Iteration 4:   log likelihood = -837.07248  
+
+Generalized linear models                         No. of obs      =        250
+Optimization     : ML                             Residual df     =        246
+                                                  Scale parameter =          1
+Deviance         =  1337.079644                   (1/df) Deviance =   5.435283
+Pearson          =  2910.627049                   (1/df) Pearson  =   11.83182
+
+Variance function: V(u) = u                       [Poisson]
+Link function    : g(u) = ln(u)                   [Log]
+
+                                                  AIC             =    6.72858
+Log likelihood   = -837.0724803                   BIC             =  -21.19974
+
+------------------------------------------------------------------------------
+             |                 OIM
+       count |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+      camper |   .9309359   .0890869    10.45   0.000     .7563289    1.105543
+       child |  -1.689957   .0809922   -20.87   0.000    -1.848699   -1.531215
+     persons |   1.091262   .0392553    27.80   0.000     1.014323    1.168201
+       _cons |  -1.981827    .152263   -13.02   0.000    -2.280257   -1.683397
+------------------------------------------------------------------------------</code></pre>
+<p>Можем посчитать AIC и BIC по другой формуле, аналогично выводу R.
+<span class="math inline">\(AIC = \frac {-2log(L) + 2k}{N}\)</span></p>
+<pre class="stata"><code>estat ic</code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.</p>
+<pre class="stata"><code>tabstat count, by(camper) stat(mean, variance) nototal</code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+
+Summary for variables: count
+     by categories of: camper (CAMPER)
+
+  camper |      mean  variance
+---------+--------------------
+       0 |  1.524272  21.05578
+       1 |  4.537415   212.401
+------------------------------</code></pre>
+<p>Предположим, что остатки имеют отрицательное биномиальное распределение.</p>
+<pre class="stata"><code>nbreg count child camper persons</code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+
+Fitting Poisson model:
+
+Iteration 0:   log likelihood = -841.58831  
+Iteration 1:   log likelihood = -837.07386  
+Iteration 2:   log likelihood = -837.07248  
+Iteration 3:   log likelihood = -837.07248  
+
+Fitting constant-only model:
+
+Iteration 0:   log likelihood = -582.76028  
+Iteration 1:   log likelihood = -464.44518  
+Iteration 2:   log likelihood = -464.43931  
+Iteration 3:   log likelihood = -464.43931  
+
+Fitting full model:
+
+Iteration 0:   log likelihood = -438.02759  
+Iteration 1:   log likelihood = -409.71171  
+Iteration 2:   log likelihood = -405.34765  
+Iteration 3:   log likelihood = -405.22204  
+Iteration 4:   log likelihood =   -405.222  
+Iteration 5:   log likelihood =   -405.222  
+
+Negative binomial regression                    Number of obs     =        250
+                                                LR chi2(3)        =     118.43
+Dispersion     = mean                           Prob &gt; chi2       =     0.0000
+Log likelihood =   -405.222                     Pseudo R2         =     0.1275
+
+------------------------------------------------------------------------------
+       count |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       child |   -1.78052   .1920379    -9.27   0.000    -2.156907   -1.404132
+      camper |   .6211286   .2358072     2.63   0.008      .158955    1.083302
+     persons |     1.0608   .1174733     9.03   0.000     .8305564    1.291043
+       _cons |   -1.62499   .3294006    -4.93   0.000    -2.270603   -.9793765
+-------------+----------------------------------------------------------------
+    /lnalpha |   .7688868   .1538497                      .4673469    1.070427
+-------------+----------------------------------------------------------------
+       alpha |   2.157363   .3319098                      1.595755    2.916624
+------------------------------------------------------------------------------
+LR test of alpha=0: chibar2(01) = 863.70               Prob &gt;= chibar2 = 0.000</code></pre>
+<p>Проверим гипотезу о равенстве 0 коэффицинта при переменной <code>camper</code>. Проведем тест Вальда.</p>
+<pre class="stata"><code>quietly: nbreg count child i.camper persons 
+test i.camper </code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+
+i:  operator invalid
+r(198);
+
+end of do-file
+r(198);</code></pre>
+<p>Посчитаем средний предельный эффект для каждой переменной.</p>
+<pre class="stata"><code>margins, dydx(*)
+marginsplot</code></pre>
+<p><img src="margins_plot.png" /></p>
+<p>И модель с раздутыми нулями.</p>
+<pre class="stata"><code>zinb count child i.camper, inflate(persons)</code></pre>
+<pre><code> translator Graph2png not found
+r(111);
+
+
+
+Fitting constant-only model:
+
+Iteration 0:   log likelihood = -519.33992  
+Iteration 1:   log likelihood = -471.96077  
+Iteration 2:   log likelihood = -465.38193  
+Iteration 3:   log likelihood = -464.39882  
+Iteration 4:   log likelihood = -463.92704  
+Iteration 5:   log likelihood = -463.79248  
+Iteration 6:   log likelihood = -463.75773  
+Iteration 7:   log likelihood =  -463.7518  
+Iteration 8:   log likelihood = -463.75119  
+Iteration 9:   log likelihood = -463.75118  
+
+Fitting full model:
+
+Iteration 0:   log likelihood = -463.75118  (not concave)
+Iteration 1:   log likelihood = -440.43162  
+Iteration 2:   log likelihood = -434.96651  
+Iteration 3:   log likelihood = -433.49903  
+Iteration 4:   log likelihood = -432.89949  
+Iteration 5:   log likelihood = -432.89091  
+Iteration 6:   log likelihood = -432.89091  
+
+Zero-inflated negative binomial regression      Number of obs     =        250
+                                                Nonzero obs       =        108
+                                                Zero obs          =        142
+
+Inflation model = logit                         LR chi2(2)        =      61.72
+Log likelihood  = -432.8909                     Prob &gt; chi2       =     0.0000
+
+------------------------------------------------------------------------------
+       count |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+count        |
+       child |  -1.515255   .1955912    -7.75   0.000    -1.898606   -1.131903
+       _cons |   1.371048   .2561131     5.35   0.000     .8690758    1.873021
+-------------+----------------------------------------------------------------
+inflate      |
+     persons |  -1.666563   .6792833    -2.45   0.014    -2.997934   -.3351922
+       _cons |   1.603104   .8365065     1.92   0.055     -.036419    3.242626
+-------------+----------------------------------------------------------------
+    /lnalpha |   .9853533     .17595     5.60   0.000     .6404975    1.330209
+-------------+----------------------------------------------------------------
+       alpha |   2.678758   .4713275                      1.897425    3.781834
+------------------------------------------------------------------------------</code></pre>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="ordchoice.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simplereg.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="disordered.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -193,6 +714,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

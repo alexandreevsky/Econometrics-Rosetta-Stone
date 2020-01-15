@@ -1,0 +1,2 @@
+use fish.dta
+summarize

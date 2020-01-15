@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Коан 4 Модели бинарного выбора | Розеттский камень</title>
-  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Коан 3 Модель бинарного выбора | Розеттский камень</title>
+  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Коан 4 Модели бинарного выбора | Розеттский камень" />
+  <meta property="og:title" content="Коан 3 Модель бинарного выбора | Розеттский камень" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Коан 4 Модели бинарного выбора | Розеттский камень" />
+  <meta name="twitter:title" content="Коан 3 Модель бинарного выбора | Розеттский камень" />
   
   <meta name="twitter:description" content="Сборник коанов для эконометристов, жаждущих просветления." />
   
 
-<meta name="author" content="Пуассон, фея и два мексиканских негодяя">
+<meta name="author" content="Пуассон, фея и три мексиканских негодяя" />
 
 
-<meta name="date" content="2019-03-15">
+<meta name="date" content="2019-09-23" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="simplereg.html">
-<link rel="next" href="ordchoice.html">
+<link rel="prev" href="installsoft.html"/>
+<link rel="next" href="ordchoice.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -102,22 +126,47 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <ul class="summary">
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a></li>
-<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Установка софта</a></li>
-<li class="chapter" data-level="3" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>3</b> Коан о простой линейной регрессии</a></li>
-<li class="chapter" data-level="4" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>4</b> Модели бинарного выбора</a></li>
-<li class="chapter" data-level="5" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>5</b> Модели упорядоченного выбора</a></li>
-<li class="chapter" data-level="6" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>6</b> Пуассоновская регрессия</a></li>
-<li class="chapter" data-level="7" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>7</b> Модели неупорядоченного выбора</a></li>
-<li class="chapter" data-level="8" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>8</b> Интcтрументы для простой регрессии</a></li>
-<li class="chapter" data-level="9" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>9</b> ARMA</a></li>
-<li class="chapter" data-level="10" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>10</b> Панельные данные</a></li>
-<li class="chapter" data-level="11" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>11</b> Гетероскедастичность в простой регрессии</a></li>
-<li class="chapter" data-level="12" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>12</b> PCA</a></li>
-<li class="chapter" data-level="13" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>13</b> Динамические панели</a></li>
-<li class="chapter" data-level="14" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>14</b> TOBIT, HECKIT</a></li>
-<li class="chapter" data-level="15" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>15</b> Treatment effect</a></li>
-<li class="chapter" data-level="16" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>16</b> Что-то там про совместимость и языки</a></li>
-<li class="chapter" data-level="17" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>17</b> Словарь</a></li>
+<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Коан об установке софта</a><ul>
+<li class="chapter" data-level="2.0.1" data-path="installsoft.html"><a href="installsoft.html#simplereg"><i class="fa fa-check"></i><b>2.0.1</b> Коан о простой линейной регрессии</a></li>
+<li class="chapter" data-level="2.1" data-path="installsoft.html"><a href="installsoft.html#r"><i class="fa fa-check"></i><b>2.1</b> r</a></li>
+<li class="chapter" data-level="2.2" data-path="installsoft.html"><a href="installsoft.html#python"><i class="fa fa-check"></i><b>2.2</b> python</a></li>
+<li class="chapter" data-level="2.3" data-path="installsoft.html"><a href="installsoft.html#stata"><i class="fa fa-check"></i><b>2.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>3</b> Модель бинарного выбора</a><ul>
+<li class="chapter" data-level="3.1" data-path="binchoice.html"><a href="binchoice.html#r-1"><i class="fa fa-check"></i><b>3.1</b> r</a></li>
+<li class="chapter" data-level="3.2" data-path="binchoice.html"><a href="binchoice.html#python-1"><i class="fa fa-check"></i><b>3.2</b> python</a></li>
+<li class="chapter" data-level="3.3" data-path="binchoice.html"><a href="binchoice.html#stata-1"><i class="fa fa-check"></i><b>3.3</b> stata</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="binchoice.html"><a href="binchoice.html#multchoice"><i class="fa fa-check"></i><b>3.3.1</b> Модели множественного выбора</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="binchoice.html"><a href="binchoice.html#r-2"><i class="fa fa-check"></i><b>3.4</b> r</a></li>
+<li class="chapter" data-level="3.5" data-path="binchoice.html"><a href="binchoice.html#stata-2"><i class="fa fa-check"></i><b>3.5</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>4</b> Модели упорядоченного выбора и условный логит</a><ul>
+<li class="chapter" data-level="4.0.1" data-path="ordchoice.html"><a href="ordchoice.html#----"><i class="fa fa-check"></i><b>4.0.1</b> То же самое в стате</a></li>
+<li class="chapter" data-level="4.0.2" data-path="ordchoice.html"><a href="ordchoice.html#poisreg"><i class="fa fa-check"></i><b>4.0.2</b> Модели счетных данных</a></li>
+<li class="chapter" data-level="4.1" data-path="ordchoice.html"><a href="ordchoice.html#r-3"><i class="fa fa-check"></i><b>4.1</b> r</a></li>
+<li class="chapter" data-level="4.2" data-path="ordchoice.html"><a href="ordchoice.html#python-2"><i class="fa fa-check"></i><b>4.2</b> python</a></li>
+<li class="chapter" data-level="4.3" data-path="ordchoice.html"><a href="ordchoice.html#stata-3"><i class="fa fa-check"></i><b>4.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>5</b> Модели неупорядоченного выбора</a></li>
+<li class="chapter" data-level="6" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>6</b> Интcтрументы для простой регрессии</a></li>
+<li class="chapter" data-level="7" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>7</b> ARMA</a><ul>
+<li class="chapter" data-level="7.1" data-path="arma.html"><a href="arma.html#r-4"><i class="fa fa-check"></i><b>7.1</b> r</a></li>
+<li class="chapter" data-level="7.2" data-path="arma.html"><a href="arma.html#python-3"><i class="fa fa-check"></i><b>7.2</b> python</a></li>
+<li class="chapter" data-level="7.3" data-path="arma.html"><a href="arma.html#stata-4"><i class="fa fa-check"></i><b>7.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>8</b> Панельные данные</a></li>
+<li class="chapter" data-level="9" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>9</b> Гетероскедастичность в простой регрессии</a><ul>
+<li class="chapter" data-level="9.1" data-path="heterosked.html"><a href="heterosked.html#r-5"><i class="fa fa-check"></i><b>9.1</b> r</a></li>
+<li class="chapter" data-level="9.2" data-path="heterosked.html"><a href="heterosked.html#python-4"><i class="fa fa-check"></i><b>9.2</b> python</a></li>
+<li class="chapter" data-level="9.3" data-path="heterosked.html"><a href="heterosked.html#stata-5"><i class="fa fa-check"></i><b>9.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>10</b> PCA</a></li>
+<li class="chapter" data-level="11" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>11</b> Динамические панели</a></li>
+<li class="chapter" data-level="12" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>12</b> TOBIT, HECKIT</a></li>
+<li class="chapter" data-level="13" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>13</b> Treatment effect</a></li>
+<li class="chapter" data-level="14" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>14</b> Что-то там про совместимость и языки</a></li>
+<li class="chapter" data-level="15" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>15</b> Словарь</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -139,15 +188,684 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="binchoice" class="section level1">
-<h1><span class="header-section-number">Коан 4</span> Модели бинарного выбора</h1>
+<h1><span class="header-section-number">Коан 3</span> Модель бинарного выбора</h1>
+<blockquote>
+<p>Сейчас попробуем подружиться с моделями бинарного выбора на основе данных <code>bwght.dta</code>, где зависимая переменная отражает, является индивид курильщиком или нет.</p>
+</blockquote>
+<div id="r-1" class="section level2">
+<h2><span class="header-section-number">3.1</span> r</h2>
+<p>Загрузим необходимы пакеты.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">library</span>(rio) <span class="co"># импорт и экспорт данных в разных форматах</span></a>
+<a class="sourceLine" id="cb204-2" data-line-number="2"><span class="kw">library</span>(tidyverse) <span class="co"># графики и манипуляции с данными</span></a>
+<a class="sourceLine" id="cb204-3" data-line-number="3"><span class="kw">library</span>(skimr) <span class="co"># описательные статистики</span></a>
+<a class="sourceLine" id="cb204-4" data-line-number="4"><span class="kw">library</span>(mfx) <span class="co"># нахождение предельных эффектов</span></a>
+<a class="sourceLine" id="cb204-5" data-line-number="5"><span class="kw">library</span>(margins) <span class="co"># визуализация предельных эффектов</span></a></code></pre></div>
+<pre><code>Error in library(margins): there is no package called &#39;margins&#39;</code></pre>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" data-line-number="1"><span class="kw">library</span>(lmtest) <span class="co"># проведение тестов</span></a>
+<a class="sourceLine" id="cb206-2" data-line-number="2"><span class="kw">library</span>(plotROC) <span class="co"># построение ROC-кривой</span></a></code></pre></div>
+<pre><code>Error in library(plotROC): there is no package called &#39;plotROC&#39;</code></pre>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" data-line-number="1"><span class="kw">library</span>(caret) <span class="co"># confusion-матрица</span></a>
+<a class="sourceLine" id="cb208-2" data-line-number="2"><span class="kw">library</span>(texreg) <span class="co"># вывод результатов регрессии в тех и html</span></a></code></pre></div>
+<p>Импортируем исследуемые данные.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1">data =<span class="st"> </span><span class="kw">import</span>(<span class="st">&quot;data/bwght.dta&quot;</span>) </a></code></pre></div>
+<pre><code>Error in import(&quot;data/bwght.dta&quot;): No such file</code></pre>
+<p>Сгенерируем переменную <code>smoke</code>, отражающее состояние отдельного индивида: курильщик, если <code>smoke = 1</code>, не курильщик - иначе.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb211-1" data-line-number="1">data =<span class="st"> </span><span class="kw">mutate</span>(data, <span class="dt">smoke=</span>(cigs<span class="op">&gt;</span><span class="dv">0</span>))</a></code></pre></div>
+<pre><code>Error in UseMethod(&quot;mutate_&quot;): no applicable method for &#39;mutate_&#39; applied to an object of class &quot;function&quot;</code></pre>
+<p>Рассмотрим описательные статистики по всем переменным: решение курить, семейный доход, налог на сигареты, цена сигарет, образование отца и матери, паритет, цвет кожи.</p>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">skim</span>(data)</a></code></pre></div>
+<p>Заметим существование пропущенных переменных у <code>fatheduc</code>, <code>motheduc</code>. Будем анализировать только те значения, у которых нет пропущенных наблюдений. Для этого создадим новый dataframe, <code>data_2</code>, в котором отсутствуют пропущенные значения. Просмотрим его описательные статистики.</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb214-1" data-line-number="1">data_<span class="dv">2</span> =<span class="st"> </span><span class="kw">filter</span>(data, <span class="op">!</span><span class="kw">is.na</span>(fatheduc), <span class="op">!</span><span class="kw">is.na</span>(motheduc))</a></code></pre></div>
+<pre><code>Error in UseMethod(&quot;filter_&quot;): no applicable method for &#39;filter_&#39; applied to an object of class &quot;function&quot;</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">skim</span>(data_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>Error in skim(data_2): object &#39;data_2&#39; not found</code></pre>
+<p>Построим модель линейной вероятности. Сохраним результат под <code>lin_prob_model</code>.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1">lin_prob_model =<span class="st"> </span><span class="kw">lm</span>(smoke <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>faminc <span class="op">+</span><span class="st"> </span>cigtax <span class="op">+</span><span class="st"> </span>cigprice <span class="op">+</span><span class="st"> </span>fatheduc <span class="op">+</span><span class="st"> </span>motheduc <span class="op">+</span><span class="st"> </span>parity <span class="op">+</span><span class="st"> </span>white, <span class="dt">data=</span>data_<span class="dv">2</span>)</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;data_2&#39; not found</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">summary</span>(lin_prob_model)</a></code></pre></div>
+<pre><code>Error in summary(lin_prob_model): object &#39;lin_prob_model&#39; not found</code></pre>
+<p>Посмотрим на число совпадений прогноза и исходных значений. Для этого оценим предсказанные значения модели линейной вероятности. Сохраним значение как <code>predictions_lin_prob_model</code>.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1">predictions_lin_prob_model =<span class="st"> </span><span class="kw">predict</span>(lin_prob_model)</a></code></pre></div>
+<pre><code>Error in predict(lin_prob_model): object &#39;lin_prob_model&#39; not found</code></pre>
+<p>Генерируем <code>smoke_ols</code> как 1, если вероятность по модели больше 0.5 и 0, если она меньше 0.5.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">smoke_ols =<span class="st"> </span><span class="dv">1</span> <span class="op">*</span><span class="st"> </span>(predictions_lin_prob_model<span class="op">&gt;</span><span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;predictions_lin_prob_model&#39; not found</code></pre>
+<p>Число совпадений данных и прогноза модели линейной вероятности:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">sum</span> (smoke_ols <span class="op">==</span><span class="st"> </span>data_<span class="dv">2</span><span class="op">$</span>smoke)</a></code></pre></div>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;smoke_ols&#39; not found</code></pre>
+<p>Известно, что модель линейной вероятности обладает значительными недостатками, в частности: нереалистичное значение оцененной вероятности, ошибки, распределённые не нормально и гетероскедастичность. Поэтому оценим <code>P(smoke=1|x)</code>, и построим логит- и пробит-модели.
+Немного о логит-модели: предполагается, что существует скрытая (латентная) переменная, для которой строится модель, <span class="math display">\[ y^*_i = \beta_1 + \beta_2 \cdot X_i + \varepsilon_i\]</span>,так, что:</p>
+<p><span class="math display">\[
+\begin{equation*}
+Y_i = 
+ \begin{cases}
+   1, &amp;\text{если ${y_i}^* \geqslant 0$}\\
+   0, &amp;\text{если ${y_i}^* &lt; 0$}
+ \end{cases}
+\end{equation*}
+\]</span></p>
+<p><span class="math display">\[\varepsilon_i \sim logistic, \\f(t) = \frac{e^{-t}}{(1 + e^{-t})^2}\]</span></p>
+<p>Построим логит-модель и сохраним результат оцененной модели как <code>logit_model</code>.</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">logit_model =<span class="st"> </span><span class="kw">glm</span>(smoke <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>faminc <span class="op">+</span><span class="st"> </span>cigtax <span class="op">+</span><span class="st"> </span>cigprice <span class="op">+</span><span class="st"> </span>fatheduc <span class="op">+</span><span class="st"> </span>motheduc <span class="op">+</span><span class="st"> </span>parity <span class="op">+</span><span class="st"> </span>white, <span class="dt">x=</span><span class="ot">TRUE</span>, <span class="dt">data=</span>data_<span class="dv">2</span>, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;data_2&#39; not found</code></pre>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1"><span class="kw">summary</span>(logit_model)</a></code></pre></div>
+<pre><code>Error in summary(logit_model): object &#39;logit_model&#39; not found</code></pre>
+<p>Так как коэффициенты логит- и пробит- моделей плохо интерпретируются, поскольку единицы измерения латентной переменной определить сложно, посчитаем предельные эффекты, то есть изменение вероятности решения курить с изменением фактора на 1 единицу.</p>
+<p>Для предельного эффекта в средних значениях факторов:</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb232-1" data-line-number="1"><span class="kw">logitmfx</span>(smoke <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>faminc <span class="op">+</span><span class="st"> </span>cigtax <span class="op">+</span><span class="st"> </span>cigprice <span class="op">+</span><span class="st"> </span>fatheduc <span class="op">+</span><span class="st"> </span>motheduc <span class="op">+</span><span class="st"> </span>parity <span class="op">+</span><span class="st"> </span>white, <span class="dt">data=</span>data_<span class="dv">2</span>, <span class="dt">atmean=</span><span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;data_2&#39; not found</code></pre>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb234-1" data-line-number="1">margins =<span class="st"> </span><span class="kw">margins</span>(logit_model)</a></code></pre></div>
+<pre><code>Error in margins(logit_model): could not find function &quot;margins&quot;</code></pre>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb236-1" data-line-number="1"><span class="kw">plot</span>(margins)</a></code></pre></div>
+<pre><code>Error in plot(margins): object &#39;margins&#39; not found</code></pre>
+<p>Интерпретация предельных эффектов следующая (на примере переменной семейного дохода): при увеличении семейного дохода в среднем на 1 единицу при остальных неизменных факторах, вероятность стать курильщиком уменьшается в среднем на 0.18%.</p>
+<p>Визуализируем предельный эффект для семейного дохода:</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1"><span class="kw">cplot</span>(logit_model, <span class="st">&quot;faminc&quot;</span>, <span class="dt">what=</span><span class="st">&quot;effect&quot;</span>, <span class="dt">main=</span><span class="st">&quot;Average Marginal Effect of Faminc&quot;</span>)</a></code></pre></div>
+<pre><code>Error in cplot(logit_model, &quot;faminc&quot;, what = &quot;effect&quot;, main = &quot;Average Marginal Effect of Faminc&quot;): could not find function &quot;cplot&quot;</code></pre>
+<p>Для определения качества модели построим классификационную матрицу. Для этого сначала вычислим предсказания логит-модели, <code>predictions_logit_model</code>. Так как результат не бинарный, то введём порог отсечения, равный 0.5. Назовём бинарный результат <code>smoke_logit</code>:</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">predictions_logit_model =<span class="st"> </span><span class="kw">predict</span>(logit_model)</a></code></pre></div>
+<pre><code>Error in predict(logit_model): object &#39;logit_model&#39; not found</code></pre>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb242-1" data-line-number="1">smoke_logit_model =<span class="st"> </span>(predictions_logit_model<span class="op">&gt;</span><span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;predictions_logit_model&#39; not found</code></pre>
+<p>Построим классификационную матрицу. При возникновении ошибок аргументов, в частности, при несовпадении их размера или типа, можно воспользоваться функцией <code>as.factor()</code>.</p>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb244-1" data-line-number="1"><span class="kw">confusionMatrix</span>(<span class="kw">as.factor</span>(smoke_logit_model), <span class="kw">as.factor</span>(data_<span class="dv">2</span><span class="op">$</span>smoke))</a></code></pre></div>
+<pre><code>Error in is.factor(x): object &#39;smoke_logit_model&#39; not found</code></pre>
+<p>Качество модели также можно проанализировать с помощью ROC-кривой, отражающей зависимость доли верных положительно классифицируемых наблюдений (<code>sensitivity</code>) от доли ложных положительно классифицируемых наблюдений <code>(1-specifity)</code>.</p>
+<p>Построим ROC-кривую для логит-модели:</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1">basicplot =<span class="st"> </span><span class="kw">ggplot</span>(data_<span class="dv">2</span>, <span class="kw">aes</span>(<span class="dt">m=</span>predictions_logit_model, <span class="dt">d=</span>data_<span class="dv">2</span><span class="op">$</span>smoke)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_roc</span>()</a></code></pre></div>
+<pre><code>Error in ggplot(data_2, aes(m = predictions_logit_model, d = data_2$smoke)): object &#39;data_2&#39; not found</code></pre>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">basicplot <span class="op">+</span><span class="st"> </span><span class="kw">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="dt">x =</span> <span class="fl">.75</span>, <span class="dt">y =</span> <span class="fl">.25</span>, </a>
+<a class="sourceLine" id="cb248-2" data-line-number="2">           <span class="dt">label =</span> <span class="kw">paste</span>(<span class="st">&quot;AUC =&quot;</span>, <span class="kw">round</span>(<span class="kw">calc_auc</span>(basicplot)<span class="op">$</span>AUC, <span class="dv">2</span>)))</a></code></pre></div>
+<pre><code>Error in eval(expr, envir, enclos): object &#39;basicplot&#39; not found</code></pre>
+<p>Площадь под кривой обозначается как AUC. Он показывает качество классификации. Соответственно, чем выше AUC, тем лучше построенная модель.</p>
+<p>Теперь рассмотрим логит-модель, не учитывающую переменную <code>white</code>. Сохраним эту логит-модель под названием <code>logit_model_new</code>.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">logit_model_new =<span class="st"> </span><span class="kw">glm</span>(smoke <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>faminc <span class="op">+</span><span class="st"> </span>cigtax <span class="op">+</span><span class="st"> </span>cigprice <span class="op">+</span><span class="st"> </span>fatheduc <span class="op">+</span><span class="st"> </span>motheduc <span class="op">+</span><span class="st"> </span>parity, <span class="dt">x=</span><span class="ot">TRUE</span>, <span class="dt">data=</span>data_<span class="dv">2</span>, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;logit&quot;</span>))</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;data_2&#39; not found</code></pre>
+<p>Сравним модели <code>logit_model</code> и <code>logit_model_new</code> с помощью теста максимального правдоподобия (likelihood ratio test).</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">lrtest</span>(logit_model,logit_model_new)</a></code></pre></div>
+<pre><code>Error in lrtest(logit_model, logit_model_new): object &#39;logit_model&#39; not found</code></pre>
+<p><code>p-value = 0.08</code> в LR-тесте. Следовательно, основная гипотеза о том, что переменная <code>white</code> не влияет на решение стать курильщиком, не отвергается на 5% уровне значимости.</p>
+<p>Сейчас посмотрим на пробит-модель. Скрытая переменная в этой модели распределена стандартно нормально:
+<span class="math display">\[
+f(t) = \frac{1 \cdot e^{\frac{-t^2}{2}}}{\sqrt{2 \cdot \pi}}
+\]</span></p>
+<p>Построим пробит-модель.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">probit_model =<span class="st"> </span><span class="kw">glm</span>(smoke <span class="op">~</span><span class="st"> </span><span class="dv">1</span> <span class="op">+</span><span class="st"> </span>faminc <span class="op">+</span><span class="st"> </span>cigtax <span class="op">+</span><span class="st"> </span>cigprice <span class="op">+</span><span class="st"> </span>fatheduc <span class="op">+</span><span class="st"> </span>motheduc <span class="op">+</span><span class="st"> </span>parity <span class="op">+</span><span class="st"> </span>white, <span class="dt">data=</span>data_<span class="dv">2</span>, <span class="dt">family=</span><span class="kw">binomial</span>(<span class="dt">link=</span><span class="st">&quot;probit&quot;</span>))</a></code></pre></div>
+<pre><code>Error in is.data.frame(data): object &#39;data_2&#39; not found</code></pre>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">summary</span>(probit_model)</a></code></pre></div>
+<pre><code>Error in summary(probit_model): object &#39;probit_model&#39; not found</code></pre>
+<p>Вычисление предельных эффектов и их интерпретация, построение классификационной матрицы и ROC-кривой и LR-тест проводятся аналогично выполненным в логит-модели.
+Выведем сравнительную таблицу для построенных моделей.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">screenreg</span>(<span class="kw">list</span>(lin_prob_model, logit_model, probit_model), </a>
+<a class="sourceLine" id="cb258-2" data-line-number="2">             <span class="dt">custom.model.names =</span> <span class="kw">c</span>(<span class="st">&quot;Модель линейной   вероятности&quot;</span>, <span class="st">&quot;Логит-модель&quot;</span>, <span class="st">&quot;Пробит-модель&quot;</span>))</a></code></pre></div>
+<pre><code>Error in &quot;list&quot; %in% class(l)[1]: object &#39;lin_prob_model&#39; not found</code></pre>
+</div>
+<div id="python-1" class="section level2">
+<h2><span class="header-section-number">3.2</span> python</h2>
+<p>Попробуем повторить эти шаги, используя <strong>python</strong>.</p>
+<p>Импортируем пакеты:</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="im">import</span> pandas <span class="im">as</span> pd <span class="co"># чтение файлов</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;pandas&#39;
 
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb262"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt <span class="co"># построение графиков</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;matplotlib&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="im">from</span> statsmodels.formula.api <span class="im">import</span> logit, probit, ols <span class="co"># построение логит-, пробит - и линейной регрессий</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;statsmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb266"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="im">import</span> statistics <span class="co"># описательные статистики</span></a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="im">import</span> sklearn</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;sklearn&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="im">from</span> sklearn <span class="im">import</span> metrics <span class="co"># для работы с классификационными матрицами</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;sklearn&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="im">from</span> sklearn.metrics <span class="im">import</span> roc_curve, auc  <span class="co"># ROC-curve и AUC</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;sklearn&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="im">from</span> scipy.stats.distributions <span class="im">import</span> chi2 <span class="co"># хи-квадрат-статистика</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;scipy&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Загрузим данные:</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb274-1" data-line-number="1">data <span class="op">=</span> pd.read_stata(<span class="st">&quot;data/bwght.dta&quot;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Уберём пропущенные данные.Выведем описательные статистики по данным.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb276-1" data-line-number="1">data_2 <span class="op">=</span> data.dropna()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;data&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb278-1" data-line-number="1">data_2.describe()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;data_2&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Создадим бинарную переменную <code>smoke</code>:</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb280-1" data-line-number="1">data_2[<span class="st">&#39;smoke&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> (data_2[<span class="st">&#39;cigs&#39;</span>]<span class="op">&gt;</span><span class="dv">0</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;data_2&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Построим модель линейной вероятности:</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb282-1" data-line-number="1">lin_prob_model <span class="op">=</span> ols(<span class="st">&quot;smoke ~ 1 + faminc + cigtax + cigprice + fatheduc + motheduc + parity + white&quot;</span>, data_2).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;ols&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb284"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb284-1" data-line-number="1">lin_prob_model.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;lin_prob_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Создадим переменную <code>predictions__lin_prob_model</code>, равную прогнозным значениям модели линейной вероятности, и посмотрим на число совпадений исходных и прогнозных данных.</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb286-1" data-line-number="1">predictions_lin_prob_model <span class="op">=</span> lin_prob_model.predict(data_2)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;lin_prob_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb288-1" data-line-number="1">data_2[<span class="st">&#39;smoke_ols&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> (predictions_lin_prob_model<span class="op">&gt;</span><span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;predictions_lin_prob_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb290"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="bu">sum</span>(data_2[<span class="st">&#39;smoke&#39;</span>]<span class="op">==</span>data_2[<span class="st">&#39;smoke_ols&#39;</span>])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;data_2&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Построим логит-модель.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb292-1" data-line-number="1">logit_model <span class="op">=</span> logit(<span class="st">&quot;smoke ~ 1 + faminc + cigtax + cigprice + fatheduc + motheduc + parity + white&quot;</span>, data_2).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb294-1" data-line-number="1">logit_model.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Посчитаем предельные эффекты в средних значениях переменных для логистической регрессии.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb296-1" data-line-number="1">me_mean <span class="op">=</span> logit_model.get_margeff(at<span class="op">=</span><span class="st">&#39;mean&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb298"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb298-1" data-line-number="1">me_mean.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;me_mean&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Посмотрим на точность классификации построенной логит-модели. Для этого вычислим прогнозные значения модели.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb300-1" data-line-number="1">predictions_logit_pred <span class="op">=</span> logit_model.predict(data_2) <span class="co"># прогнозирование значений</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb302"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb302-1" data-line-number="1">data_2[<span class="st">&#39;smoke_logit_model&#39;</span>] <span class="op">=</span> <span class="dv">1</span> <span class="op">*</span> (predictions_logit_pred<span class="op">&gt;</span><span class="fl">0.5</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;predictions_logit_pred&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Построим классификационную матрицу.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb304-1" data-line-number="1">sklearn.metrics.confusion_matrix(data_2[<span class="st">&#39;smoke&#39;</span>], data_2[<span class="st">&#39;smoke_logit_model&#39;</span>])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;sklearn&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Точность прогноза и классификационные данные.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb306-1" data-line-number="1">np.<span class="bu">round</span>(sklearn.metrics.accuracy_score(data_2[<span class="st">&#39;smoke&#39;</span>],data_2[<span class="st">&#39;smoke_logit_model&#39;</span>]), <span class="dv">2</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;sklearn&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb308"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb308-1" data-line-number="1">sklearn.metrics.classification_report(data_2[<span class="st">&#39;smoke&#39;</span>], data_2[<span class="st">&#39;smoke_logit_model&#39;</span>])</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;sklearn&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Выведем ROC-кривую для логит-модели.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb310-1" data-line-number="1">fpr, tpr, thresholds <span class="op">=</span> metrics.roc_curve(data_2[<span class="st">&#39;smoke&#39;</span>], predictions_logit_pred)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;metrics&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb312"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb312-1" data-line-number="1">auc <span class="op">=</span> metrics.roc_auc_score(data_2[<span class="st">&#39;smoke&#39;</span>], predictions_logit_pred)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;metrics&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb314"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb314-1" data-line-number="1">plt.plot(fpr,tpr,label<span class="op">=</span><span class="st">&quot;auc=&quot;</span><span class="op">+</span><span class="bu">str</span>(np.<span class="bu">round</span>(auc, <span class="dv">2</span>)))</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb316"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb316-1" data-line-number="1">plt.legend(loc<span class="op">=</span><span class="dv">4</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb318-1" data-line-number="1">plt.xlabel(<span class="st">&#39;1-Specifity&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb320-1" data-line-number="1">plt.ylabel(<span class="st">&#39;Sensitivity&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb322"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb322-1" data-line-number="1">plt.title(<span class="st">&#39;ROC-curve&#39;</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb324"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb324-1" data-line-number="1">plt.show()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;plt&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Построим новую логит-модель (<code>logit_model_new</code>) без учёта переменной <code>white</code>.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb326-1" data-line-number="1">logit_model_new <span class="op">=</span> logit(<span class="st">&quot;smoke ~ 1 + faminc + cigtax + cigprice + fatheduc + motheduc + parity &quot;</span>, data_2).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb328-1" data-line-number="1">logit_model_new.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model_new&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Так как на момент написания коана готовой реализации функции теста отношения правдоподобия нет, то сделаем его ручками.</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb330-1" data-line-number="1">L1 <span class="op">=</span> logit_model.llf</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb332-1" data-line-number="1">L2 <span class="op">=</span> logit_model_new.llf</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;logit_model_new&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb334-1" data-line-number="1"><span class="kw">def</span> likelihood_ratio(llmin, llmax):</a>
+<a class="sourceLine" id="cb334-2" data-line-number="2">    <span class="cf">return</span>(<span class="dv">2</span><span class="op">*</span>(<span class="bu">max</span>(llmax, llmin) <span class="op">-</span> <span class="bu">min</span>(llmax, llmin)))</a>
+<a class="sourceLine" id="cb334-3" data-line-number="3">LR <span class="op">=</span> likelihood_ratio (L1, L2)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;L1&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb336"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb336-1" data-line-number="1">np.<span class="bu">round</span>(chi2.sf(LR, <span class="dv">1</span>), <span class="dv">2</span>) <span class="co"># расчёт p-value для теста</span></a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;chi2&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Основная гипотеза о незначимости фактора <code>white</code> не отвергается на 5% уровне значимости.
+Построим пробит-модель.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb338-1" data-line-number="1">probit_model <span class="op">=</span> probit(<span class="st">&quot;smoke ~ 1 + faminc + cigtax + cigprice + fatheduc + motheduc + parity + white&quot;</span>, data_2).fit()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;probit&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb340-1" data-line-number="1">probit_model.summary()</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;probit_model&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Расчёт предельных эффектов, точности классификации, визуализация ROC-кривой и проведение LR-теста проводятся аналогично операциям с логит-моделью.
+Сравнение моделей.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb342-1" data-line-number="1">pd.DataFrame(<span class="bu">dict</span>(col1<span class="op">=</span>lin_prob_model.params, col2<span class="op">=</span>logit_model.params, col3<span class="op">=</span>probit_model.params))</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;pd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+</div>
+<div id="stata-1" class="section level2">
+<h2><span class="header-section-number">3.3</span> stata</h2>
+<p>А сейчас познакомимся с тем, как <strong>stata</strong> работает с моделями бинарного выбора.</p>
+<p>Импортируем данные.</p>
+<pre class="stata"><code>use data/bwght.dta</code></pre>
+<pre><code>file data/bwght.dta not found
+r(601);
+
+end of do-file
+r(601);</code></pre>
+<p>Сгенерируем переменную <code>smoke</code>.</p>
+<pre class="stata"><code>gen smoke = (cigs&gt;0) if cigs != .</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+cigs not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Рассмотрим описательные статистики dataframe.</p>
+<pre class="stata"><code>sum smoke faminc cigtax cigprice fatheduc motheduc parity white</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Уберём пропущенные наблюдения.</p>
+<pre class="stata"><code>sum smoke faminc cigtax cigprice fatheduc motheduc parity white if fatheduc != . &amp; motheduc != .</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Построим модель линейной вероятности. Сохраним результат под <code>lin_prob_model</code>.</p>
+<pre class="stata"><code>reg smoke faminc cigtax cigprice fatheduc motheduc parity white if fatheduc != . &amp; motheduc != .
+est store lin_prob_model</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+fatheduc not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Посчитаем количество совпадений прогнозов и исходных значений.</p>
+<pre class="stata"><code>predict predictions_lin_prob_model
+gen smoke_ols = (predictions_lin_prob_model&gt;0.5) if predictions_lin_prob_model != .
+count if smoke_ols == smoke
+tab smoke_ols smoke</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Построим логит-модель и сохраним результат оцененной модели как <code>logit_model</code>.</p>
+<pre class="stata"><code>logit smoke faminc cigtax cigprice fatheduc motheduc parity white if fatheduc != . &amp; motheduc != .
+est store logit_model</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+fatheduc not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Рассчитаем предельные эффекты в средних значениях переменных.</p>
+<pre class="stata"><code>margins, dydx(*) atmeans</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Визуализируем предельные эффекты.</p>
+<pre class="stata"><code>marginsplot</code></pre>
+<p><img src="marginsplot1.png" /></p>
+<p>Посмотрим на точность классификации построенной логит-модели. Для этого применяется простая команда:</p>
+<pre class="stata"><code>estat classification</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Построим ROC-кривую, показывающую качество классификации построенной логит-модели.</p>
+<pre class="stata"><code>lroc</code></pre>
+<p><img src="lroc.png" /></p>
+<p>попробуем построить ещё одну логит-модель без учёта фактора <code>white</code> и сохраним новую модель под именем <code>logit_model_new</code>.</p>
+<pre class="stata"><code>logit smoke faminc cigtax cigprice fatheduc motheduc parity if fatheduc != . &amp; motheduc != .
+est store logit_model_new</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+fatheduc not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Сравним <code>logit_model</code> и <code>logit_model_new</code> с помощью LR (likelihood-ratio test):</p>
+<pre class="stata"><code>lrtest logit_model logit_model_new</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+estimation result logit_model not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p><code>p-value = 0.08</code> в LR-тесте. Следовательно, основная гипотеза о том, что переменная <code>white</code> не влияет на решение стать курильщиком, не отвергается на 5% уровне значимости.</p>
+<p>Построим пробит-модель и сохраним результат оцененной модели как <code>probit_model</code>.</p>
+<pre class="stata"><code>probit smoke faminc cigtax cigprice fatheduc motheduc parity white if fatheduc != . &amp; motheduc != .
+est store probit_model</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+fatheduc not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Сравним коэффициенты построенных моделей: модели линейной вероятности, логит- и пробит-моделей.</p>
+<pre class="stata"><code>est tab lin_prob_model logit_model probit_model</code></pre>
+<pre><code> file data/bwght.dta not found
+r(601);
+
+
+estimation result lin_prob_model not found
+r(111);
+
+end of do-file
+r(111);</code></pre>
+
+<div id="multchoice" class="section level3">
+<h3><span class="header-section-number">3.3.1</span> Модели множественного выбора</h3>
+<p>Загрузим необходимые пакеты.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" data-line-number="1"><span class="kw">library</span>(tidyverse) <span class="co"># для манипуляций с данными и построения графиков</span></a>
+<a class="sourceLine" id="cb372-2" data-line-number="2"><span class="kw">library</span>(skimr) <span class="co"># для красивого summary</span></a>
+<a class="sourceLine" id="cb372-3" data-line-number="3"><span class="kw">library</span>(rio) <span class="co"># для чтения .dta файлов</span></a>
+<a class="sourceLine" id="cb372-4" data-line-number="4"><span class="kw">library</span>(margins) <span class="co"># для расчета предельных эффектов</span></a></code></pre></div>
+<pre><code>Error in library(margins): there is no package called &#39;margins&#39;</code></pre>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="kw">library</span>(mlogit)</a></code></pre></div>
+<pre><code>Error in library(mlogit): there is no package called &#39;mlogit&#39;</code></pre>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb376-1" data-line-number="1"><span class="kw">library</span>(skimr)</a>
+<a class="sourceLine" id="cb376-2" data-line-number="2"><span class="kw">library</span>(nnet)</a>
+<a class="sourceLine" id="cb376-3" data-line-number="3"><span class="kw">library</span>(questionr)</a></code></pre></div>
+<pre><code>Error in library(questionr): there is no package called &#39;questionr&#39;</code></pre>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="kw">library</span>(MASS)</a>
+<a class="sourceLine" id="cb378-2" data-line-number="2"><span class="kw">library</span>(survival)</a>
+<a class="sourceLine" id="cb378-3" data-line-number="3"><span class="kw">library</span>(lattice)</a></code></pre></div>
+</div>
+</div>
+<div id="r-2" class="section level2">
+<h2><span class="header-section-number">3.4</span> r</h2>
+<p>Импортируем датасет. В нем находятся данные по клиентам пенсионных фондов. Нас интересует переменная <code>pctstck</code>, которая принимает три значения: 0, 50, 100 - в зависимоcти от ответа респондента на вопрос о предпочтительном способе инвестирования пенсионных накоплений.</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">df =<span class="st"> </span>rio<span class="op">::</span><span class="kw">import</span>(<span class="st">&quot;data/pension.dta&quot;</span>)</a></code></pre></div>
+<pre><code>Error in rio::import(&quot;data/pension.dta&quot;): No such file</code></pre>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1"><span class="kw">skim_with</span>(<span class="dt">numeric =</span> <span class="kw">list</span>(<span class="dt">hist =</span> <span class="ot">NULL</span>, <span class="dt">p25 =</span> <span class="ot">NULL</span>, <span class="dt">p75 =</span> <span class="ot">NULL</span>)) <span class="co">#посмотрим на данные</span></a>
+<a class="sourceLine" id="cb381-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb381-3" data-line-number="3"><span class="kw">skim</span>(df)</a></code></pre></div>
+<p>Создадим факторную перменную и упорядочим категории.</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1">df =<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">y =</span> <span class="kw">factor</span>(pctstck)) <span class="co"># факторная переменная</span></a></code></pre></div>
+<pre><code>Error in UseMethod(&quot;mutate_&quot;): no applicable method for &#39;mutate_&#39; applied to an object of class &quot;function&quot;</code></pre>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">df =<span class="st"> </span><span class="kw">mutate</span>(df, <span class="dt">y =</span> <span class="kw">relevel</span>(y, <span class="dt">ref =</span> <span class="dv">1</span>)) <span class="co"># сменить базовую категорию</span></a></code></pre></div>
+<pre><code>Error in UseMethod(&quot;mutate_&quot;): no applicable method for &#39;mutate_&#39; applied to an object of class &quot;function&quot;</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1"><span class="kw">levels</span>(df<span class="op">$</span>y)</a></code></pre></div>
+<pre><code>Error in df$y: object of type &#39;closure&#39; is not subsettable</code></pre>
+<p>Можно взглянуть на значения объясняемой переменной в разрезе какой-то другой переменной. Или посмотреть на картиночку.</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1"><span class="kw">table</span>(df<span class="op">$</span>y, df<span class="op">$</span>educ)</a></code></pre></div>
+<pre><code>Error in df$y: object of type &#39;closure&#39; is not subsettable</code></pre>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1">tab =<span class="st"> </span><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>y <span class="op">+</span><span class="st"> </span>educ, <span class="dt">data =</span> df)</a></code></pre></div>
+<pre><code>Error in terms.formula(formula, data = data): &#39;data&#39; argument is of the wrong type</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="kw">prop.table</span>(tab, <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>Error in sweep(x, margin, margin.table(x, margin), &quot;/&quot;, check.margin = FALSE): object &#39;tab&#39; not found</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1"><span class="kw">spineplot</span>(tab, <span class="dt">off =</span> <span class="dv">0</span>)</a></code></pre></div>
+<pre><code>Error in spineplot(tab, off = 0): object &#39;tab&#39; not found</code></pre>
+<p>Построим модель множественного выбора (лог-линейная модель).</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">multmodel=<span class="st"> </span><span class="kw">multinom</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr, <span class="dt">data =</span> df, <span class="dt">reflevel =</span> <span class="st">&#39;50&#39;</span>)</a></code></pre></div>
+<pre><code>Error in terms.formula(formula, data = data): &#39;data&#39; argument is of the wrong type</code></pre>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">summary</span>(multmodel)</a></code></pre></div>
+<pre><code>Error in summary(multmodel): object &#39;multmodel&#39; not found</code></pre>
+<p>При необходимости можем построить модельку для подвыборки, например, только для замужних/женатых.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">multmodel_married =<span class="st"> </span><span class="kw">multinom</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr, <span class="dt">subset =</span> married <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> df, <span class="dt">reflevel =</span> <span class="st">&#39;50&#39;</span>)</a></code></pre></div>
+<pre><code>Error in terms.formula(formula, data = data): &#39;data&#39; argument is of the wrong type</code></pre>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="kw">summary</span>(multmodel_married)</a></code></pre></div>
+<pre><code>Error in summary(multmodel_married): object &#39;multmodel_married&#39; not found</code></pre>
+<p>Быстренько прикинули значимость коэффициентов.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">summary</span>(multmodel)<span class="op">$</span>coefficients<span class="op">/</span><span class="kw">summary</span>(multmodel)<span class="op">$</span>standard.errors</a></code></pre></div>
+<pre><code>Error in summary(multmodel): object &#39;multmodel&#39; not found</code></pre>
+<p>Сохраним прогнозы.</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1">fit_values =<span class="st"> </span><span class="kw">fitted</span>(multmodel)</a></code></pre></div>
+<pre><code>Error in fitted(multmodel): object &#39;multmodel&#39; not found</code></pre>
+<p>И посчитать относительное изменение отношения шансов:</p>
+<p><span class="math display">\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\]</span> - показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1"><span class="kw">odds.ratio</span>(multmodel) </a></code></pre></div>
+<pre><code>Error in odds.ratio(multmodel): could not find function &quot;odds.ratio&quot;</code></pre>
+<p>Можем посчитать предельные эффекты в различных квартилях.</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">marginal_effects</span>(multmodel)) </a></code></pre></div>
+<pre><code>Error in marginal_effects(multmodel): could not find function &quot;marginal_effects&quot;</code></pre>
+<p>Допустим, мы можем упорядочить наши альтернативы (например, от более рискованного способа распределения ресурсов до менее). Тогда воспользуемся моделью упорядоченного выбора.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1">logit.polr =<span class="st"> </span><span class="kw">polr</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr , <span class="dt">data =</span> df)</a></code></pre></div>
+<pre><code>Error in terms.formula(formula, data = data): &#39;data&#39; argument is of the wrong type</code></pre>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1">probit.polr =<span class="st"> </span><span class="kw">polr</span>(y <span class="op">~</span><span class="st"> </span>choice<span class="op">+</span>age<span class="op">+</span>educ<span class="op">+</span>wealth89<span class="op">+</span>prftshr , <span class="dt">data =</span> df, <span class="dt">method =</span> <span class="st">&#39;probit&#39;</span>) </a></code></pre></div>
+<pre><code>Error in terms.formula(formula, data = data): &#39;data&#39; argument is of the wrong type</code></pre>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1"><span class="co">### summary(logit.polr) не работает</span></a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1">fit_prob =<span class="st"> </span><span class="kw">fitted</span>(logit.polr)</a></code></pre></div>
+<pre><code>Error in fitted(logit.polr): object &#39;logit.polr&#39; not found</code></pre>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">fit_log =<span class="st"> </span><span class="kw">fitted</span>(probit.polr)</a></code></pre></div>
+<pre><code>Error in fitted(probit.polr): object &#39;probit.polr&#39; not found</code></pre>
+</div>
+<div id="stata-2" class="section level2">
+<h2><span class="header-section-number">3.5</span> stata</h2>
+<pre class="stata"><code>use data/pension.dta</code></pre>
+<pre><code>file data/pension.dta not found
+r(601);
+
+end of do-file
+r(601);</code></pre>
+<pre class="stata"><code>sum</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+</code></pre>
+<pre class="stata"><code>ren pctstck y</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Построим модель множественного выбора (лог-линейная модель).</p>
+<pre class="stata"><code>mlogit y choice age educ wealth89 prftshr,  baseoutcome(0) </code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+<p>Можем посмотреть на прогнозы.</p>
+<pre class="stata"><code>predict p1 p2 p3, p</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>И посчитать относительное изменение отношения шансов:</p>
+<p><span class="math display">\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\]</span> - показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу.
+В stata, в отличие от R, отношение шансов называется relative-risk ratio.</p>
+<pre class="stata"><code>mlogit, rrr</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Можем посчитать предельные эффекты в разных точках.</p>
+<pre class="stata"><code>margins, predict(outcome(50)) dydx(choice age educ wealth89 prftshr) atmeans 
+
+margins, predict(outcome(50)) dydx(choice age educ wealth89 prftshr) at((p25) *)</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+last estimates not found
+r(301);
+
+end of do-file
+r(301);</code></pre>
+<p>Допустим, мы можем упорядочить наши альтернативы (например, от более рискованного способа распределения ресурсов до менее). Тогда воспользуемся моделью упорядоченного выбора.</p>
+<pre class="stata"><code>oprobit y choice age educ wealth89 prftshr
+
+ologit y choice age educ wealth89 prftshr</code></pre>
+<pre><code> file data/pension.dta not found
+r(601);
+
+
+no variables defined
+r(111);
+
+end of do-file
+r(111);</code></pre>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="simplereg.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="installsoft.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="ordchoice.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -193,6 +911,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

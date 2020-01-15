@@ -1,0 +1,170 @@
+# Модели упорядоченного выбора и условный логит {#ordchoice}
+
+
+```{r setup, include=FALSE}
+# Sys.setenv(language = "russian")
+library(knitr)
+library(texreg)
+library(Statamarkdown)
+library(reticulate)
+# stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+py_config()
+stataexe = find_stata()
+#use_python("C:/Users/DNS/Anaconda3/python.exe")
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+Загрузим необходимые пакеты.
+```{r "library", results='hide', message=FALSE, warning=FALSE}
+library(tidyverse) # для манипуляций с данными и построения графиков
+library(skimr) #для красивого summary
+library(rio) # для чтения .dta файлов
+library(margins)
+library(mlogit)
+library(nnet)
+library(questionr)
+library(MASS)
+library(survival)
+
+# log(6)
+```
+
+Импортируем датасет. В нем находятся данные по клиентам пенсионных фондов. Нас интересует переменная `pctstck`, которая принимает три значения: 0, 50, 100 - в зависимоcти от ответа респондента на вопрос о предпочтительном способе инвестирования пенсионных накоплений.   
+```{r "import data r", message=FALSE, warning=FALSE}
+df = rio::import("pension.dta")
+```
+
+```{r "skim",  message=FALSE, warning=FALSE}
+skim_with(numeric = list(hist = NULL, p25 = NULL, p75 = NULL)) #посмотрим на данные
+#skim(df)
+```
+
+
+Создадим факторную перменную и упорядочим категории. 
+
+```{r "mult",  message=FALSE, warning=FALSE}
+df = rename(df,  alloc = pctstck) # переименуем 
+df = mutate(df, alloc_factor = factor(alloc)) # факторная переменная
+df = mutate(df, y = relevel(df$alloc_factor, ref = 1)) # сменить базовую категорию
+levels(df$y)
+```
+
+Построим модель множественного выбора (лог-линейная модель). 
+```{r "model r",  message=FALSE, warning=FALSE}
+multmodel = multinom(y ~ choice+age+educ+wealth89+prftshr, data = df)
+summary(multmodel)
+```
+
+Сохраним прогнозы.
+```{r "fit r",  message=FALSE, warning=FALSE}
+fit_values = fitted(multmodel)
+head(fit_values)
+```
+
+И посчитать относительное изменение отношения шансов:
+
+\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\] 
+показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу
+```{r "or",  message=FALSE, warning=FALSE}
+odds.ratio(multmodel) # отношение шансов в stata называется relative-risk ratio
+```
+
+
+Можем посчитать предельные эффекты в различных квартилях. 
+```{r "me",  message=FALSE, warning=FALSE}
+summary(marginal_effects(multmodel)) # mean как в стате
+```
+
+
+
+Допустим, мы можем упорядочить наши альтернативы (например, от более рискованного способа распределения ресурсов до менее)
+```{r "ordered r",  message=FALSE, warning=FALSE}
+ordered_logit = polr(y ~ choice+age+educ+wealth89+prftshr , data = df)
+ordered_probit = polr(y ~ choice+age+educ+wealth89+prftshr , data = df, method = 'probit') 
+
+fit_prob = fitted(ordered_probit)
+fit_log = fitted(ordered_logit)
+ordered_probit
+
+ln(5)
+```
+
+
+```{r "conditional r",  message=FALSE, warning=FALSE}
+cond_logit = clogit(y ~ choice+age+strata(educ)+wealth89+prftshr , data = df)
+```
+
+### То же самое в стате
+
+
+```{stata "import data stata", message=FALSE, warning=FALSE}
+use pension.dta
+```
+
+```{stata "sum",  message=FALSE, warning=FALSE}
+sum
+```
+
+
+```{stata "ren",  message=FALSE, warning=FALSE}
+ren pctstck alloc
+```
+
+Построим модель множественного выбора (лог-линейная модель). 
+```{stata "mlogit",  message=FALSE, warning=FALSE}
+mlogit alloc choice age educ wealth89 prftshr,  baseoutcome(0) #маленькое отличие с R
+```
+
+Можем посмотреть на прогнозы.
+```{stata "predict",  message=FALSE, warning=FALSE}
+predict p1 p2 p3, p
+```
+
+И посчитать относительное изменение отношения шансов:
+
+\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\] - показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу
+
+```{stata "rrr",  message=FALSE, warning=FALSE}
+mlogit, rrr #relative-risk ratio
+```
+
+
+Можем посчитать предельные эффекты в разных точках.
+```{stata "mfx",  message=FALSE, warning=FALSE}
+margins, predict(outcome(50)) dydx( choice age educ wealth89 prftshr) atmeans 
+
+margins, predict(outcome(50)) dydx( choice age educ wealth89 prftshr) at((p25) *)
+```
+
+```{stata "oprobit",  message=FALSE, warning=FALSE}
+oprobit alloc choice age educ wealth89 prftshr
+
+ologit alloc choice age educ wealth89 prftshr
+```
+
+
+
+Посмотрим на conditional logit
+
+ПОКА ЗАБИЛА
+
+```{stata "ordered",  message=FALSE, warning=FALSE}
+
+use crackers.dta
+
+
+egen resp = group(id occ)
+
+tabulate brand, generate(br)
+rename br1 Sunshine
+rename br2 Keebler
+rename br3 Nabisco
+
+clogit choice Sunshine Keebler Nabisco display feature price, group(resp)
+
+
+```

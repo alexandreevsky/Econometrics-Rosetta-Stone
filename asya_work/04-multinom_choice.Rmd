@@ -1,0 +1,258 @@
+# Модели множественного выбора {#multchoice}
+
+
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+## r
+
+Загрузим необходимые пакеты.
+```{r "library", results='hide', message=FALSE, warning=FALSE}
+library(tidyverse) # для манипуляций с данными и построения графиков
+library(skimr) # для красивого summary
+library(rio) # для чтения .dta файлов
+library(margins) # для расчета предельных эффектов
+library(mlogit)
+library(skimr)
+library(nnet)
+library(questionr)
+library(MASS)
+library(survival)
+```
+
+Импортируем датасет. В нем находятся данные по клиентам пенсионных фондов. Нас интересует переменная `pctstck`, которая принимает три значения: 0, 50, 100 — в зависимоcти от ответа респондента на вопрос о предпочтительном способе инвестирования пенсионных накоплений — в облигации, смешанный способ и в акции.   
+```{r "import data r", message=FALSE, warning=FALSE}
+df = rio::import("data/pension.dta")
+```
+
+Начнем с пристального взгляда на описательные статистки. 
+```{r "skim",  message=FALSE, warning=FALSE}
+skim(df)
+```
+
+Отсюда несложно заметить, что переменная `choice` — бинарная. И принимает значение `1`, если индивид в выборке имел право выбора схемы инвестирования. Переменнная `wealth98` — чистое богатство пенсионеров на 1989 год. Остальные переменные нас пока что не интересуют :)
+
+
+Для начала разберемся с объясняемой переменной. Превратим её в факторную и упорядочим категории. 
+```{r "factor_var",  message=FALSE, warning=FALSE}
+df = mutate(df, y = factor(pctstck)) # факторная переменная
+df = mutate(df, y = relevel(y, ref = 2)) # сменить базовую категорию
+levels(df$y)
+```
+
+Можно взглянуть на значения объясняемой переменной в разрезе какой-то другой переменной. 
+```{r, message=FALSE, warning=FALSE }
+table(df$y, df$educ)
+```
+
+Построим модель множественного выбора (лог-линейная модель). 
+
+```{r "model r",  message=FALSE, warning=FALSE}
+multmodel = multinom(y ~ choice+age+educ+wealth89+prftshr, data = df, reflevel = '0')
+
+summary(multmodel)
+```
+
+При необходимости можем построить модельку для подвыборки, например, только для замужних/женатых.
+```{r "married", message=FALSE, warning=FALSE}
+multmodel_married = multinom(y ~ choice+age+educ+wealth89+prftshr, subset = married == 1, data = df, reflevel = '0')
+summary(multmodel_married)
+```
+
+Быстренько прикинули значимость коэффициентов.
+```{r, message=FALSE, warning=FALSE}
+coef(multmodel)/summary(multmodel)$standard.errors
+```
+
+Сохраним прогнозы.
+```{r "fit r",  message=FALSE, warning=FALSE}
+fit_values = fitted(multmodel)
+```
+
+И посчитать относительное изменение отношения шансов:
+
+\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\] показывает изменение отношения шансов при выборе альтернативы j вместо базовой альтернативы 1, если x изменился на единицу.
+
+```{r "or",  message=FALSE, warning=FALSE}
+odds.ratio(multmodel) 
+```
+
+Можем посчитать предельные эффекты в различных квартилях.
+```{r "me",  message=FALSE, warning=FALSE}
+summary(marginal_effects(multmodel))
+```
+
+Или при заданном значении объясняемых переменных.
+```{r "me_at",  message=FALSE, warning=FALSE}
+margins(multmodel,at = list(age = 69, choice = 1))
+```
+
+
+Теперь посмотрим на модель упорядоченного выбора :) Для нее возьмем другие данные. Выборку позаимствуем из опроса NLSY (National Longitudinal Survey of Youth). В ней представлены данные о 3705 молодых белых женщинах из США.
+Зависимая переменная tradrole — степень согласия с утверждением «Место женщины дома, а не на работе» по четырехбалльной шкале (1 – категорически не согласна, 2 – не согласна, 3 – согласна, 4 – совершенно согласна).
+
+```{r "import tradrole r",  message=FALSE, warning=FALSE}
+data_nlsy = import('data/tradrole.dta')
+#skim(data_nlsy)
+```
+
+```{r "hist tradrole r",  message=FALSE, warning=FALSE}
+ggplot(data_nlsy, aes(x = tradrole)) + 
+  geom_histogram() + 
+  xlab('Ответы респонденток') +
+  ggtitle('Вот такие дела, джентельмены :)')
+```
+
+Посмотрим, как влияет религиозное воспитание (`cath` — католичество и `fpro` — протестанство), число лет образования матери — `meduc` и проживание в крупном городе `urb` на объясняемую переменную.
+```{r "ordered r",  message=FALSE, warning=FALSE}
+oprobit = polr(as.factor(tradrole) ~  as.factor(cath) + as.factor(fpro) + meduc + as.factor(urb), data=data_nlsy, method="probit", na.action=na.omit)
+summary(oprobit)
+```
+
+В summary видим коэффициенты при регрессорах и коэффициенты при константах для каждой из упорядоченных альтернатив.
+```{r "summary r",  message=FALSE, warning=FALSE}
+summary(oprobit)
+```
+
+## python
+
+```{python "pack", message=FALSE, warning=FALSE}
+import numpy as np
+import pandas as pd
+import statsmodels.api as st
+import matplotlib.pyplot as plt
+
+plt.style.use('ggplot')
+```
+
+
+```{python "import data py", message=FALSE, warning=FALSE}
+df = pd.read_stata('data/pension.dta')
+```
+
+```{python "sum py",  message=FALSE, warning=FALSE}
+df.describe()
+```
+
+
+```{python "ren py",  message=FALSE, warning=FALSE}
+df.rename(columns = {'pctstck':'y'}, inplace = True)
+```
+
+Подготовим данные для построения модели множественного выбора. Избавимся от пропусков в интересующих нас переменных и добавим вектор констант. 
+
+```{python "data_prepor py",  message=FALSE, warning=FALSE}
+sub = df[['y', 'choice', 'age', 'wealth89', 'prftshr', 'educ', 'married']].dropna()
+y = sub['y']
+X = sub[['choice', 'age', 'wealth89', 'prftshr']]
+X = st.add_constant(X, prepend = False)
+```
+
+Кросс - табличка для объясняемой переменной и числа лет образования.
+```{python, message=FALSE, warning=FALSE }
+pd.crosstab(sub['y'], sub['educ'])
+```
+
+Строим модель.
+```{python "model py",  message=FALSE, warning=FALSE}
+multmodel = st.MNLogit(y, X, )
+mm_fit = multmodel.fit()
+mm_fit.summary() ### сразу же можно проверить значимость коэффициентов
+```
+
+```{python "pred py",  message=FALSE, warning=FALSE}
+fitted_values = mm_fit.predict()
+```
+
+Отдельно можем извлечь параметры.
+```{python "param py",  message=FALSE, warning=FALSE}
+mm_fit.params
+```
+
+Для того, чтобы построить модельку по подвыборке, её (подвыборку) нужно создать :)
+```{python "sample py",  message=FALSE, warning=FALSE}
+data_m = sub[(sub.married == 1)]
+y_m = data_m['y']
+X_m = data_m[['choice', 'age', 'wealth89', 'prftshr']]
+X_m = st.add_constant(X_m, prepend = False)
+```
+
+Дальше всё аналогично :)
+```{python "sample_model py",  message=FALSE, warning=FALSE}
+multmodel_m = st.MNLogit(y_m, X_m)
+mm_fit_m = multmodel_m.fit()
+mm_fit_m.summary()
+```
+
+C пределными эффектами в питоне беда!!!!
+```{python "mfx py",  message=FALSE, warning=FALSE}
+margeff = mm_fit.get_margeff()
+np.round(margeff.margeff, 3)
+```
+ 
+Или все-таки беда с отношением шансов?
+```{python "ood py",  message=FALSE, warning=FALSE}
+y50_data = sub[sub['y'] == 50][sub.columns.difference(['y', 'married'])]
+y100_data = sub[sub['y'] == 100][sub.columns.difference(['y', 'married'])]
+#np.exp(mm_fit.params[0]*y100_data) # кажется, это придется считать вручную :(
+#np.exp(mm_fit.params[0]*y100_data) # не уверена, что так, но пусть пока будет
+```
+
+И вернемся к ~~сильным и независимым~~ моделькам упорядоченного выбора :) 
+```{python "import tradrole py",  message=FALSE, warning=FALSE}
+data_nlsy = pd.read_stata('data/tradrole.dta')
+```
+
+```{python "hist tradrole py",  message=FALSE, warning=FALSE}
+plt.hist(data_nlsy['tradrole'])
+plt.title('')
+plt.xlabel('Ответы респонденток')
+plt.show('Вот такие дела, джентельмены :)')
+```
+
+Дальше тоже пока печаль :(
+

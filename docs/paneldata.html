@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Коан 10 Панельные данные | Розеттский камень</title>
-  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления.">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Коан 6 Панельные данные | Розеттский камень</title>
+  <meta name="description" content="Сборник коанов для эконометристов, жаждущих просветления." />
+  <meta name="generator" content="bookdown 0.13 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Коан 10 Панельные данные | Розеттский камень" />
+  <meta property="og:title" content="Коан 6 Панельные данные | Розеттский камень" />
   <meta property="og:type" content="book" />
   
   
@@ -17,23 +16,23 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Коан 10 Панельные данные | Розеттский камень" />
+  <meta name="twitter:title" content="Коан 6 Панельные данные | Розеттский камень" />
   
   <meta name="twitter:description" content="Сборник коанов для эконометристов, жаждущих просветления." />
   
 
-<meta name="author" content="Пуассон, фея и два мексиканских негодяя">
+<meta name="author" content="Пуассон, фея и три мексиканских негодяя" />
 
 
-<meta name="date" content="2019-03-15">
+<meta name="date" content="2019-09-26" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="arma.html">
-<link rel="next" href="heterosked.html">
+<link rel="prev" href="arma.html"/>
+<link rel="next" href="heterosked.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,41 +50,66 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -101,23 +125,56 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a></li>
-<li class="chapter" data-level="2" data-path="installsoft.html"><a href="installsoft.html"><i class="fa fa-check"></i><b>2</b> Установка софта</a></li>
-<li class="chapter" data-level="3" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>3</b> Коан о простой линейной регрессии</a></li>
-<li class="chapter" data-level="4" data-path="binchoice.html"><a href="binchoice.html"><i class="fa fa-check"></i><b>4</b> Модели бинарного выбора</a></li>
-<li class="chapter" data-level="5" data-path="ordchoice.html"><a href="ordchoice.html"><i class="fa fa-check"></i><b>5</b> Модели упорядоченного выбора</a></li>
-<li class="chapter" data-level="6" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>6</b> Пуассоновская регрессия</a></li>
-<li class="chapter" data-level="7" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>7</b> Модели неупорядоченного выбора</a></li>
-<li class="chapter" data-level="8" data-path="instruments.html"><a href="instruments.html"><i class="fa fa-check"></i><b>8</b> Интcтрументы для простой регрессии</a></li>
-<li class="chapter" data-level="9" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>9</b> ARMA</a></li>
-<li class="chapter" data-level="10" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>10</b> Панельные данные</a></li>
-<li class="chapter" data-level="11" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>11</b> Гетероскедастичность в простой регрессии</a></li>
-<li class="chapter" data-level="12" data-path="pca.html"><a href="pca.html"><i class="fa fa-check"></i><b>12</b> PCA</a></li>
-<li class="chapter" data-level="13" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>13</b> Динамические панели</a></li>
-<li class="chapter" data-level="14" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>14</b> TOBIT, HECKIT</a></li>
-<li class="chapter" data-level="15" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>15</b> Treatment effect</a></li>
-<li class="chapter" data-level="16" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>16</b> Что-то там про совместимость и языки</a></li>
-<li class="chapter" data-level="17" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>17</b> Словарь</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Напутственное слово</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#installsoft"><i class="fa fa-check"></i><b>1.1</b> # Коан об установке софта</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#--r"><i class="fa fa-check"></i><b>1.1.1</b> Язык программирования R</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#---rstudio--windows-mac-os"><i class="fa fa-check"></i><b>1.1.2</b> Инструкция по установке RStudio для Windows / Mac OS:</a></li>
+<li class="chapter" data-level="1.1.3" data-path="index.html"><a href="index.html#-"><i class="fa fa-check"></i><b>1.1.3</b> Начало работы</a></li>
+<li class="chapter" data-level="1.1.4" data-path="index.html"><a href="index.html#--1"><i class="fa fa-check"></i><b>1.1.4</b> Настройка программы</a></li>
+<li class="chapter" data-level="1.1.5" data-path="index.html"><a href="index.html#--python"><i class="fa fa-check"></i><b>1.1.5</b> Язык программирования Python</a></li>
+<li class="chapter" data-level="1.1.6" data-path="index.html"><a href="index.html#section-1.1.6"><i class="fa fa-check"></i><b>1.1.6</b> Установка</a></li>
+<li class="chapter" data-level="1.1.7" data-path="index.html"><a href="index.html#--1"><i class="fa fa-check"></i><b>1.1.7</b> Начало работы</a></li>
+<li class="chapter" data-level="1.1.8" data-path="index.html"><a href="index.html#-stata"><i class="fa fa-check"></i><b>1.1.8</b> Программа STATA</a></li>
+<li class="chapter" data-level="1.1.9" data-path="index.html"><a href="index.html#-1"><i class="fa fa-check"></i><b>1.1.9</b> Установка:</a></li>
+<li class="chapter" data-level="1.1.10" data-path="index.html"><a href="index.html#--2"><i class="fa fa-check"></i><b>1.1.10</b> Начало работы:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="simplereg.html"><a href="simplereg.html"><i class="fa fa-check"></i><b>2</b> Коан о простой линейной регрессии</a><ul>
+<li class="chapter" data-level="2.1" data-path="simplereg.html"><a href="simplereg.html#r"><i class="fa fa-check"></i><b>2.1</b> r</a></li>
+<li class="chapter" data-level="2.2" data-path="simplereg.html"><a href="simplereg.html#python"><i class="fa fa-check"></i><b>2.2</b> python</a></li>
+<li class="chapter" data-level="2.3" data-path="simplereg.html"><a href="simplereg.html#stata"><i class="fa fa-check"></i><b>2.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="poisreg.html"><a href="poisreg.html"><i class="fa fa-check"></i><b>3</b> Модели счетных данных</a><ul>
+<li class="chapter" data-level="3.1" data-path="poisreg.html"><a href="poisreg.html#r-1"><i class="fa fa-check"></i><b>3.1</b> r</a></li>
+<li class="chapter" data-level="3.2" data-path="poisreg.html"><a href="poisreg.html#python-1"><i class="fa fa-check"></i><b>3.2</b> python</a></li>
+<li class="chapter" data-level="3.3" data-path="poisreg.html"><a href="poisreg.html#stata-1"><i class="fa fa-check"></i><b>3.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="disordered.html"><a href="disordered.html"><i class="fa fa-check"></i><b>4</b> Модели неупорядоченного выбора</a><ul>
+<li class="chapter" data-level="4.1" data-path="disordered.html"><a href="disordered.html#instruments"><i class="fa fa-check"></i><b>4.1</b> # Коан об инcтрументах для простой регрессии</a></li>
+<li class="chapter" data-level="4.2" data-path="disordered.html"><a href="disordered.html#r-2"><i class="fa fa-check"></i><b>4.2</b> r</a></li>
+<li class="chapter" data-level="4.3" data-path="disordered.html"><a href="disordered.html#stata-2"><i class="fa fa-check"></i><b>4.3</b> stata</a></li>
+<li class="chapter" data-level="4.4" data-path="disordered.html"><a href="disordered.html#python-2"><i class="fa fa-check"></i><b>4.4</b> python</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="arma.html"><a href="arma.html"><i class="fa fa-check"></i><b>5</b> ARMA</a><ul>
+<li class="chapter" data-level="5.1" data-path="arma.html"><a href="arma.html#r-3"><i class="fa fa-check"></i><b>5.1</b> r</a></li>
+<li class="chapter" data-level="5.2" data-path="arma.html"><a href="arma.html#python-3"><i class="fa fa-check"></i><b>5.2</b> python</a></li>
+<li class="chapter" data-level="5.3" data-path="arma.html"><a href="arma.html#stata-3"><i class="fa fa-check"></i><b>5.3</b> stata</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="paneldata.html"><a href="paneldata.html"><i class="fa fa-check"></i><b>6</b> Панельные данные</a></li>
+<li class="chapter" data-level="7" data-path="heterosked.html"><a href="heterosked.html"><i class="fa fa-check"></i><b>7</b> Гетероскедастичность в простой регрессии</a><ul>
+<li class="chapter" data-level="7.1" data-path="heterosked.html"><a href="heterosked.html#r-4"><i class="fa fa-check"></i><b>7.1</b> r</a></li>
+<li class="chapter" data-level="7.2" data-path="heterosked.html"><a href="heterosked.html#python-4"><i class="fa fa-check"></i><b>7.2</b> python</a></li>
+<li class="chapter" data-level="7.3" data-path="heterosked.html"><a href="heterosked.html#stata-4"><i class="fa fa-check"></i><b>7.3</b> stata</a></li>
+<li class="chapter" data-level="7.4" data-path="heterosked.html"><a href="heterosked.html#pca"><i class="fa fa-check"></i><b>7.4</b> # Коан о методе главных компонент</a></li>
+<li class="chapter" data-level="7.5" data-path="heterosked.html"><a href="heterosked.html#r-5"><i class="fa fa-check"></i><b>7.5</b> r</a></li>
+<li class="chapter" data-level="7.6" data-path="heterosked.html"><a href="heterosked.html#stata-5"><i class="fa fa-check"></i><b>7.6</b> stata</a></li>
+<li class="chapter" data-level="7.7" data-path="heterosked.html"><a href="heterosked.html#python-5"><i class="fa fa-check"></i><b>7.7</b> python</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="dinpanel.html"><a href="dinpanel.html"><i class="fa fa-check"></i><b>8</b> Динамические панели</a></li>
+<li class="chapter" data-level="9" data-path="tobit-heckit.html"><a href="tobit-heckit.html"><i class="fa fa-check"></i><b>9</b> TOBIT, HECKIT</a></li>
+<li class="chapter" data-level="10" data-path="treatment.html"><a href="treatment.html"><i class="fa fa-check"></i><b>10</b> Treatment effect</a></li>
+<li class="chapter" data-level="11" data-path="compatability.html"><a href="compatability.html"><i class="fa fa-check"></i><b>11</b> Что-то там про совместимость и языки</a></li>
+<li class="chapter" data-level="12" data-path="dict.html"><a href="dict.html"><i class="fa fa-check"></i><b>12</b> Словарь</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -139,7 +196,1112 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
             <section class="normal" id="section-">
 <div id="paneldata" class="section level1">
-<h1><span class="header-section-number">Коан 10</span> Панельные данные</h1>
+<h1><span class="header-section-number">Коан 6</span> Панельные данные</h1>
+<p>Загрузим необходимые библиотеки.</p>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw">library</span>(foreign) <span class="co">#Вспомогательная библиотека для подгрузки данных</span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2"><span class="kw">library</span>(plm) <span class="co">#Пакет для работы с панельными данными</span></a>
+<a class="sourceLine" id="cb300-3" data-line-number="3"><span class="kw">library</span>(lmtest) <span class="co">#Пакет для оценки регрессий и ковариационных матриц параметров</span></a>
+<a class="sourceLine" id="cb300-4" data-line-number="4"><span class="kw">library</span>(skimr) <span class="co">#Для красивого summary</span></a>
+<a class="sourceLine" id="cb300-5" data-line-number="5"><span class="kw">library</span>(car) <span class="co">#Для некоторых графиков</span></a>
+<a class="sourceLine" id="cb300-6" data-line-number="6"><span class="kw">library</span>(gplots) <span class="co">#Для графигов гетерогенности</span></a>
+<a class="sourceLine" id="cb300-7" data-line-number="7"><span class="kw">library</span>(rio)</a>
+<a class="sourceLine" id="cb300-8" data-line-number="8"><span class="kw">library</span>(tidyverse)</a>
+<a class="sourceLine" id="cb300-9" data-line-number="9"><span class="kw">library</span>(car)</a></code></pre></div>
+<p>Загрузим данные, и преобразуем нужные переменные в факторные.В данном разделе все визуализации будут построены на подмножестве данных из шести наблюдений. Это позволит сделать их более читаемыми в формате книги. Все модели будут оценены на всём массиве данных.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">panel =<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&#39;lwage_panel_small.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb301-2" data-line-number="2">panel<span class="op">$</span>black =<span class="st"> </span><span class="kw">factor</span>(panel<span class="op">$</span>black)</a>
+<a class="sourceLine" id="cb301-3" data-line-number="3">panel<span class="op">$</span>id =<span class="st"> </span><span class="kw">factor</span>(panel<span class="op">$</span>id)</a></code></pre></div>
+<p>Изобразим наши панельные данные на диаграмме рассеяния. Дополнимельно установим параметр сглаживания, чтобы получить кривые временных рядов.</p>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1"><span class="kw">scatterplot</span>(lwage <span class="op">~</span><span class="st"> </span>year<span class="op">|</span>id, <span class="dt">boxplots=</span>F, <span class="dt">smooth=</span><span class="ot">TRUE</span>, <span class="dt">regLine=</span><span class="ot">FALSE</span>, <span class="dt">data=</span>panel)</a></code></pre></div>
+<p><img src="09-paneldata_files/figure-html/scatterplot%20chunk-1.png" width="672" /></p>
+<p>Для получения графиков на различных плитках можно использовать coplot.</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">coplot</span>(lwage <span class="op">~</span><span class="st"> </span>year<span class="op">|</span>id, <span class="dt">type =</span> <span class="st">&#39;b&#39;</span>, <span class="dt">data =</span> panel)</a></code></pre></div>
+<p><img src="09-paneldata_files/figure-html/1%20coplot%20chunk-1.png" width="672" /></p>
+<p>Сгруппировать можно по разным признакам. Например, в зависимости от расы индивидов.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">panel<span class="op">$</span>year =<span class="st"> </span><span class="kw">factor</span>(panel<span class="op">$</span>year)</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2"><span class="kw">coplot</span>(lwage <span class="op">~</span><span class="st"> </span>year<span class="op">|</span>black, <span class="dt">type=</span><span class="st">&quot;l&quot;</span>, <span class="dt">data=</span>panel, <span class="dt">panel =</span> <span class="cf">function</span>(x, y, ...) <span class="kw">panel.smooth</span>(x, y, <span class="dt">span =</span> <span class="fl">0.3</span>, ...), <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">show.given =</span> F, <span class="dt">xlab =</span> <span class="st">&quot;Mean dependence lwage of year for white and black people&quot;</span>)</a></code></pre></div>
+<p><img src="09-paneldata_files/figure-html/2%20coplot%20chunk-1.png" width="672" /></p>
+<p>Импортируем основной датасет.</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">Panel =<span class="st"> </span><span class="kw">import</span>(<span class="st">&#39;lwage_panel_large.csv&#39;</span>)</a></code></pre></div>
+<p>Визуализируем гетерогенный эффект. Можно визуализировать по годам или по индивидам. Здесь уже можно использовать полный датасет. Так как доверительные интервалы с интервалом в год не пересекаются, можно увидеть явную гетерогенность.</p>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">plotmeans</span>(lwage <span class="op">~</span><span class="st"> </span>year, <span class="dt">main=</span><span class="st">&quot;Heterogeineity across years&quot;</span>, <span class="dt">data=</span>Panel)</a></code></pre></div>
+<p><img src="09-paneldata_files/figure-html/heterogenity%20plot-1.png" width="672" /></p>
+<p>Модель панельных данных будет выглядеть следующим образом:</p>
+<p><span class="math display">\[\begin{equation}
+y_{i t}=\alpha+x_{i t}^{\prime} \beta+z_{i}^{\prime} \gamma+c_{i}+u_{i t}
+\end{equation}\]</span></p>
+<p>где <span class="math inline">\(\alpha\)</span> – константа, <span class="math inline">\(c_{i}\)</span> - индивидуальные эффекты индивидов, а <span class="math inline">\(z_i\)</span> – независимые от времени переменные. Следовательно, матрица <span class="math inline">\(X\)</span> - матрица зависимых от времени регрессов, <span class="math inline">\(Z\)</span> - матрица независимых от времени регрессоров. Дополнительно обозначим как <span class="math inline">\(l_n\)</span> вектор из единиц.</p>
+<p>Оценим простую модель с фиксированными эффектами через within-оценку. Вычитая <span class="math inline">\(\overline{y}_{i}=1 / T \sum_{t} y_{i t}\)</span> из исходной модели, получим within-модель:</p>
+<p><span class="math display">\[\begin{equation}
+\ddot{y}_{i t}=\ddot{x}_{i t}^{\prime} \beta+\ddot{u}_{i t}
+\end{equation}\]</span></p>
+<p>где <span class="math inline">\(\ddot{y}_{i t}=y_{i t}-\overline{y}_{i}, \ddot{x}_{i t k}=x_{i t k}-\overline{x}_{i k}\)</span> and <span class="math inline">\(\ddot{u}_{i t}=u_{i t}-\overline{u}_{i}\)</span>. Следует заметить, что константа <span class="math inline">\(\alpha\)</span>, индивидуальные эффекты <span class="math inline">\(c_i\)</span> и инвариантные ко времени регрессоры <span class="math inline">\(z_i\)</span> исчезают из модели.</p>
+<p><span class="math display">\[\begin{equation}
+\widehat{\beta}_{F E}=\left(\ddot{X}^{\prime} \ddot{X}\right)^{-1} \ddot{X}^{\prime} \ddot{y}
+\end{equation}\]</span></p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">ffe =<span class="st"> </span><span class="kw">plm</span>(lwage <span class="op">~</span><span class="st"> </span>hours, <span class="dt">model=</span><span class="st">&quot;within&quot;</span>, <span class="dt">data =</span> Panel)</a>
+<a class="sourceLine" id="cb307-2" data-line-number="2"><span class="kw">summary</span>(ffe)</a></code></pre></div>
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = lwage ~ hours, data = Panel, model = &quot;within&quot;)
+
+Balanced Panel: n = 545, T = 8, N = 4360
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-4.116091 -0.136963  0.015755  0.182507  1.555059 
+
+Coefficients:
+         Estimate  Std. Error t-value Pr(&gt;|t|)
+hours -5.5854e-07  1.4013e-05 -0.0399   0.9682
+
+Total Sum of Squares:    572.05
+Residual Sum of Squares: 572.05
+R-Squared:      4.1656e-07
+Adj. R-Squared: -0.14289
+F-statistic: 0.00158875 on 1 and 3814 DF, p-value: 0.96821</code></pre>
+<p>Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта.</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">coeftest</span>(ffe, <span class="dt">vcov=</span><span class="kw">vcovHC</span>(ffe, <span class="dt">cluster=</span><span class="st">&quot;group&quot;</span>))</a></code></pre></div>
+<pre><code>
+t test of coefficients:
+
+         Estimate  Std. Error t value Pr(&gt;|t|)
+hours -5.5854e-07  2.5051e-05 -0.0223   0.9822</code></pre>
+<p>Оценим модель со случайными эффектами, используя достижимый обобщённый МНК (FGLS).</p>
+<p><span class="math display">\[\begin{equation}
+\left(\begin{array}{c}{\widehat{\alpha}_{R E}} \\ {\widehat{\beta}_{R E}} \\ {\widehat{\gamma}_{R E}}\end{array}\right)=\left(W^{\prime} \widehat{\Omega}_{v}^{-1} W\right)^{-1} W^{\prime} \widehat{\Omega}_{v}^{-1} y
+\end{equation}\]</span></p>
+<p>где</p>
+<p><span class="math inline">\(W=\left[\iota_{N T} X Z\right] \text { и } \iota_{N T} \text { это вектор из единиц размерности } N T \times 1\)</span></p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">fre =<span class="st"> </span><span class="kw">plm</span>(lwage <span class="op">~</span><span class="st"> </span>hours, <span class="dt">model=</span><span class="st">&quot;random&quot;</span>, <span class="dt">data =</span> Panel)</a>
+<a class="sourceLine" id="cb311-2" data-line-number="2"><span class="kw">summary</span>(fre)</a></code></pre></div>
+<pre><code>Oneway (individual) effect Random Effect Model 
+   (Swamy-Arora&#39;s transformation)
+
+Call:
+plm(formula = lwage ~ hours, data = Panel, model = &quot;random&quot;)
+
+Balanced Panel: n = 545, T = 8, N = 4360
+
+Effects:
+                 var std.dev share
+idiosyncratic 0.1500  0.3873 0.528
+individual    0.1341  0.3663 0.472
+theta: 0.6498
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-4.506028 -0.164365  0.028671  0.218928  1.605623 
+
+Coefficients:
+              Estimate Std. Error z-value Pr(&gt;|z|)    
+(Intercept) 1.6459e+00 3.3705e-02 48.8332   &lt;2e-16 ***
+hours       1.4611e-06 1.3348e-05  0.1095   0.9128    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    653.53
+Residual Sum of Squares: 653.53
+R-Squared:      2.7494e-06
+Adj. R-Squared: -0.00022671
+Chisq: 0.0119818 on 1 DF, p-value: 0.91284</code></pre>
+<p>Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">coeftest</span>(fre, <span class="dt">vcov=</span><span class="kw">vcovHC</span>(ffe, <span class="dt">cluster=</span><span class="st">&quot;group&quot;</span>))</a></code></pre></div>
+<pre><code>
+t test of coefficients:
+
+        Estimate Std. Error t value Pr(&gt;|t|)
+hours 1.4611e-06 2.5051e-05  0.0583   0.9535</code></pre>
+<p>Проведём тест Хаусмана</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">phtest</span>(ffe, fre)</a></code></pre></div>
+<pre><code>
+    Hausman Test
+
+data:  lwage ~ hours
+chisq = 0.22438, df = 1, p-value = 0.6357
+alternative hypothesis: one model is inconsistent</code></pre>
+<p>Построим FD-оценку.</p>
+<p><span class="math display">\[\begin{equation}
+\dot{y}_{i t}=\dot{x}_{i t}^{\prime} \beta+\dot{u}_{i t}
+\end{equation}\]</span></p>
+<p><span class="math inline">\(\dot{y}_{i t}=y_{i t}-y_{i, t-1}, \dot{x}_{i t}=x_{i t}-x_{i, t-1}\)</span> и <span class="math inline">\(\dot{u}_{i t}=u_{i t}-u_{i, t-1}\)</span></p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1">fd =<span class="st"> </span><span class="kw">plm</span>(lwage <span class="op">~</span><span class="st"> </span>hours <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">model=</span><span class="st">&quot;fd&quot;</span>, <span class="dt">data =</span> Panel)</a>
+<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="kw">summary</span>(fd)</a></code></pre></div>
+<pre><code>Oneway (individual) effect First-Difference Model
+
+Call:
+plm(formula = lwage ~ hours - 1, data = Panel, model = &quot;fd&quot;)
+
+Balanced Panel: n = 545, T = 8, N = 4360
+Observations used in estimation: 3815
+
+Residuals:
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+-4.4590 -0.0585  0.0554  0.0793  0.1935  4.7557 
+
+Coefficients:
+         Estimate  Std. Error t-value  Pr(&gt;|t|)    
+hours -2.0303e-04  1.4585e-05  -13.92 &lt; 2.2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    751.19
+Residual Sum of Squares: 731.45
+R-Squared:      0.058688
+Adj. R-Squared: 0.058688
+F-statistic: 102.938 on 1 and 3814 DF, p-value: &lt; 2.22e-16</code></pre>
+<p>Построим LS-оценку с дамми-переменными по каждому индивиду (LSDV). Видим, что численно её результаты идентичны withih-регрессии, как и должно быть.</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1">lsdv =<span class="st"> </span><span class="kw">lm</span>(lwage <span class="op">~</span><span class="st"> </span>hours <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(id) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>Panel)</a>
+<a class="sourceLine" id="cb319-2" data-line-number="2"><span class="kw">summary</span>(lsdv)</a></code></pre></div>
+<pre><code>
+Call:
+lm(formula = lwage ~ hours + factor(id) - 1, data = Panel)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-4.1161 -0.1370  0.0158  0.1825  1.5551 
+
+Coefficients:
+                Estimate Std. Error t value Pr(&gt;|t|)    
+hours         -5.585e-07  1.401e-05  -0.040 0.968208    
+factor(id)1    1.257e+00  1.425e-01   8.825  &lt; 2e-16 ***
+factor(id)2    1.639e+00  1.413e-01  11.597  &lt; 2e-16 ***
+factor(id)3    2.036e+00  1.408e-01  14.455  &lt; 2e-16 ***
+factor(id)4    1.775e+00  1.404e-01  12.639  &lt; 2e-16 ***
+factor(id)5    2.056e+00  1.401e-01  14.680  &lt; 2e-16 ***
+factor(id)6    1.435e+00  1.424e-01  10.076  &lt; 2e-16 ***
+factor(id)7    1.996e+00  1.418e-01  14.077  &lt; 2e-16 ***
+factor(id)8    1.065e+00  1.434e-01   7.426 1.37e-13 ***
+factor(id)9    1.474e+00  1.398e-01  10.537  &lt; 2e-16 ***
+factor(id)10   1.395e+00  1.394e-01  10.005  &lt; 2e-16 ***
+factor(id)11   1.385e+00  1.378e-01  10.052  &lt; 2e-16 ***
+factor(id)12   2.193e+00  1.396e-01  15.711  &lt; 2e-16 ***
+factor(id)13   1.840e+00  1.404e-01  13.103  &lt; 2e-16 ***
+factor(id)14   2.060e+00  1.413e-01  14.581  &lt; 2e-16 ***
+factor(id)15   2.455e+00  1.405e-01  17.468  &lt; 2e-16 ***
+factor(id)16   1.675e+00  1.400e-01  11.963  &lt; 2e-16 ***
+factor(id)17   1.697e+00  1.411e-01  12.031  &lt; 2e-16 ***
+factor(id)18   2.033e+00  1.398e-01  14.544  &lt; 2e-16 ***
+factor(id)19   2.214e+00  1.425e-01  15.533  &lt; 2e-16 ***
+factor(id)20   1.525e+00  1.400e-01  10.896  &lt; 2e-16 ***
+factor(id)21   1.726e+00  1.401e-01  12.321  &lt; 2e-16 ***
+factor(id)22   1.769e+00  1.400e-01  12.635  &lt; 2e-16 ***
+factor(id)23   2.077e+00  1.408e-01  14.754  &lt; 2e-16 ***
+factor(id)24   2.368e+00  1.400e-01  16.919  &lt; 2e-16 ***
+factor(id)25   1.311e+00  1.443e-01   9.085  &lt; 2e-16 ***
+factor(id)26   1.700e+00  1.399e-01  12.153  &lt; 2e-16 ***
+factor(id)27   2.284e+00  1.409e-01  16.214  &lt; 2e-16 ***
+factor(id)28   1.411e+00  1.411e-01  10.000  &lt; 2e-16 ***
+factor(id)29   7.640e-01  1.412e-01   5.409 6.71e-08 ***
+factor(id)30   1.950e+00  1.403e-01  13.895  &lt; 2e-16 ***
+factor(id)31   1.670e+00  1.402e-01  11.917  &lt; 2e-16 ***
+factor(id)32   1.928e+00  1.407e-01  13.709  &lt; 2e-16 ***
+factor(id)33   2.362e+00  1.396e-01  16.918  &lt; 2e-16 ***
+factor(id)34   1.098e+00  1.409e-01   7.791 8.49e-15 ***
+factor(id)35   2.103e+00  1.402e-01  14.995  &lt; 2e-16 ***
+factor(id)36   1.657e+00  1.402e-01  11.816  &lt; 2e-16 ***
+factor(id)37   1.664e+00  1.416e-01  11.753  &lt; 2e-16 ***
+factor(id)38   1.694e+00  1.406e-01  12.045  &lt; 2e-16 ***
+factor(id)39   2.063e+00  1.416e-01  14.576  &lt; 2e-16 ***
+factor(id)40   1.657e+00  1.400e-01  11.833  &lt; 2e-16 ***
+factor(id)41   5.381e-01  1.386e-01   3.883 0.000105 ***
+factor(id)42   7.392e-01  1.390e-01   5.319 1.10e-07 ***
+factor(id)43   1.713e+00  1.388e-01  12.345  &lt; 2e-16 ***
+factor(id)44   1.782e+00  1.408e-01  12.660  &lt; 2e-16 ***
+factor(id)45   1.989e+00  1.399e-01  14.215  &lt; 2e-16 ***
+factor(id)46   1.763e+00  1.413e-01  12.476  &lt; 2e-16 ***
+factor(id)47   1.128e+00  1.393e-01   8.095 7.63e-16 ***
+factor(id)48   2.019e+00  1.416e-01  14.260  &lt; 2e-16 ***
+factor(id)49   8.453e-01  1.383e-01   6.112 1.08e-09 ***
+factor(id)50   1.874e+00  1.409e-01  13.301  &lt; 2e-16 ***
+factor(id)51   1.759e+00  1.391e-01  12.644  &lt; 2e-16 ***
+factor(id)52   1.487e+00  1.397e-01  10.648  &lt; 2e-16 ***
+factor(id)53   2.212e+00  1.413e-01  15.658  &lt; 2e-16 ***
+factor(id)54   1.182e+00  1.391e-01   8.494  &lt; 2e-16 ***
+factor(id)55   2.022e+00  1.403e-01  14.411  &lt; 2e-16 ***
+factor(id)56   1.301e+00  1.390e-01   9.354  &lt; 2e-16 ***
+factor(id)57   1.353e+00  1.420e-01   9.525  &lt; 2e-16 ***
+factor(id)58   2.352e+00  1.406e-01  16.729  &lt; 2e-16 ***
+factor(id)59   2.146e+00  1.398e-01  15.346  &lt; 2e-16 ***
+factor(id)60   1.435e+00  1.400e-01  10.249  &lt; 2e-16 ***
+factor(id)61   1.250e+00  1.436e-01   8.703  &lt; 2e-16 ***
+factor(id)62   2.068e+00  1.402e-01  14.756  &lt; 2e-16 ***
+factor(id)63   1.305e+00  1.410e-01   9.257  &lt; 2e-16 ***
+factor(id)64   1.965e+00  1.404e-01  13.994  &lt; 2e-16 ***
+factor(id)65   1.374e+00  1.395e-01   9.852  &lt; 2e-16 ***
+factor(id)66   1.379e+00  1.421e-01   9.704  &lt; 2e-16 ***
+factor(id)67   1.181e+00  1.415e-01   8.346  &lt; 2e-16 ***
+factor(id)68   1.779e+00  1.401e-01  12.702  &lt; 2e-16 ***
+factor(id)69   1.157e+00  1.439e-01   8.040 1.19e-15 ***
+factor(id)70   2.089e+00  1.387e-01  15.058  &lt; 2e-16 ***
+factor(id)71   2.081e+00  1.403e-01  14.829  &lt; 2e-16 ***
+factor(id)72   1.780e+00  1.400e-01  12.714  &lt; 2e-16 ***
+factor(id)73   1.927e+00  1.405e-01  13.716  &lt; 2e-16 ***
+factor(id)74   1.546e+00  1.395e-01  11.084  &lt; 2e-16 ***
+factor(id)75   1.874e+00  1.402e-01  13.369  &lt; 2e-16 ***
+factor(id)76   1.319e+00  1.397e-01   9.444  &lt; 2e-16 ***
+factor(id)77   1.935e+00  1.400e-01  13.819  &lt; 2e-16 ***
+factor(id)78   1.469e+00  1.420e-01  10.343  &lt; 2e-16 ***
+factor(id)79   1.782e+00  1.393e-01  12.792  &lt; 2e-16 ***
+factor(id)80   1.677e+00  1.484e-01  11.304  &lt; 2e-16 ***
+factor(id)81   2.016e+00  1.399e-01  14.405  &lt; 2e-16 ***
+factor(id)82   1.291e+00  1.407e-01   9.175  &lt; 2e-16 ***
+factor(id)83   1.650e+00  1.410e-01  11.707  &lt; 2e-16 ***
+factor(id)84   1.710e+00  1.400e-01  12.214  &lt; 2e-16 ***
+factor(id)85   1.194e+00  1.413e-01   8.452  &lt; 2e-16 ***
+factor(id)86   1.491e+00  1.399e-01  10.661  &lt; 2e-16 ***
+factor(id)87   1.049e+00  1.426e-01   7.354 2.35e-13 ***
+factor(id)88   1.215e+00  1.401e-01   8.669  &lt; 2e-16 ***
+factor(id)89   1.492e+00  1.406e-01  10.612  &lt; 2e-16 ***
+factor(id)90   1.429e+00  1.413e-01  10.115  &lt; 2e-16 ***
+factor(id)91   1.206e+00  1.396e-01   8.640  &lt; 2e-16 ***
+factor(id)92   1.558e+00  1.406e-01  11.082  &lt; 2e-16 ***
+factor(id)93   1.751e+00  1.422e-01  12.312  &lt; 2e-16 ***
+factor(id)94   1.728e+00  1.402e-01  12.327  &lt; 2e-16 ***
+factor(id)95   1.573e+00  1.398e-01  11.250  &lt; 2e-16 ***
+factor(id)96   2.075e+00  1.401e-01  14.812  &lt; 2e-16 ***
+factor(id)97   1.526e+00  1.400e-01  10.897  &lt; 2e-16 ***
+factor(id)98   1.874e+00  1.407e-01  13.318  &lt; 2e-16 ***
+factor(id)99   1.741e+00  1.396e-01  12.472  &lt; 2e-16 ***
+factor(id)100  2.157e+00  1.400e-01  15.408  &lt; 2e-16 ***
+factor(id)101  2.087e+00  1.402e-01  14.887  &lt; 2e-16 ***
+factor(id)102  1.832e+00  1.390e-01  13.178  &lt; 2e-16 ***
+factor(id)103  1.072e+00  1.386e-01   7.736 1.31e-14 ***
+factor(id)104  1.393e+00  1.408e-01   9.898  &lt; 2e-16 ***
+factor(id)105  2.552e+00  1.401e-01  18.215  &lt; 2e-16 ***
+factor(id)106  1.115e+00  1.396e-01   7.989 1.78e-15 ***
+factor(id)107  1.900e+00  1.402e-01  13.545  &lt; 2e-16 ***
+factor(id)108  1.339e+00  1.400e-01   9.565  &lt; 2e-16 ***
+factor(id)109  1.707e+00  1.410e-01  12.101  &lt; 2e-16 ***
+factor(id)110  1.452e+00  1.387e-01  10.469  &lt; 2e-16 ***
+factor(id)111  1.853e+00  1.417e-01  13.073  &lt; 2e-16 ***
+factor(id)112  1.700e+00  1.421e-01  11.964  &lt; 2e-16 ***
+factor(id)113  1.997e+00  1.394e-01  14.327  &lt; 2e-16 ***
+factor(id)114  1.143e+00  1.402e-01   8.152 4.79e-16 ***
+factor(id)115  1.835e+00  1.418e-01  12.945  &lt; 2e-16 ***
+factor(id)116  1.515e+00  1.397e-01  10.847  &lt; 2e-16 ***
+factor(id)117  1.679e+00  1.443e-01  11.635  &lt; 2e-16 ***
+factor(id)118  1.374e+00  1.379e-01   9.969  &lt; 2e-16 ***
+factor(id)119  1.982e+00  1.402e-01  14.130  &lt; 2e-16 ***
+factor(id)120  2.333e+00  1.403e-01  16.626  &lt; 2e-16 ***
+factor(id)121  1.764e+00  1.398e-01  12.620  &lt; 2e-16 ***
+factor(id)122  1.698e+00  1.394e-01  12.180  &lt; 2e-16 ***
+factor(id)123  2.116e+00  1.409e-01  15.022  &lt; 2e-16 ***
+factor(id)124  3.344e-01  1.394e-01   2.398 0.016514 *  
+factor(id)125  1.083e+00  1.414e-01   7.658 2.37e-14 ***
+factor(id)126  2.279e+00  1.400e-01  16.280  &lt; 2e-16 ***
+factor(id)127  1.372e+00  1.400e-01   9.804  &lt; 2e-16 ***
+factor(id)128  1.629e+00  1.398e-01  11.650  &lt; 2e-16 ***
+factor(id)129  1.669e+00  1.409e-01  11.845  &lt; 2e-16 ***
+factor(id)130  1.826e+00  1.423e-01  12.831  &lt; 2e-16 ***
+factor(id)131  2.243e+00  1.405e-01  15.960  &lt; 2e-16 ***
+factor(id)132  1.448e+00  1.399e-01  10.349  &lt; 2e-16 ***
+factor(id)133  1.154e+00  1.396e-01   8.261  &lt; 2e-16 ***
+factor(id)134  1.131e+00  1.392e-01   8.125 5.97e-16 ***
+factor(id)135  2.035e+00  1.405e-01  14.485  &lt; 2e-16 ***
+factor(id)136  2.016e+00  1.405e-01  14.348  &lt; 2e-16 ***
+factor(id)137  1.839e+00  1.401e-01  13.131  &lt; 2e-16 ***
+factor(id)138  1.489e+00  1.399e-01  10.644  &lt; 2e-16 ***
+factor(id)139  1.736e+00  1.399e-01  12.413  &lt; 2e-16 ***
+factor(id)140  1.241e+00  1.390e-01   8.926  &lt; 2e-16 ***
+factor(id)141  1.067e+00  1.392e-01   7.668 2.21e-14 ***
+factor(id)142  1.717e+00  1.404e-01  12.227  &lt; 2e-16 ***
+factor(id)143  2.174e+00  1.403e-01  15.494  &lt; 2e-16 ***
+factor(id)144  1.199e+00  1.455e-01   8.241 2.32e-16 ***
+factor(id)145  1.574e+00  1.409e-01  11.171  &lt; 2e-16 ***
+factor(id)146  1.834e+00  1.411e-01  12.991  &lt; 2e-16 ***
+factor(id)147  1.319e+00  1.400e-01   9.422  &lt; 2e-16 ***
+factor(id)148  2.021e+00  1.401e-01  14.424  &lt; 2e-16 ***
+factor(id)149  1.622e+00  1.403e-01  11.567  &lt; 2e-16 ***
+factor(id)150  1.163e+00  1.407e-01   8.270  &lt; 2e-16 ***
+factor(id)151  2.226e+00  1.400e-01  15.900  &lt; 2e-16 ***
+factor(id)152  1.304e+00  1.416e-01   9.208  &lt; 2e-16 ***
+factor(id)153  2.283e+00  1.402e-01  16.290  &lt; 2e-16 ***
+factor(id)154  1.108e+00  1.403e-01   7.893 3.83e-15 ***
+factor(id)155  9.691e-01  1.413e-01   6.860 8.00e-12 ***
+factor(id)156  1.453e+00  1.400e-01  10.378  &lt; 2e-16 ***
+factor(id)157  1.716e+00  1.398e-01  12.279  &lt; 2e-16 ***
+factor(id)158  1.617e+00  1.405e-01  11.510  &lt; 2e-16 ***
+factor(id)159  2.082e+00  1.392e-01  14.963  &lt; 2e-16 ***
+factor(id)160  1.294e+00  1.400e-01   9.241  &lt; 2e-16 ***
+factor(id)161  1.464e+00  1.401e-01  10.445  &lt; 2e-16 ***
+factor(id)162  1.863e+00  1.407e-01  13.247  &lt; 2e-16 ***
+factor(id)163  1.778e+00  1.399e-01  12.708  &lt; 2e-16 ***
+factor(id)164  2.002e+00  1.396e-01  14.341  &lt; 2e-16 ***
+factor(id)165  1.891e+00  1.422e-01  13.297  &lt; 2e-16 ***
+factor(id)166  2.150e+00  1.395e-01  15.414  &lt; 2e-16 ***
+factor(id)167  1.067e+00  1.392e-01   7.662 2.31e-14 ***
+factor(id)168  1.539e+00  1.387e-01  11.100  &lt; 2e-16 ***
+factor(id)169  1.196e+00  1.400e-01   8.548  &lt; 2e-16 ***
+factor(id)170  1.568e+00  1.395e-01  11.244  &lt; 2e-16 ***
+factor(id)171  1.674e+00  1.426e-01  11.740  &lt; 2e-16 ***
+factor(id)172  1.751e+00  1.411e-01  12.407  &lt; 2e-16 ***
+factor(id)173  2.264e+00  1.408e-01  16.077  &lt; 2e-16 ***
+factor(id)174  2.221e+00  1.402e-01  15.842  &lt; 2e-16 ***
+factor(id)175  1.775e+00  1.414e-01  12.547  &lt; 2e-16 ***
+factor(id)176  2.361e+00  1.400e-01  16.867  &lt; 2e-16 ***
+factor(id)177  1.784e+00  1.407e-01  12.680  &lt; 2e-16 ***
+factor(id)178  9.877e-01  1.407e-01   7.018 2.66e-12 ***
+factor(id)179  7.941e-01  1.395e-01   5.691 1.36e-08 ***
+factor(id)180  1.910e+00  1.400e-01  13.646  &lt; 2e-16 ***
+factor(id)181  2.093e+00  1.398e-01  14.972  &lt; 2e-16 ***
+factor(id)182  1.775e+00  1.393e-01  12.741  &lt; 2e-16 ***
+factor(id)183  2.011e+00  1.406e-01  14.302  &lt; 2e-16 ***
+factor(id)184  1.898e+00  1.398e-01  13.575  &lt; 2e-16 ***
+factor(id)185  1.884e+00  1.410e-01  13.361  &lt; 2e-16 ***
+factor(id)186  1.606e+00  1.392e-01  11.537  &lt; 2e-16 ***
+factor(id)187  1.841e+00  1.401e-01  13.143  &lt; 2e-16 ***
+factor(id)188  1.578e+00  1.405e-01  11.230  &lt; 2e-16 ***
+factor(id)189  2.079e+00  1.402e-01  14.825  &lt; 2e-16 ***
+factor(id)190  1.963e+00  1.386e-01  14.161  &lt; 2e-16 ***
+factor(id)191  1.444e+00  1.392e-01  10.373  &lt; 2e-16 ***
+factor(id)192  1.462e+00  1.400e-01  10.438  &lt; 2e-16 ***
+factor(id)193  1.786e+00  1.386e-01  12.892  &lt; 2e-16 ***
+factor(id)194  1.390e+00  1.409e-01   9.864  &lt; 2e-16 ***
+factor(id)195  8.809e-01  1.375e-01   6.406 1.68e-10 ***
+factor(id)196  1.660e+00  1.403e-01  11.831  &lt; 2e-16 ***
+factor(id)197  1.788e+00  1.386e-01  12.904  &lt; 2e-16 ***
+factor(id)198  1.813e+00  1.393e-01  13.015  &lt; 2e-16 ***
+factor(id)199  1.740e+00  1.399e-01  12.436  &lt; 2e-16 ***
+factor(id)200  1.730e+00  1.393e-01  12.424  &lt; 2e-16 ***
+factor(id)201  2.524e+00  1.395e-01  18.096  &lt; 2e-16 ***
+factor(id)202  1.174e+00  1.393e-01   8.432  &lt; 2e-16 ***
+factor(id)203  1.215e+00  1.393e-01   8.726  &lt; 2e-16 ***
+factor(id)204  1.746e+00  1.411e-01  12.378  &lt; 2e-16 ***
+factor(id)205  1.806e+00  1.406e-01  12.839  &lt; 2e-16 ***
+factor(id)206  1.829e+00  1.419e-01  12.888  &lt; 2e-16 ***
+factor(id)207  1.874e+00  1.398e-01  13.401  &lt; 2e-16 ***
+factor(id)208  1.621e+00  1.405e-01  11.539  &lt; 2e-16 ***
+factor(id)209  1.965e+00  1.407e-01  13.968  &lt; 2e-16 ***
+factor(id)210  1.496e+00  1.395e-01  10.719  &lt; 2e-16 ***
+factor(id)211  1.063e+00  1.395e-01   7.623 3.12e-14 ***
+factor(id)212  1.906e+00  1.406e-01  13.558  &lt; 2e-16 ***
+factor(id)213  1.442e+00  1.402e-01  10.284  &lt; 2e-16 ***
+factor(id)214  2.195e+00  1.404e-01  15.638  &lt; 2e-16 ***
+factor(id)215  1.597e+00  1.398e-01  11.425  &lt; 2e-16 ***
+factor(id)216  2.107e+00  1.400e-01  15.050  &lt; 2e-16 ***
+factor(id)217  2.296e+00  1.382e-01  16.612  &lt; 2e-16 ***
+factor(id)218  1.735e+00  1.399e-01  12.400  &lt; 2e-16 ***
+factor(id)219  2.044e+00  1.399e-01  14.608  &lt; 2e-16 ***
+factor(id)220  1.842e+00  1.399e-01  13.167  &lt; 2e-16 ***
+factor(id)221  2.098e+00  1.400e-01  14.987  &lt; 2e-16 ***
+factor(id)222  1.562e+00  1.399e-01  11.162  &lt; 2e-16 ***
+factor(id)223  1.889e+00  1.390e-01  13.597  &lt; 2e-16 ***
+factor(id)224  1.609e+00  1.411e-01  11.405  &lt; 2e-16 ***
+factor(id)225  1.953e+00  1.403e-01  13.917  &lt; 2e-16 ***
+factor(id)226  2.024e+00  1.412e-01  14.331  &lt; 2e-16 ***
+factor(id)227  2.148e+00  1.406e-01  15.282  &lt; 2e-16 ***
+factor(id)228  7.610e-01  1.389e-01   5.478 4.57e-08 ***
+factor(id)229  1.648e+00  1.401e-01  11.765  &lt; 2e-16 ***
+factor(id)230  2.164e+00  1.424e-01  15.196  &lt; 2e-16 ***
+factor(id)231  1.953e+00  1.410e-01  13.854  &lt; 2e-16 ***
+factor(id)232  1.717e+00  1.404e-01  12.229  &lt; 2e-16 ***
+factor(id)233  1.791e+00  1.400e-01  12.799  &lt; 2e-16 ***
+factor(id)234  1.924e+00  1.408e-01  13.665  &lt; 2e-16 ***
+factor(id)235  1.877e+00  1.398e-01  13.423  &lt; 2e-16 ***
+factor(id)236  2.054e+00  1.402e-01  14.649  &lt; 2e-16 ***
+factor(id)237  1.377e+00  1.398e-01   9.851  &lt; 2e-16 ***
+factor(id)238  1.642e+00  1.405e-01  11.686  &lt; 2e-16 ***
+factor(id)239  2.352e+00  1.396e-01  16.854  &lt; 2e-16 ***
+factor(id)240  1.858e+00  1.403e-01  13.241  &lt; 2e-16 ***
+factor(id)241  1.303e+00  1.391e-01   9.368  &lt; 2e-16 ***
+factor(id)242  1.721e+00  1.422e-01  12.104  &lt; 2e-16 ***
+factor(id)243  1.643e+00  1.402e-01  11.713  &lt; 2e-16 ***
+factor(id)244  2.042e+00  1.400e-01  14.583  &lt; 2e-16 ***
+factor(id)245  1.352e+00  1.398e-01   9.667  &lt; 2e-16 ***
+factor(id)246  1.419e+00  1.413e-01  10.046  &lt; 2e-16 ***
+factor(id)247  1.495e+00  1.424e-01  10.497  &lt; 2e-16 ***
+factor(id)248  2.519e+00  1.403e-01  17.953  &lt; 2e-16 ***
+factor(id)249  2.531e+00  1.399e-01  18.087  &lt; 2e-16 ***
+factor(id)250  2.048e+00  1.400e-01  14.625  &lt; 2e-16 ***
+factor(id)251  1.288e+00  1.394e-01   9.241  &lt; 2e-16 ***
+factor(id)252  1.428e+00  1.407e-01  10.146  &lt; 2e-16 ***
+factor(id)253  1.873e+00  1.402e-01  13.362  &lt; 2e-16 ***
+factor(id)254  1.410e+00  1.402e-01  10.056  &lt; 2e-16 ***
+factor(id)255  1.509e+00  1.418e-01  10.643  &lt; 2e-16 ***
+factor(id)256  1.993e+00  1.403e-01  14.209  &lt; 2e-16 ***
+factor(id)257  1.911e+00  1.396e-01  13.689  &lt; 2e-16 ***
+factor(id)258  1.184e+00  1.415e-01   8.367  &lt; 2e-16 ***
+factor(id)259  1.773e+00  1.404e-01  12.632  &lt; 2e-16 ***
+factor(id)260  1.772e+00  1.427e-01  12.417  &lt; 2e-16 ***
+factor(id)261  1.071e+00  1.380e-01   7.758 1.10e-14 ***
+factor(id)262  1.814e+00  1.404e-01  12.920  &lt; 2e-16 ***
+factor(id)263  1.300e+00  1.401e-01   9.278  &lt; 2e-16 ***
+factor(id)264  8.232e-01  1.385e-01   5.945 3.00e-09 ***
+factor(id)265  1.521e+00  1.399e-01  10.873  &lt; 2e-16 ***
+factor(id)266  1.735e+00  1.395e-01  12.434  &lt; 2e-16 ***
+factor(id)267  1.191e+00  1.401e-01   8.501  &lt; 2e-16 ***
+factor(id)268  2.020e+00  1.408e-01  14.341  &lt; 2e-16 ***
+factor(id)269  1.939e+00  1.393e-01  13.917  &lt; 2e-16 ***
+factor(id)270  1.853e+00  1.390e-01  13.332  &lt; 2e-16 ***
+factor(id)271  1.393e+00  1.407e-01   9.899  &lt; 2e-16 ***
+factor(id)272  1.303e+00  1.402e-01   9.297  &lt; 2e-16 ***
+factor(id)273  2.135e+00  1.395e-01  15.303  &lt; 2e-16 ***
+factor(id)274  2.009e+00  1.397e-01  14.385  &lt; 2e-16 ***
+factor(id)275  1.382e+00  1.384e-01   9.988  &lt; 2e-16 ***
+factor(id)276  1.666e+00  1.416e-01  11.764  &lt; 2e-16 ***
+factor(id)277  1.320e+00  1.401e-01   9.420  &lt; 2e-16 ***
+factor(id)278  2.165e+00  1.400e-01  15.461  &lt; 2e-16 ***
+factor(id)279  1.372e+00  1.408e-01   9.739  &lt; 2e-16 ***
+factor(id)280  2.221e+00  1.400e-01  15.865  &lt; 2e-16 ***
+factor(id)281  1.767e+00  1.401e-01  12.611  &lt; 2e-16 ***
+factor(id)282  1.782e+00  1.414e-01  12.605  &lt; 2e-16 ***
+factor(id)283  1.311e+00  1.405e-01   9.333  &lt; 2e-16 ***
+factor(id)284  1.324e+00  1.402e-01   9.445  &lt; 2e-16 ***
+factor(id)285  1.051e+00  1.384e-01   7.598 3.75e-14 ***
+factor(id)286  2.216e+00  1.398e-01  15.852  &lt; 2e-16 ***
+factor(id)287  1.226e+00  1.391e-01   8.816  &lt; 2e-16 ***
+factor(id)288  2.122e+00  1.400e-01  15.159  &lt; 2e-16 ***
+factor(id)289  1.599e+00  1.402e-01  11.407  &lt; 2e-16 ***
+factor(id)290  1.647e+00  1.403e-01  11.737  &lt; 2e-16 ***
+factor(id)291  1.373e+00  1.431e-01   9.594  &lt; 2e-16 ***
+factor(id)292  1.399e+00  1.400e-01   9.996  &lt; 2e-16 ***
+factor(id)293  1.120e+00  1.406e-01   7.965 2.17e-15 ***
+factor(id)294  1.582e+00  1.409e-01  11.222  &lt; 2e-16 ***
+factor(id)295  1.179e+00  1.394e-01   8.456  &lt; 2e-16 ***
+factor(id)296  2.352e+00  1.403e-01  16.762  &lt; 2e-16 ***
+factor(id)297  2.279e+00  1.402e-01  16.257  &lt; 2e-16 ***
+factor(id)298  1.466e+00  1.433e-01  10.229  &lt; 2e-16 ***
+factor(id)299  1.836e+00  1.409e-01  13.033  &lt; 2e-16 ***
+factor(id)300  1.953e+00  1.407e-01  13.882  &lt; 2e-16 ***
+factor(id)301  2.216e+00  1.409e-01  15.728  &lt; 2e-16 ***
+factor(id)302  1.850e+00  1.399e-01  13.224  &lt; 2e-16 ***
+factor(id)303  1.739e+00  1.398e-01  12.446  &lt; 2e-16 ***
+factor(id)304  1.619e+00  1.414e-01  11.450  &lt; 2e-16 ***
+factor(id)305  1.650e+00  1.402e-01  11.768  &lt; 2e-16 ***
+factor(id)306  1.390e+00  1.415e-01   9.825  &lt; 2e-16 ***
+factor(id)307  1.322e+00  1.417e-01   9.329  &lt; 2e-16 ***
+factor(id)308  1.667e+00  1.404e-01  11.877  &lt; 2e-16 ***
+factor(id)309  2.002e+00  1.413e-01  14.169  &lt; 2e-16 ***
+factor(id)310  1.502e+00  1.416e-01  10.609  &lt; 2e-16 ***
+factor(id)311  1.434e+00  1.401e-01  10.232  &lt; 2e-16 ***
+factor(id)312  9.779e-01  1.396e-01   7.005 2.90e-12 ***
+factor(id)313  1.342e+00  1.400e-01   9.584  &lt; 2e-16 ***
+factor(id)314  1.577e+00  1.397e-01  11.291  &lt; 2e-16 ***
+factor(id)315  1.530e+00  1.418e-01  10.784  &lt; 2e-16 ***
+factor(id)316  1.352e+00  1.395e-01   9.688  &lt; 2e-16 ***
+factor(id)317  1.258e+00  1.409e-01   8.925  &lt; 2e-16 ***
+factor(id)318  1.507e+00  1.413e-01  10.664  &lt; 2e-16 ***
+factor(id)319  1.437e+00  1.418e-01  10.133  &lt; 2e-16 ***
+factor(id)320  1.315e+00  1.406e-01   9.352  &lt; 2e-16 ***
+factor(id)321  1.680e+00  1.398e-01  12.014  &lt; 2e-16 ***
+factor(id)322  1.927e+00  1.414e-01  13.630  &lt; 2e-16 ***
+factor(id)323  1.447e+00  1.397e-01  10.358  &lt; 2e-16 ***
+factor(id)324  1.653e+00  1.420e-01  11.644  &lt; 2e-16 ***
+factor(id)325  1.805e+00  1.397e-01  12.921  &lt; 2e-16 ***
+factor(id)326  1.572e+00  1.401e-01  11.218  &lt; 2e-16 ***
+factor(id)327  1.948e+00  1.410e-01  13.818  &lt; 2e-16 ***
+factor(id)328  1.317e+00  1.409e-01   9.350  &lt; 2e-16 ***
+factor(id)329  1.777e+00  1.403e-01  12.663  &lt; 2e-16 ***
+factor(id)330  1.847e+00  1.397e-01  13.224  &lt; 2e-16 ***
+factor(id)331  1.914e+00  1.396e-01  13.709  &lt; 2e-16 ***
+factor(id)332  1.518e+00  1.400e-01  10.842  &lt; 2e-16 ***
+factor(id)333  1.725e+00  1.400e-01  12.320  &lt; 2e-16 ***
+factor(id)334  1.673e+00  1.399e-01  11.956  &lt; 2e-16 ***
+factor(id)335  1.233e+00  1.424e-01   8.661  &lt; 2e-16 ***
+factor(id)336  1.373e+00  1.402e-01   9.793  &lt; 2e-16 ***
+factor(id)337  1.249e+00  1.406e-01   8.888  &lt; 2e-16 ***
+factor(id)338  1.307e+00  1.391e-01   9.399  &lt; 2e-16 ***
+factor(id)339  1.633e+00  1.406e-01  11.615  &lt; 2e-16 ***
+factor(id)340  1.669e+00  1.397e-01  11.942  &lt; 2e-16 ***
+factor(id)341  1.989e+00  1.400e-01  14.209  &lt; 2e-16 ***
+factor(id)342  7.782e-01  1.417e-01   5.492 4.24e-08 ***
+factor(id)343  7.649e-01  1.399e-01   5.466 4.89e-08 ***
+factor(id)344  1.091e+00  1.401e-01   7.782 9.09e-15 ***
+factor(id)345  1.593e+00  1.429e-01  11.149  &lt; 2e-16 ***
+factor(id)346  1.717e+00  1.401e-01  12.250  &lt; 2e-16 ***
+factor(id)347  1.800e+00  1.401e-01  12.846  &lt; 2e-16 ***
+factor(id)348  1.450e+00  1.395e-01  10.400  &lt; 2e-16 ***
+factor(id)349  1.851e+00  1.402e-01  13.208  &lt; 2e-16 ***
+factor(id)350  1.161e+00  1.392e-01   8.345  &lt; 2e-16 ***
+factor(id)351  2.047e+00  1.399e-01  14.632  &lt; 2e-16 ***
+factor(id)352  1.816e+00  1.406e-01  12.923  &lt; 2e-16 ***
+factor(id)353  2.172e+00  1.409e-01  15.414  &lt; 2e-16 ***
+factor(id)354  1.244e+00  1.398e-01   8.896  &lt; 2e-16 ***
+factor(id)355  2.019e+00  1.401e-01  14.415  &lt; 2e-16 ***
+factor(id)356  1.467e+00  1.400e-01  10.476  &lt; 2e-16 ***
+factor(id)357  1.600e+00  1.400e-01  11.430  &lt; 2e-16 ***
+factor(id)358  1.302e+00  1.415e-01   9.202  &lt; 2e-16 ***
+factor(id)359  1.698e+00  1.408e-01  12.057  &lt; 2e-16 ***
+factor(id)360  1.807e+00  1.408e-01  12.832  &lt; 2e-16 ***
+factor(id)361  1.837e+00  1.451e-01  12.660  &lt; 2e-16 ***
+factor(id)362  1.482e+00  1.394e-01  10.630  &lt; 2e-16 ***
+factor(id)363  2.686e+00  1.407e-01  19.096  &lt; 2e-16 ***
+factor(id)364  2.075e+00  1.400e-01  14.817  &lt; 2e-16 ***
+factor(id)365  1.734e+00  1.400e-01  12.387  &lt; 2e-16 ***
+factor(id)366  1.715e+00  1.400e-01  12.248  &lt; 2e-16 ***
+factor(id)367  1.018e+00  1.395e-01   7.297 3.55e-13 ***
+factor(id)368  1.391e+00  1.394e-01   9.979  &lt; 2e-16 ***
+factor(id)369  1.410e+00  1.400e-01  10.071  &lt; 2e-16 ***
+factor(id)370  1.409e+00  1.397e-01  10.081  &lt; 2e-16 ***
+factor(id)371  1.666e+00  1.410e-01  11.815  &lt; 2e-16 ***
+factor(id)372  1.219e+00  1.407e-01   8.665  &lt; 2e-16 ***
+factor(id)373  1.963e+00  1.396e-01  14.061  &lt; 2e-16 ***
+factor(id)374  1.415e+00  1.413e-01  10.013  &lt; 2e-16 ***
+factor(id)375  1.925e+00  1.403e-01  13.718  &lt; 2e-16 ***
+factor(id)376  1.605e+00  1.414e-01  11.358  &lt; 2e-16 ***
+factor(id)377  1.592e+00  1.422e-01  11.194  &lt; 2e-16 ***
+factor(id)378  1.783e+00  1.400e-01  12.734  &lt; 2e-16 ***
+factor(id)379  1.309e+00  1.440e-01   9.088  &lt; 2e-16 ***
+factor(id)380  1.897e+00  1.410e-01  13.452  &lt; 2e-16 ***
+factor(id)381  1.581e+00  1.387e-01  11.406  &lt; 2e-16 ***
+factor(id)382  3.175e+00  1.393e-01  22.796  &lt; 2e-16 ***
+factor(id)383  1.219e+00  1.389e-01   8.775  &lt; 2e-16 ***
+factor(id)384  1.769e+00  1.411e-01  12.532  &lt; 2e-16 ***
+factor(id)385  2.302e+00  1.405e-01  16.388  &lt; 2e-16 ***
+factor(id)386  1.732e+00  1.403e-01  12.346  &lt; 2e-16 ***
+factor(id)387  2.297e+00  1.400e-01  16.409  &lt; 2e-16 ***
+factor(id)388  1.802e+00  1.400e-01  12.867  &lt; 2e-16 ***
+factor(id)389  2.019e+00  1.410e-01  14.323  &lt; 2e-16 ***
+factor(id)390  1.593e+00  1.400e-01  11.381  &lt; 2e-16 ***
+factor(id)391  1.384e+00  1.401e-01   9.878  &lt; 2e-16 ***
+factor(id)392  2.439e+00  1.409e-01  17.310  &lt; 2e-16 ***
+factor(id)393  1.571e+00  1.402e-01  11.200  &lt; 2e-16 ***
+factor(id)394  1.505e+00  1.401e-01  10.745  &lt; 2e-16 ***
+factor(id)395  1.448e+00  1.402e-01  10.330  &lt; 2e-16 ***
+factor(id)396  1.377e+00  1.407e-01   9.783  &lt; 2e-16 ***
+factor(id)397  1.845e+00  1.402e-01  13.162  &lt; 2e-16 ***
+factor(id)398  1.497e+00  1.398e-01  10.710  &lt; 2e-16 ***
+factor(id)399  2.313e+00  1.408e-01  16.434  &lt; 2e-16 ***
+factor(id)400  1.224e+00  1.409e-01   8.690  &lt; 2e-16 ***
+factor(id)401  1.804e+00  1.416e-01  12.739  &lt; 2e-16 ***
+factor(id)402  2.198e+00  1.405e-01  15.648  &lt; 2e-16 ***
+factor(id)403  1.715e+00  1.400e-01  12.244  &lt; 2e-16 ***
+factor(id)404  1.699e+00  1.408e-01  12.069  &lt; 2e-16 ***
+factor(id)405  1.531e+00  1.397e-01  10.964  &lt; 2e-16 ***
+factor(id)406  2.051e+00  1.400e-01  14.650  &lt; 2e-16 ***
+factor(id)407  1.423e+00  1.411e-01  10.085  &lt; 2e-16 ***
+factor(id)408  1.456e+00  1.431e-01  10.177  &lt; 2e-16 ***
+factor(id)409  1.566e+00  1.400e-01  11.184  &lt; 2e-16 ***
+factor(id)410  1.326e+00  1.392e-01   9.530  &lt; 2e-16 ***
+factor(id)411  1.088e+00  1.393e-01   7.815 7.08e-15 ***
+factor(id)412  9.472e-01  1.398e-01   6.774 1.45e-11 ***
+factor(id)413  2.315e+00  1.398e-01  16.562  &lt; 2e-16 ***
+factor(id)414  8.820e-01  1.448e-01   6.092 1.23e-09 ***
+factor(id)415  1.235e+00  1.398e-01   8.837  &lt; 2e-16 ***
+factor(id)416  1.254e+00  1.398e-01   8.968  &lt; 2e-16 ***
+factor(id)417  1.849e+00  1.403e-01  13.180  &lt; 2e-16 ***
+factor(id)418  1.394e+00  1.419e-01   9.825  &lt; 2e-16 ***
+factor(id)419  9.013e-01  1.407e-01   6.407 1.67e-10 ***
+factor(id)420  1.391e+00  1.405e-01   9.900  &lt; 2e-16 ***
+factor(id)421  7.832e-01  1.400e-01   5.595 2.36e-08 ***
+factor(id)422  1.735e+00  1.396e-01  12.430  &lt; 2e-16 ***
+factor(id)423  1.388e+00  1.412e-01   9.830  &lt; 2e-16 ***
+factor(id)424  1.697e+00  1.397e-01  12.146  &lt; 2e-16 ***
+factor(id)425  1.695e+00  1.430e-01  11.848  &lt; 2e-16 ***
+factor(id)426  1.529e+00  1.396e-01  10.948  &lt; 2e-16 ***
+factor(id)427  1.715e+00  1.411e-01  12.150  &lt; 2e-16 ***
+factor(id)428  2.054e+00  1.379e-01  14.897  &lt; 2e-16 ***
+factor(id)429  1.551e+00  1.401e-01  11.067  &lt; 2e-16 ***
+factor(id)430  1.369e+00  1.400e-01   9.777  &lt; 2e-16 ***
+factor(id)431  1.434e+00  1.403e-01  10.218  &lt; 2e-16 ***
+factor(id)432  1.238e+00  1.398e-01   8.853  &lt; 2e-16 ***
+factor(id)433  1.594e+00  1.402e-01  11.370  &lt; 2e-16 ***
+factor(id)434  2.363e+00  1.401e-01  16.866  &lt; 2e-16 ***
+factor(id)435  1.620e+00  1.402e-01  11.554  &lt; 2e-16 ***
+factor(id)436  9.913e-01  1.398e-01   7.091 1.58e-12 ***
+factor(id)437  1.253e+00  1.426e-01   8.793  &lt; 2e-16 ***
+factor(id)438  1.066e+00  1.400e-01   7.615 3.29e-14 ***
+factor(id)439  1.874e+00  1.439e-01  13.026  &lt; 2e-16 ***
+factor(id)440  2.082e+00  1.407e-01  14.789  &lt; 2e-16 ***
+factor(id)441  2.173e+00  1.400e-01  15.525  &lt; 2e-16 ***
+factor(id)442  1.622e+00  1.402e-01  11.572  &lt; 2e-16 ***
+factor(id)443  1.527e+00  1.444e-01  10.577  &lt; 2e-16 ***
+factor(id)444  2.185e+00  1.400e-01  15.602  &lt; 2e-16 ***
+factor(id)445  1.124e+00  1.429e-01   7.868 4.66e-15 ***
+factor(id)446  1.357e+00  1.396e-01   9.721  &lt; 2e-16 ***
+factor(id)447  1.340e+00  1.404e-01   9.542  &lt; 2e-16 ***
+factor(id)448  1.545e+00  1.399e-01  11.045  &lt; 2e-16 ***
+factor(id)449  2.378e+00  1.396e-01  17.032  &lt; 2e-16 ***
+factor(id)450  1.193e+00  1.409e-01   8.463  &lt; 2e-16 ***
+factor(id)451  1.338e+00  1.439e-01   9.297  &lt; 2e-16 ***
+factor(id)452  1.425e+00  1.395e-01  10.214  &lt; 2e-16 ***
+factor(id)453  1.694e+00  1.402e-01  12.081  &lt; 2e-16 ***
+factor(id)454  1.402e+00  1.396e-01  10.046  &lt; 2e-16 ***
+factor(id)455  1.835e+00  1.407e-01  13.037  &lt; 2e-16 ***
+factor(id)456  1.503e+00  1.401e-01  10.730  &lt; 2e-16 ***
+factor(id)457  2.358e+00  1.407e-01  16.759  &lt; 2e-16 ***
+factor(id)458  2.015e+00  1.402e-01  14.369  &lt; 2e-16 ***
+factor(id)459  1.641e+00  1.395e-01  11.768  &lt; 2e-16 ***
+factor(id)460  1.551e+00  1.394e-01  11.124  &lt; 2e-16 ***
+factor(id)461  2.027e+00  1.402e-01  14.457  &lt; 2e-16 ***
+factor(id)462  1.757e+00  1.401e-01  12.547  &lt; 2e-16 ***
+factor(id)463  1.959e+00  1.406e-01  13.932  &lt; 2e-16 ***
+factor(id)464  1.024e+00  1.400e-01   7.311 3.20e-13 ***
+factor(id)465  1.125e+00  1.406e-01   8.004 1.58e-15 ***
+factor(id)466  1.627e+00  1.384e-01  11.761  &lt; 2e-16 ***
+factor(id)467  2.347e+00  1.396e-01  16.810  &lt; 2e-16 ***
+factor(id)468  1.161e+00  1.446e-01   8.030 1.29e-15 ***
+factor(id)469  2.123e+00  1.397e-01  15.199  &lt; 2e-16 ***
+factor(id)470  1.340e+00  1.405e-01   9.538  &lt; 2e-16 ***
+factor(id)471  2.196e+00  1.382e-01  15.891  &lt; 2e-16 ***
+factor(id)472  1.569e+00  1.409e-01  11.134  &lt; 2e-16 ***
+factor(id)473  1.916e+00  1.407e-01  13.622  &lt; 2e-16 ***
+factor(id)474  2.626e+00  1.454e-01  18.065  &lt; 2e-16 ***
+factor(id)475  2.197e+00  1.402e-01  15.667  &lt; 2e-16 ***
+factor(id)476  1.859e+00  1.404e-01  13.244  &lt; 2e-16 ***
+factor(id)477  1.604e+00  1.421e-01  11.284  &lt; 2e-16 ***
+factor(id)478  1.707e+00  1.397e-01  12.217  &lt; 2e-16 ***
+factor(id)479  1.091e+00  1.464e-01   7.454 1.12e-13 ***
+factor(id)480  2.014e+00  1.409e-01  14.297  &lt; 2e-16 ***
+factor(id)481  1.278e+00  1.408e-01   9.072  &lt; 2e-16 ***
+factor(id)482  1.245e+00  1.395e-01   8.929  &lt; 2e-16 ***
+factor(id)483  1.960e+00  1.429e-01  13.719  &lt; 2e-16 ***
+factor(id)484  1.972e+00  1.412e-01  13.967  &lt; 2e-16 ***
+factor(id)485  2.230e+00  1.402e-01  15.899  &lt; 2e-16 ***
+factor(id)486  1.769e+00  1.401e-01  12.630  &lt; 2e-16 ***
+factor(id)487  2.108e+00  1.406e-01  14.992  &lt; 2e-16 ***
+factor(id)488  1.473e+00  1.406e-01  10.476  &lt; 2e-16 ***
+factor(id)489  9.278e-01  1.414e-01   6.560 6.12e-11 ***
+factor(id)490  1.740e+00  1.398e-01  12.443  &lt; 2e-16 ***
+factor(id)491  1.731e+00  1.411e-01  12.266  &lt; 2e-16 ***
+factor(id)492  1.089e+00  1.389e-01   7.835 6.05e-15 ***
+factor(id)493  1.520e+00  1.403e-01  10.834  &lt; 2e-16 ***
+factor(id)494  1.707e+00  1.400e-01  12.195  &lt; 2e-16 ***
+factor(id)495  1.256e+00  1.401e-01   8.965  &lt; 2e-16 ***
+factor(id)496  1.730e+00  1.402e-01  12.343  &lt; 2e-16 ***
+factor(id)497  2.238e+00  1.402e-01  15.968  &lt; 2e-16 ***
+factor(id)498  1.575e+00  1.403e-01  11.225  &lt; 2e-16 ***
+factor(id)499  1.530e+00  1.409e-01  10.857  &lt; 2e-16 ***
+factor(id)500  1.168e+00  1.396e-01   8.370  &lt; 2e-16 ***
+factor(id)501  2.247e+00  1.423e-01  15.789  &lt; 2e-16 ***
+factor(id)502  1.389e+00  1.396e-01   9.949  &lt; 2e-16 ***
+factor(id)503  1.676e+00  1.391e-01  12.048  &lt; 2e-16 ***
+factor(id)504  1.600e+00  1.399e-01  11.436  &lt; 2e-16 ***
+factor(id)505  1.149e+00  1.420e-01   8.090 7.92e-16 ***
+factor(id)506  9.673e-01  1.395e-01   6.932 4.84e-12 ***
+factor(id)507  1.813e+00  1.407e-01  12.886  &lt; 2e-16 ***
+factor(id)508  4.152e-01  1.399e-01   2.968 0.003015 ** 
+factor(id)509  1.254e+00  1.400e-01   8.956  &lt; 2e-16 ***
+factor(id)510  8.598e-01  1.392e-01   6.175 7.32e-10 ***
+factor(id)511  1.279e+00  1.393e-01   9.178  &lt; 2e-16 ***
+factor(id)512  1.472e+00  1.383e-01  10.646  &lt; 2e-16 ***
+factor(id)513  1.579e+00  1.409e-01  11.205  &lt; 2e-16 ***
+factor(id)514  2.003e+00  1.404e-01  14.269  &lt; 2e-16 ***
+factor(id)515  2.164e+00  1.415e-01  15.294  &lt; 2e-16 ***
+factor(id)516  1.545e+00  1.374e-01  11.246  &lt; 2e-16 ***
+factor(id)517  1.546e+00  1.409e-01  10.975  &lt; 2e-16 ***
+factor(id)518  2.192e+00  1.397e-01  15.690  &lt; 2e-16 ***
+factor(id)519  1.562e+00  1.494e-01  10.453  &lt; 2e-16 ***
+factor(id)520  1.644e+00  1.428e-01  11.517  &lt; 2e-16 ***
+factor(id)521  1.094e+00  1.400e-01   7.819 6.85e-15 ***
+factor(id)522  1.648e+00  1.406e-01  11.723  &lt; 2e-16 ***
+factor(id)523  2.240e+00  1.394e-01  16.072  &lt; 2e-16 ***
+factor(id)524  1.506e+00  1.408e-01  10.700  &lt; 2e-16 ***
+factor(id)525  1.773e+00  1.390e-01  12.755  &lt; 2e-16 ***
+factor(id)526  1.487e+00  1.382e-01  10.757  &lt; 2e-16 ***
+factor(id)527  1.856e+00  1.407e-01  13.190  &lt; 2e-16 ***
+factor(id)528  1.433e+00  1.391e-01  10.301  &lt; 2e-16 ***
+factor(id)529  1.311e+00  1.391e-01   9.427  &lt; 2e-16 ***
+factor(id)530  1.174e+00  1.423e-01   8.251  &lt; 2e-16 ***
+factor(id)531  1.493e+00  1.389e-01  10.752  &lt; 2e-16 ***
+factor(id)532  1.839e+00  1.393e-01  13.204  &lt; 2e-16 ***
+factor(id)533  1.969e+00  1.405e-01  14.013  &lt; 2e-16 ***
+factor(id)534  7.982e-01  1.402e-01   5.694 1.33e-08 ***
+factor(id)535  1.137e+00  1.414e-01   8.042 1.17e-15 ***
+factor(id)536  1.715e+00  1.408e-01  12.181  &lt; 2e-16 ***
+factor(id)537  1.803e+00  1.417e-01  12.723  &lt; 2e-16 ***
+factor(id)538  1.284e+00  1.408e-01   9.116  &lt; 2e-16 ***
+factor(id)539  2.039e+00  1.405e-01  14.518  &lt; 2e-16 ***
+factor(id)540  1.617e+00  1.391e-01  11.629  &lt; 2e-16 ***
+factor(id)541  1.655e+00  1.390e-01  11.910  &lt; 2e-16 ***
+factor(id)542  2.179e+00  1.399e-01  15.582  &lt; 2e-16 ***
+factor(id)543  1.317e+00  1.418e-01   9.289  &lt; 2e-16 ***
+factor(id)544  2.172e+00  1.399e-01  15.531  &lt; 2e-16 ***
+factor(id)545  1.383e+00  1.405e-01   9.849  &lt; 2e-16 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.3873 on 3814 degrees of freedom
+Multiple R-squared:  0.9563,    Adjusted R-squared:  0.9501 
+F-statistic: 152.9 on 546 and 3814 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p>Построим оценку Pooled OLS. Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта. Визуализируем игнорирование этой моделью гетерогенного эффекта.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1">fpo =<span class="st"> </span><span class="kw">plm</span>(lwage <span class="op">~</span><span class="st"> </span>hours, <span class="dt">model=</span><span class="st">&quot;pooling&quot;</span>,<span class="dt">data =</span> Panel)</a>
+<a class="sourceLine" id="cb321-2" data-line-number="2"><span class="kw">coeftest</span>(fpo, <span class="dt">vcov=</span><span class="kw">vcovHC</span>(fpo, <span class="dt">cluster=</span><span class="st">&quot;group&quot;</span>))</a></code></pre></div>
+<pre><code>
+t test of coefficients:
+
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 1.6286e+00 6.2980e-02  25.860   &lt;2e-16 ***
+hours       9.3560e-06 2.7040e-05   0.346   0.7294    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1"><span class="kw">summary</span>(fpo)</a></code></pre></div>
+<pre><code>Pooling Model
+
+Call:
+plm(formula = lwage ~ hours, data = Panel, model = &quot;pooling&quot;)
+
+Balanced Panel: n = 545, T = 8, N = 4360
+
+Residuals:
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-5.226250 -0.297525  0.021354  0.342911  2.414420 
+
+Coefficients:
+              Estimate Std. Error t-value Pr(&gt;|t|)    
+(Intercept) 1.6286e+00 3.2240e-02 50.5170   &lt;2e-16 ***
+hours       9.3560e-06 1.4245e-05  0.6568   0.5113    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Total Sum of Squares:    1236.5
+Residual Sum of Squares: 1236.4
+R-Squared:      9.8978e-05
+Adj. R-Squared: -0.00013046
+F-statistic: 0.431389 on 1 and 4358 DF, p-value: 0.51134</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1">panel =<span class="st"> </span><span class="kw">import</span>(<span class="st">&#39;lwage_panel_small.csv&#39;</span>)</a>
+<a class="sourceLine" id="cb325-2" data-line-number="2">panel<span class="op">$</span>black =<span class="st"> </span><span class="kw">factor</span>(panel<span class="op">$</span>black)</a>
+<a class="sourceLine" id="cb325-3" data-line-number="3">panel<span class="op">$</span>id =<span class="st"> </span><span class="kw">factor</span>(panel<span class="op">$</span>id)</a>
+<a class="sourceLine" id="cb325-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb325-5" data-line-number="5">lsdv_small =<span class="st"> </span><span class="kw">lm</span>(lwage <span class="op">~</span><span class="st"> </span>hours <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(id) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data=</span>panel)</a>
+<a class="sourceLine" id="cb325-6" data-line-number="6">yhat_lsdv &lt;-<span class="st"> </span>lsdv_small<span class="op">$</span>fitted.values</a>
+<a class="sourceLine" id="cb325-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb325-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb325-9" data-line-number="9"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb325-10" data-line-number="10">g &lt;-<span class="st"> </span><span class="kw">ggplot</span>(panel, <span class="kw">aes</span>(hours, yhat_lsdv, <span class="dt">col =</span> id))</a>
+<a class="sourceLine" id="cb325-11" data-line-number="11">g <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb325-12" data-line-number="12"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">group =</span> id, <span class="dt">col =</span> id), <span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb325-13" data-line-number="13"><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">col =</span> <span class="st">&#39;Pooled OLS&#39;</span>),<span class="dt">method =</span> <span class="st">&#39;lm&#39;</span>, <span class="dt">se =</span> F) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb325-14" data-line-number="14"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&#39;Ignoring of heterogeneous effect&#39;</span>)</a></code></pre></div>
+<p><img src="09-paneldata_files/figure-html/ignoring%20hetero-1.png" width="672" /></p>
+<p>Теперь то же самое в Stata</p>
+<p>Для начала подгрузим данные и посмотрим на них. Сперва визуализируем малый датасет.</p>
+<pre class="stata"><code>use lwage_panel_small
+summarize</code></pre>
+<pre><code>    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+          nr |         48    364.6667    390.3276         13        910
+        year |         48      1983.5    2.315535       1980       1987
+       black |         48          .5    .5052912          0          1
+       exper |         48    5.833333    2.636353          1         11
+        hisp |         48           0           0          0          0
+-------------+---------------------------------------------------------
+       hours |         48    2407.875    425.1116       1420       4120
+     married |         48       .1875    .3944428          0          1
+        educ |         48          13     .825137         12         14
+       union |         48        .125    .3342187          0          1
+       lwage |         48    1.724878    .4719456  -.7202626   2.873161
+-------------+---------------------------------------------------------
+     expersq |         48    40.83333      31.933          1        121
+  occupation |         48    4.083333    2.359529          1          9
+          id |         48         3.5    1.725898          1          6</code></pre>
+<pre class="stata"><code>xtset id year
+xtline hours, overlay
+clear</code></pre>
+<pre><code>       panel variable:  id (strongly balanced)
+        time variable:  year, 1980 to 1987
+                delta:  1 unit
+</code></pre>
+<pre class="stata"><code>use lwage_panel_large
+xtset id year
+summarize
+</code></pre>
+<pre><code>       panel variable:  id (strongly balanced)
+        time variable:  year, 1980 to 1987
+                delta:  1 unit
+
+    Variable |        Obs        Mean    Std. Dev.       Min        Max
+-------------+---------------------------------------------------------
+          nr |      4,360    5262.059     3496.15         13      12548
+        year |      4,360      1983.5    2.291551       1980       1987
+       black |      4,360    .1155963    .3197769          0          1
+       exper |      4,360    6.514679    2.825873          0         18
+        hisp |      4,360    .1559633    .3628622          0          1
+-------------+---------------------------------------------------------
+       hours |      4,360    2191.257    566.3523        120       4992
+     married |      4,360    .4389908    .4963208          0          1
+        educ |      4,360    11.76697    1.746181          3         16
+       union |      4,360    .2440367    .4295639          0          1
+       lwage |      4,360    1.649147    .5326094  -3.579079    4.05186
+-------------+---------------------------------------------------------
+     expersq |      4,360    50.42477    40.78199          0        324
+  occupation |      4,360    4.988532    2.319978          1          9
+          id |      4,360         273    157.3457          1        545</code></pre>
+<p>Визуализируем данные. Если необходимо разнести линии на разные графики, следует убрать прараметр ‘overlay’.</p>
+<p>Сгенерируем новую переменную и оценим модель с фиксированными эффектами. Последний аргумент произведёт оценку стандартных ошибок переменных в форме Хубера/Уайта</p>
+<pre class="stata"><code>
+xtreg lwage hours, fe vce(robust)</code></pre>
+<pre><code>Fixed-effects (within) regression               Number of obs     =      4,360
+Group variable: id                              Number of groups  =        545
+
+R-sq:                                           Obs per group:
+     within  = 0.0000                                         min =          8
+     between = 0.0004                                         avg =        8.0
+     overall = 0.0001                                         max =          8
+
+                                                F(1,544)          =       0.00
+corr(u_i, Xb)  = -0.0144                        Prob &gt; F          =     0.9822
+
+                                   (Std. Err. adjusted for 545 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |  -5.59e-07   .0000251    -0.02   0.982    -.0000498    .0000487
+       _cons |   1.650371   .0549505    30.03   0.000      1.54243    1.758312
+-------------+----------------------------------------------------------------
+     sigma_u |  .39075125
+     sigma_e |  .38728237
+         rho |  .50445844   (fraction of variance due to u_i)
+------------------------------------------------------------------------------</code></pre>
+<p>Сделаем то же самое для модели со случайными эффектами.</p>
+<pre class="stata"><code>xtreg lwage hours, re vce(robust)</code></pre>
+<pre><code>Random-effects GLS regression                   Number of obs     =      4,360
+Group variable: id                              Number of groups  =        545
+
+R-sq:                                           Obs per group:
+     within  = 0.0000                                         min =          8
+     between = 0.0004                                         avg =        8.0
+     overall = 0.0001                                         max =          8
+
+                                                Wald chi2(1)      =       0.00
+corr(u_i, X)   = 0 (assumed)                    Prob &gt; chi2       =     0.9510
+
+                                   (Std. Err. adjusted for 545 clusters in id)
+------------------------------------------------------------------------------
+             |               Robust
+       lwage |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |   1.46e-06   .0000238     0.06   0.951    -.0000451    .0000481
+       _cons |   1.645945   .0549594    29.95   0.000     1.538227    1.753664
+-------------+----------------------------------------------------------------
+     sigma_u |  .36626431
+     sigma_e |  .38728237
+         rho |   .4721295   (fraction of variance due to u_i)
+------------------------------------------------------------------------------</code></pre>
+<p>Тест Хаусмана.</p>
+<pre class="stata"><code>xtreg lwage hours, re
+estimates store b_re
+xtreg lwage hours, fe
+estimates store b_fe
+hausman b_fe b_re, sigmamore</code></pre>
+<pre><code>Random-effects GLS regression                   Number of obs     =      4,360
+Group variable: id                              Number of groups  =        545
+
+R-sq:                                           Obs per group:
+     within  = 0.0000                                         min =          8
+     between = 0.0004                                         avg =        8.0
+     overall = 0.0001                                         max =          8
+
+                                                Wald chi2(1)      =       0.01
+corr(u_i, X)   = 0 (assumed)                    Prob &gt; chi2       =     0.9128
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      z    P&gt;|z|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |   1.46e-06   .0000133     0.11   0.913    -.0000247    .0000276
+       _cons |   1.645945   .0337055    48.83   0.000     1.579884    1.712007
+-------------+----------------------------------------------------------------
+     sigma_u |  .36626431
+     sigma_e |  .38728237
+         rho |   .4721295   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+
+
+
+Fixed-effects (within) regression               Number of obs     =      4,360
+Group variable: id                              Number of groups  =        545
+
+R-sq:                                           Obs per group:
+     within  = 0.0000                                         min =          8
+     between = 0.0004                                         avg =        8.0
+     overall = 0.0001                                         max =          8
+
+                                                F(1,3814)         =       0.00
+corr(u_i, Xb)  = -0.0144                        Prob &gt; F          =     0.9682
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |  -5.59e-07    .000014    -0.04   0.968     -.000028    .0000269
+       _cons |   1.650371   .0312611    52.79   0.000     1.589081    1.711661
+-------------+----------------------------------------------------------------
+     sigma_u |  .39075125
+     sigma_e |  .38728237
+         rho |  .50445844   (fraction of variance due to u_i)
+------------------------------------------------------------------------------
+F test that all u_i=0: F(544, 3814) = 8.14                   Prob &gt; F = 0.0000
+
+                 ---- Coefficients ----
+             |      (b)          (B)            (b-B)     sqrt(diag(V_b-V_B))
+             |      b_fe         b_re        Difference          S.E.
+-------------+----------------------------------------------------------------
+       hours |   -5.59e-07     1.46e-06       -2.02e-06        4.26e-06
+------------------------------------------------------------------------------
+                           b = consistent under Ho and Ha; obtained from xtreg
+            B = inconsistent under Ha, efficient under Ho; obtained from xtreg
+
+    Test:  Ho:  difference in coefficients not systematic
+
+                  chi2(1) = (b-B)&#39;[(V_b-V_B)^(-1)](b-B)
+                          =        0.22
+                Prob&gt;chi2 =      0.6354</code></pre>
+<p>Оценим FD-модель.</p>
+<pre class="stata"><code>reg D.(lwage hours), vce(robust) nocon</code></pre>
+<pre><code>Linear regression                               Number of obs     =      3,815
+                                                F(1, 3814)        =      93.15
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0483
+                                                Root MSE          =     .43793
+
+------------------------------------------------------------------------------
+             |               Robust
+     D.lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |
+         D1. |   -.000203    .000021    -9.65   0.000    -.0002443   -.0001618
+------------------------------------------------------------------------------</code></pre>
+<p>Аналогично оцениваем модель pooled OLS.</p>
+<pre class="stata"><code>reg lwage hours, vce(robust)</code></pre>
+<pre><code>Linear regression                               Number of obs     =      4,360
+                                                F(1, 4358)        =       0.27
+                                                Prob &gt; F          =     0.6059
+                                                R-squared         =     0.0001
+                                                Root MSE          =     .53264
+
+------------------------------------------------------------------------------
+             |               Robust
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |   9.36e-06   .0000181     0.52   0.606    -.0000262    .0000449
+       _cons |   1.628646   .0415015    39.24   0.000     1.547282     1.71001
+------------------------------------------------------------------------------</code></pre>
+<p>Оценим LSDV-модель.</p>
+<pre class="stata"><code>areg lwage hours, absorb(id)</code></pre>
+<pre><code>Linear regression, absorbing indicators         Number of obs     =      4,360
+                                                F(   1,   3814)   =       0.00
+                                                Prob &gt; F          =     0.9682
+                                                R-squared         =     0.5374
+                                                Adj R-squared     =     0.4713
+                                                Root MSE          =     0.3873
+
+------------------------------------------------------------------------------
+       lwage |      Coef.   Std. Err.      t    P&gt;|t|     [95% Conf. Interval]
+-------------+----------------------------------------------------------------
+       hours |  -5.59e-07    .000014    -0.04   0.968     -.000028    .0000269
+       _cons |   1.650371   .0312611    52.79   0.000     1.589081    1.711661
+-------------+----------------------------------------------------------------
+          id |      F(544, 3814) =      8.142   0.000         (545 categories)</code></pre>
+<p>Повторим в Python.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb344-1" data-line-number="1"><span class="im">import</span> numpy <span class="im">as</span> np</a>
+<a class="sourceLine" id="cb344-2" data-line-number="2"><span class="im">import</span> pandas <span class="im">as</span> pd</a></code></pre></div>
+<p>Подгрузим данные и для обозначения панельных данных присвоим соответствующие индексы. Зададим соответствующие зависимые и независимые переменные, а также регрессионную формулу. Переменная “Entity effects” (Фиксированные эффекты) обязательна для включения для корректного распознавания панельных данных. Если её не включить, результат будет отличаться от R и STATA.</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb345-1" data-line-number="1">df <span class="op">=</span> pd.read_csv(<span class="st">&quot;lwage_panel_large.csv&quot;</span>)</a>
+<a class="sourceLine" id="cb345-2" data-line-number="2">df <span class="op">=</span> df.set_index([<span class="st">&#39;id&#39;</span>, <span class="st">&#39;year&#39;</span>])</a>
+<a class="sourceLine" id="cb345-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb345-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb345-5" data-line-number="5">formula <span class="op">=</span> <span class="st">&#39;lwage ~ 1 + hours + EntityEffects&#39;</span></a>
+<a class="sourceLine" id="cb345-6" data-line-number="6">dependent <span class="op">=</span> df.lwage</a>
+<a class="sourceLine" id="cb345-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb345-8" data-line-number="8">regressors <span class="op">=</span> df[[<span class="st">&#39;hours&#39;</span>]]</a>
+<a class="sourceLine" id="cb345-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb345-10" data-line-number="10"><span class="bu">print</span>(df.head())</a></code></pre></div>
+<pre><code>         nr  black  exper  hisp  ...  union     lwage  expersq  occupation
+id year                          ...                                      
+1  1980  13      0      1     0  ...      0  1.197540        1           9
+   1981  13      0      2     0  ...      1  1.853060        4           9
+   1982  13      0      3     0  ...      0  1.344462        9           9
+   1983  13      0      4     0  ...      0  1.433213       16           9
+   1984  13      0      5     0  ...      0  1.568125       25           5
+
+[5 rows x 11 columns]</code></pre>
+<p>Оценим FE-модель, используя within-оценку.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="im">from</span> linearmodels <span class="im">import</span> PanelOLS</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;linearmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb349-1" data-line-number="1">model_fe <span class="op">=</span> PanelOLS.from_formula(formula, df)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;PanelOLS&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb351"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb351-1" data-line-number="1">model_fe_fitted <span class="op">=</span> model_fe.fit(cov_type<span class="op">=</span><span class="st">&#39;clustered&#39;</span>, cluster_entity <span class="op">=</span> <span class="va">True</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_fe&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb353"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="bu">print</span>(model_fe_fitted)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_fe_fitted&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Оценим RE-модель, используя FGLS-оценку.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="im">from</span> linearmodels.panel <span class="im">import</span> RandomEffects</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;linearmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb357"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb357-1" data-line-number="1">model_re <span class="op">=</span> RandomEffects.from_formula(formula, df)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;RandomEffects&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb359-1" data-line-number="1">model_re_fitted <span class="op">=</span> model_re.fit(cov_type<span class="op">=</span><span class="st">&#39;clustered&#39;</span>, cluster_entity <span class="op">=</span> <span class="va">True</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_re&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="bu">dir</span>(model_re_fitted)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_re_fitted&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="bu">print</span>(model_re_fitted)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_re_fitted&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Тест Хаусмана в соответствующем пакете на данный момент не реализован.</p>
+<p>Оценим модель Pooled OLS</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="im">from</span> linearmodels.panel <span class="im">import</span> PooledOLS</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;linearmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb367-1" data-line-number="1">model_pool <span class="op">=</span> PooledOLS.from_formula(formula, df)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;PooledOLS&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb369"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb369-1" data-line-number="1">model_pool_fitted <span class="op">=</span> model_pool.fit(cov_type<span class="op">=</span><span class="st">&#39;clustered&#39;</span>, cluster_entity <span class="op">=</span> <span class="va">True</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_pool&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb371"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb371-1" data-line-number="1"><span class="bu">print</span>(model_pool_fitted)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_pool_fitted&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<p>Оценим LSDV-модель</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb373-1" data-line-number="1">model_lsdv <span class="op">=</span> PanelOLS.from_formula(formula, df)</a>
+<a class="sourceLine" id="cb373-2" data-line-number="2">model_lsdv_fitted <span class="op">=</span> model_lsdv.fit(cov_type<span class="op">=</span><span class="st">&#39;clustered&#39;</span>, cluster_entity <span class="op">=</span> <span class="va">True</span>, use_lsdv <span class="op">=</span> <span class="va">True</span>)</a>
+<a class="sourceLine" id="cb373-3" data-line-number="3"><span class="bu">print</span>(model_lsdv_fitted)</a></code></pre></div>
+<p>Построим FD-оценку. Здесь необходимо убрать константный признак, так как данная модель начинает выдавать ошибку. Логически, конечно, он автоматически должен исчезнуть по построению модели, но в данной реализации это требуется задать на уровне пользователя.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb374-1" data-line-number="1"><span class="im">from</span> linearmodels.panel <span class="im">import</span> FirstDifferenceOLS</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): ModuleNotFoundError: No module named &#39;linearmodels&#39;
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb376"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb376-1" data-line-number="1">formula_fd <span class="op">=</span> <span class="st">&#39;lwage ~ hours + EntityEffects&#39;</span></a>
+<a class="sourceLine" id="cb376-2" data-line-number="2">model_fd <span class="op">=</span> FirstDifferenceOLS.from_formula(formula_fd, df)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;FirstDifferenceOLS&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb378"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb378-1" data-line-number="1">model_fd_fitted <span class="op">=</span> model_fd.fit(cov_type<span class="op">=</span><span class="st">&#39;clustered&#39;</span>, cluster_entity <span class="op">=</span> <span class="va">True</span>)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_fd&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
+<div class="sourceCode" id="cb380"><pre class="sourceCode python"><code class="sourceCode python"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="bu">print</span>(model_fd_fitted)</a></code></pre></div>
+<pre><code>Error in py_call_impl(callable, dots$args, dots$keywords): NameError: name &#39;model_fd_fitted&#39; is not defined
+
+Detailed traceback: 
+  File &quot;&lt;string&gt;&quot;, line 1, in &lt;module&gt;</code></pre>
 
 </div>
             </section>
@@ -193,6 +1355,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -1,0 +1,125 @@
+# Модели множественного выбора stata {#multchoice}
+
+
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+
+## stata
+
+```{stata, include=FALSE}
+clear all
+```
+
+```{stata "import data stata", message=FALSE, warning=FALSE}
+use data/pension.dta
+```
+
+```{stata "sum",  message=FALSE, warning=FALSE}
+sum
+```
+
+```{stata "ren",  message=FALSE, warning=FALSE}
+ren pctstck y
+```
+
+Построим модель множественного выбора (лог-линейная модель). 
+```{stata "mlogit",  message=FALSE, warning=FALSE}
+mlogit y choice age educ wealth89 prftshr,  baseoutcome(0) 
+```
+
+Кросс - табличка для объясняемой переменной и числа лет образования.
+```{stata, message=FALSE, warning=FALSE }
+table y educ
+```
+
+Можем получить прогнозы вероятностей.
+```{stata "predict",  message=FALSE, warning=FALSE}
+predict p1 p2 p3, p
+```
+
+И посчитать относительное изменение отношения шансов:
+
+\[
+\frac{P(y_{i} = j)}{P(y_{i} = 1)} = exp(x_{i}\beta)
+\] - показывает изменение отношения шансов при выборе альтернативы j вместо альтернативы 0, если x изменился на единицу.
+В stata, в отличие от R, отношение шансов называется relative-risk ratio.
+
+```{stata "rrr",  message=FALSE, warning=FALSE}
+mlogit, rrr
+```
+
+
+Можем посчитать предельные эффекты в разных точках.
+```{stata "mfx",  message=FALSE, warning=FALSE}
+margins, predict(outcome(0)) dydx(choice age educ wealth89 prftshr) atmeans 
+
+margins, predict(outcome(0)) dydx(choice age educ wealth89 prftshr) at((p25) *)
+
+margins, predict(outcome(0)) dydx(choice age educ wealth89 prftshr) at(age = 69 choice = 0)
+```
+
+```{stata, include=FALSE}
+clear all
+```
+
+И вернемся к ~~сильным и независимым~~ моделькам упорядоченного выбора :) 
+```{stata "import tradrole stata",  message=FALSE, warning=FALSE}
+use data/tradrole.dta
+
+sum
+```
+
+!Нужно добавить название к графику
+```{stata "hist tradrole stata",  message=FALSE, warning=FALSE}
+hist tradrole
+```
+
+Посмотрим, как влияет религиозное воспитание (`cath` - католичество и `fpro` - протестанство), число лет образования матери - `meduc` и проживание в крупном городе `urb` на объясняемую переменную.
+
+```{stata "ordered stata",  message=FALSE, warning=FALSE}
+oprobit tradrole i.cath i.fpro meduc i.urb
+```
+

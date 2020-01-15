@@ -1,2 +1,351 @@
 # Панельные данные {#paneldata}
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+
+
+
+
+Загрузим необходимые библиотеки.
+```{r "library chunk", message=FALSE, warning=FALSE}
+library(foreign) #Вспомогательная библиотека для подгрузки данных
+library(plm) #Пакет для работы с панельными данными
+library(lmtest) #Пакет для оценки регрессий и ковариационных матриц параметров
+library(skimr) #Для красивого summary
+library(car) #Для некоторых графиков
+library(gplots) #Для графигов гетерогенности
+library(rio)
+library(tidyverse)
+library(car)
+```
+
+Загрузим данные, и преобразуем нужные переменные в факторные.В данном разделе все визуализации будут построены на подмножестве данных из шести наблюдений. Это позволит сделать их более читаемыми в формате книги.  Все модели будут оценены на всём массиве данных.
+```{r "load data", message=FALSE, warning=FALSE}
+
+panel = read_csv('lwage_panel_small.csv')
+panel$black = factor(panel$black)
+panel$id = factor(panel$id)
+```
+
+Изобразим наши панельные данные на диаграмме рассеяния. Дополнимельно установим параметр сглаживания, чтобы получить кривые временных рядов.
+
+```{r "scatterplot chunk", message=FALSE, warning=FALSE}
+scatterplot(lwage ~ year|id, boxplots=F, smooth=TRUE, regLine=FALSE, data=panel)
+```
+
+Для получения графиков на различных плитках можно использовать coplot.
+
+```{r "1 coplot chunk", message=FALSE, warning=FALSE}
+coplot(lwage ~ year|id, type = 'b', data = panel)
+```
+
+
+Сгруппировать можно по разным признакам. Например, в зависимости от расы индивидов. 
+```{r "2 coplot chunk", message=FALSE, warning=FALSE}
+panel$year = factor(panel$year)
+coplot(lwage ~ year|black, type="l", data=panel, panel = function(x, y, ...) panel.smooth(x, y, span = 0.3, ...), pch = 16, show.given = F, xlab = "Mean dependence lwage of year for white and black people")
+```
+
+Импортируем основной датасет.
+```{r "import data", message=FALSE, warning=FALSE}
+Panel = import('lwage_panel_large.csv')
+```
+
+Визуализируем гетерогенный эффект. Можно визуализировать по годам или по индивидам. Здесь уже можно использовать полный датасет. Так как доверительные интервалы с интервалом в год не пересекаются, можно увидеть явную гетерогенность.
+
+```{r "heterogenity plot", message=FALSE, warning=FALSE}
+plotmeans(lwage ~ year, main="Heterogeineity across years", data=Panel)
+```
+
+Модель панельных данных будет выглядеть следующим образом:
+
+\begin{equation}
+y_{i t}=\alpha+x_{i t}^{\prime} \beta+z_{i}^{\prime} \gamma+c_{i}+u_{i t}
+\end{equation}
+
+где $\alpha$ -- константа, $c_{i}$ - индивидуальные эффекты индивидов, а $z_i$ -- независимые от времени переменные. Следовательно, матрица $X$ - матрица зависимых от времени регрессов, $Z$ - матрица независимых от времени регрессоров. Дополнительно обозначим как $l_n$ вектор из единиц.
+
+Оценим простую модель с фиксированными эффектами через within-оценку. Вычитая $\overline{y}_{i}=1 / T \sum_{t} y_{i t}$  из исходной модели, получим within-модель:
+
+\begin{equation}
+\ddot{y}_{i t}=\ddot{x}_{i t}^{\prime} \beta+\ddot{u}_{i t}
+\end{equation}
+
+где $\ddot{y}_{i t}=y_{i t}-\overline{y}_{i}, \ddot{x}_{i t k}=x_{i t k}-\overline{x}_{i k}$ and $\ddot{u}_{i t}=u_{i t}-\overline{u}_{i}$. Следует заметить, что константа $\alpha$, индивидуальные эффекты $c_i$ и инвариантные ко времени регрессоры $z_i$ исчезают из модели.
+
+\begin{equation}
+\widehat{\beta}_{F E}=\left(\ddot{X}^{\prime} \ddot{X}\right)^{-1} \ddot{X}^{\prime} \ddot{y}
+\end{equation}
+
+```{r "fe_model", message=FALSE, warning=FALSE}
+ffe = plm(lwage ~ hours, model="within", data = Panel)
+summary(ffe)
+```
+
+Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта.
+
+```{r"coef ffe", message=FALSE, warning=FALSE}
+coeftest(ffe, vcov=vcovHC(ffe, cluster="group"))
+```
+
+
+Оценим модель со случайными эффектами, используя достижимый обобщённый МНК (FGLS).
+
+\begin{equation}
+\left(\begin{array}{c}{\widehat{\alpha}_{R E}} \\ {\widehat{\beta}_{R E}} \\ {\widehat{\gamma}_{R E}}\end{array}\right)=\left(W^{\prime} \widehat{\Omega}_{v}^{-1} W\right)^{-1} W^{\prime} \widehat{\Omega}_{v}^{-1} y
+\end{equation}
+
+где
+
+$W=\left[\iota_{N T} X Z\right] \text { и } \iota_{N T} \text { это вектор из единиц размерности } N T \times 1$
+
+
+
+```{r "FGLS", message=FALSE, warning=FALSE}
+fre = plm(lwage ~ hours, model="random", data = Panel)
+summary(fre)
+
+```
+
+Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта.
+
+```{r "FGLS coef", message=FALSE, warning=FALSE}
+coeftest(fre, vcov=vcovHC(ffe, cluster="group"))
+```
+
+Проведём тест Хаусмана
+
+```{r "hausman", message=FALSE, warning=FALSE}
+phtest(ffe, fre)
+```
+
+Построим FD-оценку.
+
+\begin{equation}
+\dot{y}_{i t}=\dot{x}_{i t}^{\prime} \beta+\dot{u}_{i t}
+\end{equation}
+
+$\dot{y}_{i t}=y_{i t}-y_{i, t-1}, \dot{x}_{i t}=x_{i t}-x_{i, t-1}$ и $\dot{u}_{i t}=u_{i t}-u_{i, t-1}$
+
+
+```{r "fd_model", message=FALSE, warning=FALSE}
+fd = plm(lwage ~ hours - 1, model="fd", data = Panel)
+summary(fd)
+```
+
+Построим LS-оценку с дамми-переменными по каждому индивиду (LSDV). Видим, что численно её результаты идентичны withih-регрессии, как и должно быть.
+
+```{r "LSDV", message=FALSE, warning=FALSE}
+lsdv = lm(lwage ~ hours + factor(id) - 1, data=Panel)
+summary(lsdv)
+```
+
+Построим оценку Pooled OLS. Проверим значимость коэффициентов, используя ковариационную матрицу ошибок Хубера - Уайта. Визуализируем игнорирование этой моделью гетерогенного эффекта.
+
+```{r "pooling", message=FALSE, warning=FALSE}
+fpo = plm(lwage ~ hours, model="pooling",data = Panel)
+coeftest(fpo, vcov=vcovHC(fpo, cluster="group"))
+summary(fpo)
+```
+
+```{r "ignoring hetero", message=FALSE, warning=FALSE}
+panel = import('lwage_panel_small.csv')
+panel$black = factor(panel$black)
+panel$id = factor(panel$id)
+
+lsdv_small = lm(lwage ~ hours + factor(id) - 1, data=panel)
+yhat_lsdv <- lsdv_small$fitted.values
+
+
+library(ggplot2)
+g <- ggplot(panel, aes(hours, yhat_lsdv, col = id))
+g + geom_point() + 
+  geom_smooth(aes(group = id, col = id), method = 'lm') + 
+  geom_smooth(aes(col = 'Pooled OLS'),method = 'lm', se = F) + 
+  labs(title = 'Ignoring of heterogeneous effect')
+    
+
+
+```
+
+
+Теперь то же самое в Stata
+
+Для начала подгрузим данные и посмотрим на них. Сперва визуализируем малый датасет.
+
+
+```{stata}
+use lwage_panel_small
+summarize
+```
+
+```{stata}
+xtset id year
+xtline hours, overlay
+clear
+```
+
+
+```{stata}
+use lwage_panel_large
+xtset id year
+summarize
+
+```
+Визуализируем данные. Если необходимо разнести линии на разные графики, следует убрать прараметр 'overlay'.
+
+Сгенерируем новую переменную и оценим модель с фиксированными эффектами. Последний аргумент произведёт оценку стандартных ошибок переменных в форме Хубера/Уайта
+
+```{stata}
+
+xtreg lwage hours, fe vce(robust)
+```
+
+
+Сделаем то же самое для модели со случайными эффектами.
+
+```{stata}
+xtreg lwage hours, re vce(robust)
+```
+
+Тест Хаусмана.
+
+```{stata}
+xtreg lwage hours, re
+estimates store b_re
+xtreg lwage hours, fe
+estimates store b_fe
+hausman b_fe b_re, sigmamore
+```
+
+Оценим FD-модель.
+```{stata}
+reg D.(lwage hours), vce(robust) nocon
+```
+
+Аналогично оцениваем модель pooled OLS.
+
+```{stata}
+reg lwage hours, vce(robust)
+```
+
+Оценим LSDV-модель.
+
+```{stata}
+areg lwage hours, absorb(id)
+```
+
+Повторим в Python.
+
+```{python "lib py", message=FALSE, warning=FALSE}
+import numpy as np
+import pandas as pd
+```
+
+Подгрузим данные и для обозначения панельных данных присвоим соответствующие индексы. Зададим соответствующие зависимые и независимые переменные, а также регрессионную формулу. Переменная "Entity effects" (Фиксированные эффекты) обязательна для включения для корректного распознавания панельных данных. Если её не включить, результат будет отличаться от R и STATA.
+
+```{python "read data py" , message=FALSE, warning=FALSE}
+df = pd.read_csv("lwage_panel_large.csv")
+df = df.set_index(['id', 'year'])
+
+
+formula = 'lwage ~ 1 + hours + EntityEffects'
+dependent = df.lwage
+
+regressors = df[['hours']]
+
+print(df.head())
+```
+
+Оценим FE-модель, используя within-оценку.
+```{python}
+from linearmodels import PanelOLS
+model_fe = PanelOLS.from_formula(formula, df)
+model_fe_fitted = model_fe.fit(cov_type='clustered', cluster_entity = True)
+print(model_fe_fitted)
+```
+
+Оценим RE-модель, используя FGLS-оценку.
+
+```{python}
+from linearmodels.panel import RandomEffects
+model_re = RandomEffects.from_formula(formula, df)
+model_re_fitted = model_re.fit(cov_type='clustered', cluster_entity = True)
+dir(model_re_fitted)
+print(model_re_fitted)
+```
+
+Тест Хаусмана в соответствующем пакете на данный момент не реализован.
+
+Оценим модель Pooled OLS
+
+```{python}
+from linearmodels.panel import PooledOLS
+model_pool = PooledOLS.from_formula(formula, df)
+model_pool_fitted = model_pool.fit(cov_type='clustered', cluster_entity = True)
+print(model_pool_fitted)
+```
+
+Оценим LSDV-модель
+
+```{python, eval = FALSE}
+model_lsdv = PanelOLS.from_formula(formula, df)
+model_lsdv_fitted = model_lsdv.fit(cov_type='clustered', cluster_entity = True, use_lsdv = True)
+print(model_lsdv_fitted)
+```
+
+Построим FD-оценку. Здесь необходимо убрать константный признак, так как данная модель начинает выдавать ошибку. Логически, конечно, он автоматически должен исчезнуть по построению модели, но в данной реализации это требуется задать на уровне пользователя.
+
+```{python}
+from linearmodels.panel import FirstDifferenceOLS
+
+formula_fd = 'lwage ~ hours + EntityEffects'
+model_fd = FirstDifferenceOLS.from_formula(formula_fd, df)
+model_fd_fitted = model_fd.fit(cov_type='clustered', cluster_entity = True)
+print(model_fd_fitted)
+```
+
+
 

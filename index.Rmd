@@ -1,6 +1,6 @@
 --- 
 title: "Розеттский камень"
-author: "Пуассон, фея и два мексиканских негодяя"
+author: "Пуассон, фея и три мексиканских негодяя"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 documentclass: book
@@ -11,6 +11,18 @@ description: "Сборник коанов для эконометристов, �
 ---
 
 # Напутственное слово
+
+<style>
+pre.r {
+    background-color: #FEF9E7 !important;
+}
+pre.stata {
+    background-color: #BDBDBD !important;
+}
+pre.python {
+    background-color: #FDF2E9 !important;
+}
+</style> 
 
 
 ```{r include=FALSE}

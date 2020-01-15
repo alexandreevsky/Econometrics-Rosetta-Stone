@@ -1,0 +1,333 @@
+# Коан о простой линейной регрессии {#simplereg}
+
+
+```{r setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+## r
+
+Построим простую линейную регрессию в R и проведем несложные тесты. 
+
+Загрузим необходимые пакеты.
+```{r "library chunk", results='hide', message=FALSE, warning=FALSE}
+
+library(tidyverse) # манипуляции с данными и построение графиков
+library(sjPlot) # красивые графики для линейных моделей
+library(skimr) # симпатичное summary
+library(rio) # чтение .dta файлов
+library(car) # проверка линейных гипотез
+library(tseries) # тест Харке-Бера
+```
+
+Импортируем данные.
+```{r "import data", message=FALSE, warning=FALSE}
+df = rio::import("data/us-return.dta")
+```
+
+Исследуем наш датасет.
+```{r "skim",  message=FALSE, warning=FALSE}
+skim_with(numeric = list(hist = NULL, p25 = NULL, p75 = NULL)) # опустим некоторые описательные статистики
+skim(df) 
+```
+
+Переименуем столбцы.
+```{r "rename chunk",  message=FALSE, warning=FALSE}
+df = rename(df, n = A, date = B) 
+```
+
+```{r "omit missings",  message=FALSE, warning=FALSE}
+df = na.omit(df) # уберем пустые строки
+```
+
+Будем верить в CAPM :) Оценим параметры модели для компании MOTOR. Соответственно, зависимая переменная - разница доходностей акций MOTOR и безрискового актива, а регрессор - рыночная премия.
+```{r "mutate", warning=FALSE}
+df = mutate(df, y = MOTOR - RKFREE, x = MARKET - RKFREE) 
+```
+
+Строим нашу модель и проверяем гипотезу об адекватности регрессии.
+```{r "model", message=FALSE, warning=FALSE}
+ols = lm(y ~ x, data = df)
+summary(ols)
+coeff = summary(ols)$coeff # отдельно табличка с коэффициентами
+coeff
+```
+
+Вызовом одной функции получаем кучу полезных графиков. Можем визуально оценить наличие гетероскедастичности, нормальность распределения остатков, наличие выбросов.
+```{r "plot", message=FALSE, warning=FALSE}
+plot(ols)
+```
+
+Строим доверительный интервал для параметров модели.
+```{r "ci", warning=FALSE}
+est = cbind(Estimate = coef(ols), confint(ols))
+```
+
+Проверим гипотезу о равенстве коэффициента при регрессоре единице. 
+```{r "lin hyp"}
+linearHypothesis(ols, c("x = 1"))
+```
+
+Посмотрим на остатки :) Протестируем остатки регрессии на нормальность с помощью теста Харке-Бера.
+
+\[H_{0}: S = 0, K = 3,\\
+\text{где S — коэффициент асимметрии (Skewness), K — коэффициент эксцесса (Kurtosis)}\]
+
+```{r}
+jarque.bera.test(resid(ols)) 
+```
+
+И тест Шапиро-Уилка.
+
+$H_{0}: \epsilon_{i} \sim  N(\mu,\sigma^2)$
+```{r}
+shapiro.test(resid(ols))
+```
+
+Оба теста указывают на нормальность распределения остатков регрессии.
+
+Сделаем прогноз модели по данным вне обучаемой выборки.
+```{r "prediction"}
+set.seed(7)
+
+newData = data.frame(x = df$x + 0.5*rnorm(length(df$x))) #пошумим
+yhat = predict(ols, newdata = newData, se = TRUE)
+```
+
+## python
+
+Много полезных функций для статистических расчетов можно найти в пакете Statsmodels. 
+```{python}
+
+import pandas as pd # для работы с таблицами
+import numpy as np # математика, работа с матрицами
+import matplotlib.pyplot as plt # графики
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import statsmodels.graphics.gofplots as gf
+from statsmodels.stats.outliers_influence import summary_table
+import seaborn as sns # еще более классные графики
+from scipy.stats import shapiro # еще математика
+import statsmodels.discrete.discrete_model
+```
+
+При желании, можем кастомизировать графики :)
+```{python}
+plt.style.use('seaborn')
+plt.rc('font', size=14)
+plt.rc('figure', titlesize=15)
+plt.rc('axes', labelsize=15)
+plt.rc('axes', titlesize=15)
+```
+
+Загрузим данные.
+```{python}
+df = pd.read_stata('data/us-return.dta')
+```
+
+Избавимся от наблюдений с пропущенными значениями. 
+```{python}
+df.dropna(inplace=True)
+df.reset_index(drop=True, inplace=True)
+```
+
+Переименуем столбцы.
+```{python}
+df = df.rename(columns={'A':'n', 'B': 'date'})
+```
+
+```{python}
+df['y'] = df['MOTOR'] - df['RKFREE']
+df['x'] = df['MARKET'] - df['RKFREE'] 
+```
+
+Строим модель и читаем саммари :)
+```{python}
+regr = smf.ols('y~x', data = df).fit()
+regr.summary()
+```
+
+Получить прогноз.
+```{python}
+df['yhat'] = regr.fittedvalues
+```
+
+Красивые графики для остатков, выборосов и прочих радостей, как в R, придется строить ручками. Зато приятно поиграть с оформлением :)
+```{python}
+fig, ax = plt.subplots()
+ax.plot(df['x'],regr.fittedvalues, color='g', alpha =0.8)
+ax.scatter(df['x'],regr.fittedvalues+regr.resid, color = 'g', alpha = 0.8, s = 40)
+ax.vlines(df['x'],regr.fittedvalues,regr.fittedvalues+regr.resid, color = 'gray', alpha = 0.5)
+plt.title('Линия регрессии и остатки')
+plt.xlabel('RKFREE')
+plt.ylabel('MARKET')
+plt.show()
+```
+
+Строим доверительный интервал.
+```{python}
+regr.conf_int()
+```
+
+И проведем F-test.
+```{python}
+hypotheses = '(x = 1)'
+regr.f_test(r_matrix = hypotheses)
+```
+
+Тест Шапиро. Такой же, как и в R. Для удобства можно поместить в табличку.
+```{python}
+W, p_value = shapiro(regr.resid)
+#pd.DataFrame(data = {'W': [round(W,3)], 'p_value': [round(p_value,3)]})
+```
+
+
+Генерируем новые данные и строим предсказание.
+```{python}
+import random
+random.seed(7)
+
+newData = df['x'] + 0.5*np.random.normal(len(df))
+prediction = regr.predict(newData)
+```
+
+А теперь жесть! Построим графички, похожие на autoplot R.
+```{python}
+fig_1 = plt.figure(1)
+
+fig_1.axes[0] = sns.residplot(df['x'], df['y'],
+                                  lowess=True,
+                                  scatter_kws={'alpha': 0.6},
+                                  line_kws={'color': 'red', 'lw': 2, 'alpha': 0.8})
+
+fig_1.axes[0].set_title('Residuals vs Fitted')
+fig_1.axes[0].set_xlabel('Fitted values')
+fig_1.axes[0].set_ylabel('Residuals')
+
+
+# можем добавить метки потенциальных аутлаеров
+abs_resid = abs(regr.resid).sort_values(ascending=False)
+abs_resid_top3 = abs_resid[:3]
+
+for i in abs_resid_top3.index:
+    fig_1.axes[0].annotate(i, 
+                               xy=(regr.fittedvalues[i], 
+                                   regr.resid[i]))
+```
+
+
+```{python}
+norm_residuals = regr.get_influence().resid_studentized_internal # сохраним стьюдентизированные остатки 
+
+
+QQ = gf.ProbPlot(norm_residuals)
+fig_2 = QQ.qqplot(line='45', alpha=0.5, color='b', lw=1)
+
+
+fig_2.axes[0].set_title('Normal Q-Q')
+fig_2.axes[0].set_xlabel('Theoretical Quantiles')
+fig_2.axes[0].set_ylabel('Standardized Residuals');
+
+#и снова метки
+abs_norm_resid = np.flip(np.argsort(abs(norm_residuals)), 0)
+abs_norm_resid_top3 = abs_norm_resid[:3]
+
+for r, i in enumerate(abs_norm_resid_top3):
+    fig_2.axes[0].annotate(i, 
+                               xy=(np.flip(QQ.theoretical_quantiles, 0)[r],
+                                   norm_residuals[i]))
+```
+
+
+```{python}
+fig_3 = plt.figure(3)
+
+plt.scatter(regr.fittedvalues, np.sqrt(abs(norm_residuals)), alpha=0.5)
+sns.regplot(regr.fittedvalues, np.sqrt(abs(norm_residuals)), 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={'color': 'red', 'lw': 1, 'alpha': 0.6})
+
+fig_3.axes[0].set_title('Scale-Location')
+fig_3.axes[0].set_xlabel('Fitted values')
+fig_3.axes[0].set_ylabel('$\sqrt{|Standardized Residuals|}$')
+
+# и еще раз!)
+abs_sq_norm_resid = np.flip(np.argsort(np.sqrt(abs(norm_residuals)), 0))
+abs_sq_norm_resid_top3 = abs_sq_norm_resid[:3]
+
+for i in abs_sq_norm_resid_top3:
+    fig_3.axes[0].annotate(i, xy=(regr.fittedvalues[i], 
+                                   np.sqrt(abs(norm_residuals)[i])))
+```
+
+```{python}
+leverage = regr.get_influence().hat_matrix_diag # сохраняем элементы матрицы-шляпницы
+cook_dist = regr.get_influence().cooks_distance[0] # и расстояние Кука
+
+fig_4 = plt.figure(4)
+
+plt.scatter(leverage, norm_residuals, alpha=0.5)
+sns.regplot(leverage, norm_residuals, 
+            scatter=False, 
+            ci=False, 
+            lowess=True,
+            line_kws={'color': 'red', 'lw': 1, 'alpha': 0.8})
+
+fig_4.axes[0].set_xlim(0, 0.20)
+fig_4.axes[0].set_ylim(-3, 5)
+fig_4.axes[0].set_title('Residuals vs Leverage')
+fig_4.axes[0].set_xlabel('Leverage')
+fig_4.axes[0].set_ylabel('Standardized Residuals')
+
+
+leverage_top3 = np.flip(np.argsort(cook_dist), 0)[:3]
+
+for i in leverage_top3:
+    fig_4.axes[0].annotate(i, 
+                               xy=(leverage[i], 
+                                   norm_residuals[i]))
+plt.show()
+```

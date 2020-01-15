@@ -1,2 +1,290 @@
-# Пуассоновская регрессия {#poisreg}
+# Модели счетных данных {#poisreg}
 
+
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+```
+
+Загрузим необходимые пакеты.
+```{r "packages", results='hide', message=FALSE, warning=FALSE}
+library(tidyverse) # работа с данными и графики
+library(skimr) # красивое summary
+library(rio) # чтение .dta файлов
+library(MASS) # отрицательное биномиальное
+library(lmtest) # для проверки гипотез
+library(pscl) # zero-inflation function
+library(margins) # для подсчета предельных эффектов
+library(sjPlot) # визуализация моделей
+```
+
+
+## r
+
+Импортируем данные.
+```{r "import data"}
+df_fish = rio::import(file = "data/fish.dta")
+```
+Данные содержат информацию о количестве рыбы, пойманной людьми на отдыхе. 
+
+Camper - наличие/отсутсвие палатки.
+Child - количество детей, которых взяли на рыбалку.
+Persons - количество людей в группе.
+Count - количество пойманной рыбы
+
+
+Посмотрим нам описательные статистики. 
+```{r "skim"}
+skim_with(numeric = list(hist = NULL, p25 = NULL, p75 = NULL))
+skim(df_fish)
+```
+
+Переменная `camper` принимает всего два значения, поэтому превратим ее в факторную переменную.
+
+```{r "factor"}
+df_fish = mutate(df_fish, camper = factor(camper))
+```
+
+Наша задача - по имеющимся данным предсказать улов. Для начала посмотрим на распределение объясняемой переменной `count`.
+```{r "hist"}
+ggplot(df_fish, aes(x = count)) + 
+  geom_histogram(binwidth = 1) + 
+  labs(x = 'count', y = 'frequency', title = 'Distribution of count variable')
+```
+
+Предположим, что переменная имеет распределение Пуассона. Будем использовать пуассоновскую регрессию. 
+\[
+P(y=k)=exp(-\lambda) \lambda^k / k!
+\]
+где $\lambda=\exp(b_1 +b_2*x)$
+
+```{r "poisson"}
+poisson_model = glm(count ~ child + camper +  persons, family = "poisson", data = df_fish)
+summary(poisson_model)
+```
+
+Посчитаем средний предельный эффект для каждой переменной.
+```{r "mef", message=FALSE, warning=FALSE}
+m = margins(poisson_model)
+summary(m)
+cplot(poisson_model, x = 'persons', what = 'effect', title = 'Предельный эффект переменной camper')
+margins(poisson_model, at = list(child = 0:1)) # или в какой-нибудь точке
+plot_model(poisson_model, type = 'pred')
+plot_model(poisson_model, type = "pred", terms = c("child [0, 0, 1]", "persons [1,3]"))
+```
+
+Однако, заметим, что дисперсия и среднее значение объясняемой переменной не равны, как это предполагает распределение Пуассона.
+```{r "with"}
+df_fish %>% 
+  group_by(camper) %>% 
+  summarize(var = var(count), mean = mean(count))
+```
+
+Оценим регрессию, предполагая отрицательное биномиальное распределение остатков. В этом случае, дисперсия распределения зависит от некоторого параметра и не равна среднему.
+
+```{r "nb"}
+nb1 = glm.nb(count ~ child + camper +  persons, data = df_fish)
+summary(nb1)
+```
+
+Попробуем исключить из модели переменную `camper` и сравним качество двух моделей.
+```{r "excl"}
+nb2 = update(nb1, . ~ . - camper)
+waldtest(nb1, nb2)
+```
+
+
+Можем посмотреть на результаты модели с "раздутыми нулями" (zero-inflated). Они предполагают большую частоту нулевых наблюдений.
+```{r "zero_infl"}
+zero_infl = zeroinfl(count ~  child + camper | persons, data = df_fish, dist = 'negbin')
+summary(zero_infl)
+
+plot_model(zero_infl, type = 'pred')
+```
+
+## python
+
+Нужные пакетики:
+```{python}
+import pandas as pd # для работы с таблицами
+import numpy as np # математика, работа с матрицами
+import matplotlib.pyplot as plt # графики
+import statsmodels.api as sm
+import statsmodels.formula.api as smf
+import statsmodels.graphics.gofplots as gf
+from statsmodels.stats.outliers_influence import summary_table
+import seaborn as sns # еще более классные графики
+from scipy.stats import shapiro # еще математика
+import statsmodels.discrete.discrete_model
+from statsmodels.discrete.count_model import ZeroInflatedPoisson
+
+plt.style.use('ggplot')
+```
+
+Загружаем данные и смотрим описательные статистики.
+```{python}
+df_fish = pd.read_stata('data/fish.dta')
+```
+
+```{python}
+sns.distplot(df_fish['count'])
+plt.show()
+```
+
+Превращаем переменную `camper` в категориальную.
+```{python}
+df_fish['camper'] = df_fish['camper'].astype('category')
+```
+
+Строим Пуассоновскую регрессию.
+```{python}
+pois = statsmodels.discrete.discrete_model.Poisson(endog = count, exog = np.array(child, camper, persons), data=df_fish)
+regr_pois = smf.glm('count ~ child + camper +  persons', data=df_fish,
+                    family=sm.families.Poisson()).fit()
+regr_pois.summary()
+```
+
+Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.
+```{python}
+(df_fish
+ .filter(['count', 'camper'])
+ .groupby('camper')
+ .agg(['mean', 'var']))
+```
+
+И регрессию с остатками, имеющими отрицательное биномиальное распределение.
+```{python}                
+regr_bin = smf.glm('count ~ child + camper +  persons', data=df_fish,
+              family=sm.families.NegativeBinomial()).fit()
+
+regr_bin.summary()
+```
+ 
+Проверим гипотезу о равенстве 0 коэффициента при переменной `camper`. Проведем тест Вальда.
+```{python}
+hyp = '(child = 0)'
+regr_bin.wald_test(hyp)
+```
+
+Посчитаем средний предельный эффект для каждой переменной.
+```{python}                
+pred = regr_pois.fittedvalues
+mean_mef_child = np.mean([regr_pois.params[1] * p for p in pred])
+mean_mef_camper = np.mean([regr_pois.params[2] * p for p in pred])
+
+data_1 = pd.DataFrame({'child': df_fish['child'], 'camper': 1, 'persons': df_fish['persons']})
+data_0 = pd.DataFrame({'child': df_fish['child'], 'camper': 0, 'persons': df_fish['persons']})
+mean_mef_persons = np.mean([(regr_pois.predict(data_1)[i]-regr_pois.predict(data_0)[i]) 
+                            for i in range(len(df_fish))])
+```
+
+```{python}
+plot_model(regr_pois, type = 'effect', terms = 'camper')
+```
+
+
+И модель с раздутыми нулями. (которой нет)
+
+
+## stata
+
+```{stata, include=FALSE}
+clear all
+```
+
+Загружаем данные и смотрим описательные статистики.
+```{stata}
+use data/fish.dta
+summarize
+```
+
+```{stata, results = 'hide', echo = 1}
+hist count
+graph export hist_pois.png, replace
+```
+![](hist_pois.png)
+
+
+Строим Пуассоновскую регрессию. 
+В описательных статистиках:
+$AIC = -2log(L) + 2k$
+$AIC = -2log(L) + klog(N)$
+
+```{stata}
+glm count camper child persons, family(poisson)
+```
+
+Можем посчитать AIC и BIC по другой формуле, аналогично выводу R.
+$AIC = \frac {-2log(L) + 2k}{N}$
+```{stata}                
+estat ic
+```
+
+Посмотрим, равны ли среднее значение и дисперсия, как это предполагает распределение Пуассона.
+```{stata}
+tabstat count, by(camper) stat(mean, variance) nototal
+```
+
+Предположим, что остатки имеют отрицательное биномиальное распределение.
+```{stata}
+nbreg count child camper persons
+```
+ 
+Проверим гипотезу о равенстве 0 коэффицинта при переменной `camper`. Проведем тест Вальда.
+```{stata}
+quietly: nbreg count child i.camper persons 
+test i.camper 
+```
+
+Посчитаем средний предельный эффект для каждой переменной.
+```{stata, results = 'hide', echo = 1:2}                
+margins, dydx(*)
+marginsplot
+graph export margins_plot.png, replace
+```
+![](margins_plot.png)
+
+И модель с раздутыми нулями.
+```{stata}  
+zinb count child i.camper, inflate(persons)
+```

@@ -1,2 +1,159 @@
 # TOBIT, HECKIT {#tobit_heckit}
 
+```{r stata_py_setup, include=FALSE}
+library(knitr) # комбинирование кода и текста
+library(Statamarkdown) # взаимодействие со статой
+library(reticulate) # взаимодействие с питоном
+
+if (Sys.getenv("USER") == "boris") {
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USERNAME") == "Yuliya") {
+  use_python("/Users/Юлия/AppData/Local/Programs/Python/Python37/python.exe")
+  stataexe <- find_stata()
+}
+
+if (Sys.getenv("USER") == "Sasha") {
+  use_python('/Users/Sasha/anaconda3/bin/python3')
+  stataexe = "/Applications/Stata/StataSE.app/Contents/MacOS/stataSE"
+}
+
+
+if (Sys.getenv("USERNAME") == "Anastasia Karpova") {
+  Sys.setenv(language = "russian")
+
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Library/bin",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/Scripts",
+                       Sys.getenv()["PATH"], sep = ";"))
+  Sys.setenv(PATH = paste("C:/Users/DNS/Anaconda3/",
+                       Sys.getenv()["PATH"], sep = ";"))
+
+  use_condaenv("base")
+  use_python("C:/Users/DNS/Anaconda3/python.exe")
+  pandas = reticulate::import("pandas")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+if (Sys.getenv("USERNAME") == "The_sun") {
+  use_python("Users/The_sun/Anaconda3/python.exe")
+  stataexe = "C:/Program Files (x86)/Stata13/StataMP-64.exe"
+}
+
+
+knitr::opts_chunk$set(engine.path = list(stata = stataexe), collectcode = TRUE)
+
+```
+
+```{r "chapter library chunk", message=FALSE, warning=FALSE}
+library(ggplot2)
+library(AER) #tobit
+library(sampleSelection) #heckit
+library('ltm') #margins
+library('foreign')
+library(skimr)
+```
+
+
+Данная глава посвящена моделям с цензурированными выборками. В таких выборках часть значений целевой переменной будет дискретной переменной, а часть - непрерывной. Простой пример, который указывается в некоторых учебниках, это исследование расходов семей на автомобили. Каждая семья может либо потратить какую-то сумму на автомобиль, либо, если она не может позволить себе автомобиль, то значение расходов будет равно нулю. Соответственно, переменная демонстрирует либо факт неучастия в покупке автомобиля, либо степень участия в виде суммы. Оценивается в данном случае обычная регрессионная модель, но с функцией правдоподобия следующего вида:
+
+
+\begin{equation}
+L=\prod_{y_{t}=0}\left(1-\Phi\left(\frac{\boldsymbol{x}_{t}^{\prime} \boldsymbol{\beta}}{\sigma}\right)\right) \prod_{y_{t}>0} \frac{1}{\sqrt{2 \pi} \sigma} \exp \left(-\frac{1}{2 \sigma^{2}}\left(y_{t}-\boldsymbol{x}_{t}^{\prime} \boldsymbol{\beta}\right)^{2}\right)
+\end{equation}
+
+Для начала подгрузим данные и визуализируем их. Этот датасет результаты тестирования двухсот школьников по шкале от 200 до 800 (apt), а также их успеваемость по чтению и математике (read и math соответственно). Построим гистограмму, наложив поверх неё функцию плотности нормального распределения.
+
+```{r "read data chunk", message=FALSE, warning=FALSE}
+data = read.csv('tobit.csv')
+
+```
+
+```{r "hist plot chunk", message=FALSE, warning=FALSE}
+# Функция, генерирующая функцию плотности нормального распределения в соответствии с распределением вектора входных данных
+f <- function(x, var, bw = 15) {
+  dnorm(x, mean = mean(var), sd(var)) * length(var)  * bw
+}
+
+
+p <- ggplot(data, aes(x = apt, fill=prog))
+p + stat_bin(binwidth=15) +
+  stat_function(fun = f, size = 1,
+    args = list(var = data$apt))
+```
+
+Как можем видеть, нашлось довольно много школьников, которые написали тест на высший балл. В связи с этим распределение даллеко от нормального из-за ограничений баллов теста. Вид выборки также довольно специфичен при взгляде на диаграмму рассеяния. Довольно различимая линейная зависимость как бы сплюснута сверху.
+
+```{r "scatter plot chunk", message=FALSE, warning=FALSE}
+g <- ggplot(data, aes(math, apt, col = prog))
+g +geom_point()
+```
+
+Оценим Тобит-модель:
+
+```{r "tobit model chunk", message=FALSE, warning=FALSE}
+model_tobit = tobit(apt ~ math + read, data = data, right = 800)
+summary(model_tobit)
+```
+
+Модель Тобина имеет ряд ограничений. Основное из них -- это зависимость вероятности участия и интенсивности участия определяется одним и тем же набором переменных. Для преодоления этих ограничений была предложена модель Хекмана. В ней принятие решения "участвовать - не участвовать" и определение степени участия могут зависеть от разных переменных.
+
+Загрузим другие данные во славу разнообразия.
+
+
+```{r}
+data = read.dta('data_alcohol&tobacco.dta')
+summary(data)
+
+```
+
+```{r}
+f <- function(x, var, bw = 15) {
+  dnorm(x, mean = mean(var), sd(var)) * length(var)  * bw
+}
+
+
+p <- ggplot(data, aes(x = shalc))
+p + stat_bin(binwidth=0.01) +
+  stat_function(fun = f, size = 1,
+    args = list(var = data$alc))
+```
+
+
+```{r}
+heck1 = heckit(alc ~ age + nadults + nkids + lnx + walloon, shalc ~  age + nadults + nkids + lnx + walloon, data = data, method = 'ml')
+summary(heck1)
+```
+
+```{r}
+heck2 = heckit2fit(alc ~ age + nadults + nkids + lnx + walloon, shalc ~  age + nadults + nkids + lnx + walloon, data = data)
+summary(heck2)
+```
+
+
+Теперь то же самое в STATA.
+
+```{stata}
+clear
+use tobit
+summarize
+```
+
+
+```{stata}
+egen prog_2 = group(prog)
+tobit apt read math i.prog_2, ul
+```
+```{stata}
+clear all
+use data_alcohol&tobacco
+heckman shalc age nadults nkids lnx walloon, select(alc = age nadults nkids lnx walloon)
+
+```
+
+
+```{stata}
+heckman shalc age nadults nkids lnx walloon, select(alc = age nadults nkids lnx walloon) twostep
+```
+
